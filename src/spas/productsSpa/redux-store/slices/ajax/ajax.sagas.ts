@@ -11,7 +11,7 @@ import { actions } from "..";
 
 
 
-function* ajaxTask(
+function* ajaxTask1(
   requestAction: ApiRequestAction<any>,
 ): any {
   const { type, payload } = requestAction;
@@ -60,9 +60,7 @@ function* ajaxTask(
       const message: string =
         axiosError?.response?.data?.message || axiosError.message;
 
-        yield put(
-          actions.setFeedback({isOpen: true, message: axiosError?.response?.data?.message, type: "warning"})
-        );
+
       yield put({
         type: `${api}/fail`,
         payload: {
@@ -105,7 +103,7 @@ export function* ajaxRequestSaga() {
         );
         const { type } = requestAction;
         const api = type.replace("/request", "");
-        const task: any = yield fork(ajaxTask, requestAction);
+        const task: any = yield fork(ajaxTask1, requestAction);
         let exit = false;
 
         while (!exit) {

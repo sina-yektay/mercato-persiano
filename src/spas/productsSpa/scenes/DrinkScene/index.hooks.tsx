@@ -1,11 +1,14 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { actions } from "../../redux-store/slices";
+import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { actions, selectors } from "../../redux-store/slices";
 
 export const useDrinkScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 6 }));
   });
-  return {};
+
+  const drinks = useSelector(selectors.products);
+
+  return { drinks };
 };

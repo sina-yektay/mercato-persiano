@@ -1,17 +1,43 @@
-import { Box } from "@mui/material";
+import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { memo } from "react";
 import { useDrinkScene } from "./index.hooks";
 import { ProductTab } from "@/component/ProductTab";
+import { ItemCard } from "@/component/ItemCard";
 
 type DrinkSceneProps = {};
 
 export const DrinkScene = memo(({}: DrinkSceneProps) => {
-  const {} = useDrinkScene();
+  const {drinks} = useDrinkScene();
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
       <ProductTab />
-      <h2>drinks</h2>
+      <Grid
+        container
+        sx={{
+            p:0,
+            justifyContent: "flex-start" ,
+        //   pt: 5,
+          ...(smallScreen ? { paddingLeft: 4.5 } : { paddingLeft: 5 }),
+        }}
+        spacing={0}
+      >
+        {drinks.map((item, index) => {
+          return (
+            <Grid item xs={6} sm={3} md={2} xl={1.5} key={index} sx={{ marginTop: "20px" }}>
+              <ItemCard
+                productName={item.productName}
+                productId={item.productId}
+                price={item.price}
+                quantity={item.quantity}
+                image={item.image}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
     </>
   );
 });
