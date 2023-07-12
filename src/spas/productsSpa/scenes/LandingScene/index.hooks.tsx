@@ -50,7 +50,6 @@ export const useLandingScene = () => {
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 0 }));
-    dispatch(actions.getItems.request({}));
   }, []);
 
   return { handleClick, groceryItems };

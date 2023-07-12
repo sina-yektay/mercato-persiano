@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import { useProductRouting } from "./index.hooks";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LandingScene } from "@/spas/productsSpa/scenes/LandingScene";
@@ -11,14 +11,24 @@ import { BakeryScene } from "@/spas/productsSpa/scenes/BakeryScene";
 import { ReadyMealsScene } from "@/spas/productsSpa/scenes/ReadyMealsScene";
 import { DrinkScene } from "@/spas/productsSpa/scenes/DrinkScene";
 import { NutScene } from "@/spas/productsSpa/scenes/NutScene";
+import { useDispatch, useSelector } from "react-redux";
+import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 
 type ProductRoutingProps = {};
 
 export const ProductRouting = memo(({}: ProductRoutingProps) => {
   const {} = useProductRouting();
+  const products = useSelector(selectors.products);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (products.length === 0) {
+      dispatch(actions.getItems.request({}));
+    }
+  }, [products, dispatch]);
   return (
     <Box>
-      <Router basename="/">
+      {/* <Router basename="/"> */}
+      <Router>
         <Routes>
           <Route path="/" element={<LandingScene />} />
 

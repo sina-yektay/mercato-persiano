@@ -9,7 +9,7 @@ import {
 export interface GetItemParams {}
 
 export interface PostItemResponseData {
-  items: Iitem[];
+  data: Iitem[];
 }
 
 export default apiActionBuilder<

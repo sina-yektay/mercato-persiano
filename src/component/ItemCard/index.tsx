@@ -16,7 +16,7 @@ type ItemCardProps = {
   productId: string;
   price: string;
   quantity: number;
-  image: StaticImageData;
+  image: string;
 };
 
 export const ItemCard = memo(
@@ -44,7 +44,7 @@ export const ItemCard = memo(
               component="img"
               height={135}
               width={115}
-              image={image.src}
+              image={image}
               alt={productName}
             />
             <CardContent sx={{ display: "flex", justifyContent: "center" }}>

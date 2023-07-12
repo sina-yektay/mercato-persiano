@@ -26,7 +26,7 @@ export const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(extraActions.getItems.success, (state, action) => {
-      state.list.push(...action.payload.data.items);
+      state.list.push(...action.payload.data.data);
     });
     // builder.addCase(
     //   extraActions.getArticlesByArticleId.success,
