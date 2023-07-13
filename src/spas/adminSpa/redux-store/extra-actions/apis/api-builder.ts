@@ -72,8 +72,6 @@ export const apiActionBuilder = <ApiRequestParams,ApiResponseAction>(
     api: string,
     prepare: PrepareAction<ApiRequestPayloadType<ApiRequestParams>>
   ) => {
-    console.log("w11111111111110111111111111111");
-    console.log(api)
     return {
       api,
       request: createAction(`${api}/request`, prepare) as unknown as ApiActionRequest<[ApiRequestParams]>,

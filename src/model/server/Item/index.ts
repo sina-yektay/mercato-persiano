@@ -95,10 +95,10 @@ export class Item {
       static async findMany(): Promise<Item[]> {
         try {
           const collection: Collection<IItem>  = getDB().collection(Item.collectionName);
-          const articles: IItem[] = await collection.find({}).toArray();
-          return articles.map((document) => new Item(document));
+          const items: IItem[] = await collection.find({}).toArray();
+          return items.map((document) => new Item(document));
         } catch (error) {
-          console.error('Failed to find articles', error);
+          console.error('Failed to find products', error);
           throw error;
         }
       }

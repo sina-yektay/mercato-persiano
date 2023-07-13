@@ -72,9 +72,9 @@ export const useAddItemDialog = () => {
   };
 
   const s3 = new S3({
-    accessKeyId: "AKIAQV2646P2Q2TR3XPJ",
-    secretAccessKey: "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",
-    region: "eu-central-1",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION,
   });
 
   async function uploadFileToS3(file: FileList): Promise<string> {

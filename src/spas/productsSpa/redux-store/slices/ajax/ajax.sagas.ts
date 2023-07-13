@@ -1,19 +1,18 @@
 import { Action } from "@reduxjs/toolkit";
-import { takeEvery, fork, take, put, delay, race, call } from "redux-saga/effects";
+import {
+  takeEvery,
+  fork,
+  take,
+  put,
+  delay,
+  race,
+  call,
+} from "redux-saga/effects";
 import { ApiRequestAction } from "../../extra-actions/apis/api-builder";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { actions } from "..";
 
-
-
-
-
-
-
-
-function* ajaxTask1(
-  requestAction: ApiRequestAction<any>,
-): any {
+function* productAjaxTask(requestAction: ApiRequestAction<any>): any {
   const { type, payload } = requestAction;
   const { params } = payload;
   const { path, method, body, query } = params;
@@ -26,7 +25,6 @@ function* ajaxTask1(
     })
   );
 
-
   try {
     const response: AxiosResponse = yield call<any>(axios, {
       method,
@@ -34,64 +32,43 @@ function* ajaxTask1(
       data: body,
       params: query,
     });
-    
-   console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-   console.log(response.data)
 
+    //  console.log(response.data)
 
-
-      yield put({
-        type: `${api}/success`,
-        payload: {
-          status: response?.status,
-          data: response?.data,
-        },
-      });
-      yield put(
-        actions.setApiLoading({
-          api,
-          isLoading: false,
-        })
-      );
-
+    yield put({
+      type: `${api}/success`,
+      payload: {
+        status: response?.status,
+        data: response?.data,
+      },
+    });
+    yield put(
+      actions.setApiLoading({
+        api,
+        isLoading: false,
+      })
+    );
   } catch (e: any) {
     const axiosError = e as AxiosError<any>;
-      const status = axiosError?.response?.status || 500;
-      const message: string =
-        axiosError?.response?.data?.message || axiosError.message;
+    const status = axiosError?.response?.status || 500;
+    const message: string =
+      axiosError?.response?.data?.message || axiosError.message;
 
-
-      yield put({
-        type: `${api}/fail`,
-        payload: {
-          status,
-          message,
-        },
-      });
-      yield put(
-        actions.setApiLoading({
-          api,
-          isLoading: false,
-        })
-      );
-    
+    yield put({
+      type: `${api}/fail`,
+      payload: {
+        status,
+        message,
+      },
+    });
+    yield put(
+      actions.setApiLoading({
+        api,
+        isLoading: false,
+      })
+    );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export function* ajaxRequestSaga() {
   yield takeEvery(
@@ -103,7 +80,7 @@ export function* ajaxRequestSaga() {
         );
         const { type } = requestAction;
         const api = type.replace("/request", "");
-        const task: any = yield fork(ajaxTask1, requestAction);
+        const task: any = yield fork(productAjaxTask, requestAction);
         let exit = false;
 
         while (!exit) {
@@ -121,10 +98,5 @@ export function* ajaxRequestSaga() {
     }
   );
 }
-
-
-
-
-
 
 export default ajaxRequestSaga;
