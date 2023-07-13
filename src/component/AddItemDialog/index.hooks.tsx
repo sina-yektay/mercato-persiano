@@ -107,7 +107,7 @@ export const useAddItemDialog = () => {
       }
     } catch (error) {
       console.error("Error uploading file:", error);
-      return null;
+      throw error;
     }
   };
 
@@ -140,6 +140,20 @@ export const useAddItemDialog = () => {
           setLoading(false);
         })
         .catch((error) => {
+          dispatch(
+            actions.setFeedback({
+              isOpen: true,
+              message: "Error in uploading the image",
+              type: "warning",
+            })
+          );
+          setDialog(false);
+          setValue("productName", "");
+          setValue("productId", "");
+          setValue("price", "");
+          setValue("quantity", 0);
+          setValue("image", null);
+          setLoading(false);
           console.log(
             "the handleUpload function in AdminDashboard returned an error(line: 121)"
           );
