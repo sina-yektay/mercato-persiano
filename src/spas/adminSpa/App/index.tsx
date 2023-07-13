@@ -17,12 +17,6 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<AdminPortalScene />} />
             <Route path="/products" element={<ProductScene />} />
-            {/* <Route path="/articles" element={<AdminArticles />} />
-      <Route path="/comunicati-stampa" element={<AdminPressRelease />} />
-      <Route path="/edit-page/:pageId" element={<AdminEditPage />} />
-      <Route path="/menu" element={<AdminMenuEditor />} />
-      <Route path="/footer" element={<AdminFooterEditor />} />
-      <Route path="/medias" element={<AdminMediaManager />} /> */}
           </Routes>
         </Stack>
       </Stack>

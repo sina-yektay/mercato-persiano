@@ -1,7 +1,3 @@
-
-
-
-
 export const useAdminDrawer = () => {
-    return {};
-}
+  return {};
+};
