@@ -7,6 +7,7 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
+  Stack,
   Typography,
 } from "@mui/material";
 import { StaticImageData } from "next/image";
@@ -28,8 +29,10 @@ export const ItemCard = memo(
       <Box sx={{ padding: "0px", margin: "0px" }}>
         <Card
           sx={{
-            maxWidth: 135,
-            boxShadow: "none",
+            maxWidth: 140,
+            height: 280,
+            // boxShadow: "none",
+            padding:2,
             backgroundColor: "transparent",
             background: "transparent !important",
             transform: isHovered ? "scale(1.1)" : "scale(1)",
@@ -39,33 +42,51 @@ export const ItemCard = memo(
           onMouseEnter={handleHover}
           onMouseLeave={handleMouseLeave}
         >
-          <CardActionArea sx={{}}>
-            <CardMedia
-              component="img"
-              height={135}
-              width={115}
-              image={image}
-              alt={productName}
-            />
-            <CardContent sx={{ display: "flex", justifyContent: "center" }}>
-              <Typography
-                gutterBottom
-                sx={{ fontSize: "17px" }}
-                component="div"
-              >
-                {productName}
-              </Typography>
-              <Typography variant="h6" component="div">
-                {price}
-              </Typography>
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: "purple", color: "white" }}
-              >
-                Add to card
-              </Button>
-            </CardContent>
-          </CardActionArea>
+          <Stack>
+            <CardActionArea sx={{}}>
+              <CardMedia
+                component="img"
+                height={135}
+                width={115}
+                image={image}
+                alt={productName}
+              />
+              <CardContent sx={{ display: "flex", justifyContent: "center" }}>
+                <Stack>
+                  <Typography
+                    gutterBottom
+                    sx={{ fontSize: "14px" }}
+                    minHeight={50}
+                    component="div"
+                  >
+                    {productName}
+                  </Typography>
+
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: "17px" }}
+                    component="div"
+                  >
+                    {price}
+                  </Typography>
+                </Stack>
+              </CardContent>
+            </CardActionArea>
+
+            <Button
+              variant="contained"
+              disabled={quantity === 0 ? true : false}
+              sx={{
+                backgroundColor: "purple",
+                fontSize: "12px",
+                margin: "auto",
+                width: "100%",
+                color: "white",
+              }}
+            >
+              {quantity === 0 ? "not available" :"Add"}
+            </Button>
+          </Stack>
         </Card>
       </Box>
     );
