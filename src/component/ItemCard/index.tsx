@@ -23,7 +23,7 @@ type ItemCardProps = {
 export const ItemCard = memo(
   ({ productName, productId, price, quantity, image }: ItemCardProps) => {
     const { handleHover, handleMouseLeave, isHovered, handleClick } =
-      useItemCard();
+      useItemCard(productName, productId, price, quantity, image);
 
     return (
       <Box sx={{ padding: "0px", margin: "0px" }}>

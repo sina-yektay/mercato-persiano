@@ -13,6 +13,7 @@ import { DrinkScene } from "@/spas/productsSpa/scenes/DrinkScene";
 import { NutScene } from "@/spas/productsSpa/scenes/NutScene";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
+import { ProductDialog } from "../ProductDialog";
 
 type ProductRoutingProps = {};
 
@@ -27,7 +28,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
   }, [products, dispatch]);
   return (
     <Box>
-      {/* <Router basename="/"> */}
+      <ProductDialog />
       <Router>
         <Routes>
           <Route path="/" element={<LandingScene />} />

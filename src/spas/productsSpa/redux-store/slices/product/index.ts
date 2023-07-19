@@ -11,9 +11,29 @@ import * as extraActions from "../../extra-actions";
 // import * as sagas from "./articles.sagas";
 // import domNavigation from "models/client/DomNavigation";
 
-
 const initialState: ItemState = {
   list: [],
+  productDialog: {
+    isDialogOpen: false,
+    productName: "",
+    productId: "",
+    price: "",
+    quantity: 0,
+    image: "",
+  },
+};
+
+type changeDialogStateType = {
+  payload: {
+    productDialog: {
+      isDialogOpen: boolean;
+      productName: string;
+      productId: string;
+      price: string;
+      quantity: number;
+      image: string;
+    };
+  };
 };
 
 export const productSlice = createSlice({
@@ -22,6 +42,9 @@ export const productSlice = createSlice({
   reducers: {
     resetItemList: (state) => {
       state.list = [];
+    },
+    changeDialogState: (state, { payload }: changeDialogStateType) => {
+      state.productDialog = payload.productDialog;
     },
   },
   extraReducers: (builder) => {
