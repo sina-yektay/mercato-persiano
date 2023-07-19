@@ -13,7 +13,7 @@ export const DrinkScene = memo(({}: DrinkSceneProps) => {
 
   return (
     <>
-      <ProductTab />
+      {/* <ProductTab /> */}
       <Grid
         container
         sx={{

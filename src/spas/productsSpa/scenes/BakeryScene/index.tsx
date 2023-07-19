@@ -10,7 +10,7 @@ export const BakeryScene = memo(({}: BakerySceneProps) => {
 
   return (
     <>
-      <ProductTab />
+
       <h2>Bread</h2>
     </>
   );

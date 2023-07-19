@@ -13,13 +13,6 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
   const smallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box>
-      <ProductTab />
-      {/* <h2>Landing page</h2>
-            <Stack spacing={2} >
-                {groceryItems.map((item, index) => {
-                    return <Stack><CustomLink to={item.to} buttonText={item.buttonText} /></Stack>
-                })}
-            </Stack> */}
       <Grid
         container
         sx={{

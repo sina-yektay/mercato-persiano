@@ -14,6 +14,7 @@ import { NutScene } from "@/spas/productsSpa/scenes/NutScene";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { ProductDialog } from "../ProductDialog";
+import { ProductTab } from "../ProductTab";
 
 type ProductRoutingProps = {};
 
@@ -30,6 +31,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
     <Box>
       <ProductDialog />
       <Router>
+        <ProductTab />
         <Routes>
           <Route path="/" element={<LandingScene />} />
 

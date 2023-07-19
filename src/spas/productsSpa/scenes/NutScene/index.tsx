@@ -10,7 +10,7 @@ export const NutScene = memo(({}: NutSceneProps) => {
 
   return (
     <>
-      <ProductTab />
+     
       <h2>nut</h2>
     </>
   );

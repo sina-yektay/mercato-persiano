@@ -11,7 +11,7 @@ export const IceCreamScene = memo(({}: IceCreamSceneProps)=>{
     const {} = useIceCreamScene();
 
     return (
-        <><ProductTab /><h2>ice cream</h2></>
+        <><h2>ice cream</h2></>
 
     )
     
