@@ -7,5 +7,5 @@ type VegetableProps = {};
 export const Vegetable = memo(({}: VegetableProps) => {
   const {} = useVegetable();
 
-  return <><ProductTab /><h2>Vegetable</h2></>;
+  return <><h2>Vegetable</h2></>;
 });

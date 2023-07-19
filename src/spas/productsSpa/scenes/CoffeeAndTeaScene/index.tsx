@@ -12,7 +12,7 @@ export const CoffeeAndTeaScene = memo(({}: CoffeeAndTeaSceneProps)=>{
     const {} = useCoffeeAndTeaScene();
 
     return (
-        <><ProductTab /><h2>coffee & tea</h2></>
+        <><h2>coffee & tea</h2></>
 
     )
     

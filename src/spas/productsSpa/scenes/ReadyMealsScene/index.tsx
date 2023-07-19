@@ -11,7 +11,7 @@ export const ReadyMealsScene = memo(({}: ReadyMealsSceneProps)=>{
     const {} = useReadyMealsScene();
 
     return (
-        <><ProductTab /><h2>readyMeals</h2></>
+        <><h2>readyMeals</h2></>
 
     )
     

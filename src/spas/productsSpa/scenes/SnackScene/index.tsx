@@ -11,7 +11,7 @@ export const SnackScene = memo(({}: SnackSceneProps)=>{
     const {} = useSnackScene();
 
     return (
-        <><ProductTab /><h2>snack</h2></>
+        <><h2>snack</h2></>
 
     )
     
