@@ -4,6 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 export const useProductDialog = () => {
   const dispatch = useDispatch();
   const dialog = useSelector(selectors.productDialog);
+
+  const handleAddProduct = () => {
+    dispatch(
+      actions.addProduct({
+        productId: dialog.productId,
+        productName: dialog.productName,
+        description: "",
+        price: dialog.price,
+        productImage: dialog.image,
+      })
+    );
+    handleClose();
+  };
+
   const handleClose = () => {
     dispatch(
       actions.changeDialogState({
@@ -19,5 +33,5 @@ export const useProductDialog = () => {
     );
   };
 
-  return { dialog, handleClose };
+  return { dialog, handleClose, handleAddProduct };
 };
