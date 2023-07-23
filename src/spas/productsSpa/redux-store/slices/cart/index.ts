@@ -2,38 +2,39 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as selectors from "./cart.selectors";
 
 export type product = {
+  productId: string;
+  productName: string;
+  description: string;
+  price: string;
+  productImage: string;
+  orderQuantity: number;
+};
+
+type productNavigationType = {
+  orderQuantity: number;
+  chosenProducts: product[];
+};
+
+const initialState: productNavigationType = {
+  orderQuantity: 0,
+  chosenProducts: [],
+};
+
+type addProductType = {
+  payload: {
     productId: string;
     productName: string;
     description: string;
     price: string;
     productImage: string;
-}
-
-type productNavigationType = {
-  orderQuantity: number;
-  chosenProducts: product[]
+  };
 };
-
-const initialState: productNavigationType = {
-    orderQuantity: 0,
-    chosenProducts: [],
-};
-
-type addProductType = {
-    payload: {
-        productId: string;
-        productName: string;
-        description: string;
-        price: string;
-        productImage: string;
-    }
-}
 
 type removeProductType = {
-    payload: {
-        productId: string;
-    }
-}
+  payload: {
+    productId: string;
+  };
+};
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -41,12 +42,41 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action: addProductType) => {
       state.orderQuantity = state.orderQuantity + 1;
-      state.chosenProducts.push(action.payload);
+      for (const product of state.chosenProducts) {
+        if (product.productId === action.payload.productId) {
+          ++product.orderQuantity;
+          break;
+        }
+      }
+      const newProduct = {
+        productId: action.payload.productId,
+        productName: action.payload.productName,
+        description: "",
+        price: action.payload.price,
+        productImage: action.payload.productImage,
+        orderQuantity: 1,
+      };
+      state.chosenProducts.push(newProduct);
     },
     removeProduct: (state, action: removeProductType) => {
-        state.orderQuantity = state.orderQuantity - 1;
-        const newProductArray = state.chosenProducts.filter(item => item.productId !== action.payload.productId);
-      },
+      var flag = false;
+      state.orderQuantity = state.orderQuantity - 1;
+      for (const product of state.chosenProducts) {
+        if (product.productId === action.payload.productId) {
+          if (product.orderQuantity > 1) {
+            --product.orderQuantity;
+            flag = true;
+            break;
+          }
+        }
+      }
+      if (flag === false) {
+        const newProductArray = state.chosenProducts.filter(
+          (item) => item.productId !== action.payload.productId
+        );
+        state.chosenProducts = [...newProductArray];
+      }
+    },
   },
 });
 
