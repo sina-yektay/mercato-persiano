@@ -19,6 +19,18 @@ export const useItemCard = (
     setIsHovered(false);
   };
 
+  const handleAddProduct = () => {
+    dispatch(
+      actions.addProduct({
+        productId: productId,
+        productName: productName,
+        description: "",
+        price: price,
+        productImage: image,
+      })
+    );
+  };
+
   const handleClick = () => {
     dispatch(
       actions.changeDialogState({
@@ -34,5 +46,11 @@ export const useItemCard = (
     );
   };
 
-  return { handleHover, handleMouseLeave, isHovered, handleClick };
+  return {
+    handleHover,
+    handleMouseLeave,
+    isHovered,
+    handleClick,
+    handleAddProduct,
+  };
 };

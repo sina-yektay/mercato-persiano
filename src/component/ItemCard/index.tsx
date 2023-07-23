@@ -22,7 +22,7 @@ type ItemCardProps = {
 
 export const ItemCard = memo(
   ({ productName, productId, price, quantity, image }: ItemCardProps) => {
-    const { handleHover, handleMouseLeave, isHovered, handleClick } =
+    const { handleHover, handleMouseLeave, isHovered, handleClick, handleAddProduct } =
       useItemCard(productName, productId, price, quantity, image);
 
     return (
@@ -82,6 +82,10 @@ export const ItemCard = memo(
                 margin: "auto",
                 width: "100%",
                 color: "white",
+              }}
+              onClick={event => {
+                event.stopPropagation();
+                handleAddProduct();
               }}
             >
               {quantity === 0 ? "not available" :"Add"}
