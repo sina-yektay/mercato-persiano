@@ -42,21 +42,25 @@ export const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action: addProductType) => {
       state.orderQuantity = state.orderQuantity + 1;
+      var flag = false;
       for (const product of state.chosenProducts) {
         if (product.productId === action.payload.productId) {
           ++product.orderQuantity;
+          flag = true;
           break;
         }
       }
-      const newProduct = {
-        productId: action.payload.productId,
-        productName: action.payload.productName,
-        description: "",
-        price: action.payload.price,
-        productImage: action.payload.productImage,
-        orderQuantity: 1,
-      };
-      state.chosenProducts.push(newProduct);
+      if (flag === false) {
+        const newProduct = {
+          productId: action.payload.productId,
+          productName: action.payload.productName,
+          description: "",
+          price: action.payload.price,
+          productImage: action.payload.productImage,
+          orderQuantity: 1,
+        };
+        state.chosenProducts.push(newProduct);
+      }
     },
     removeProduct: (state, action: removeProductType) => {
       var flag = false;
