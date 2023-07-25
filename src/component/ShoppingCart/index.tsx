@@ -35,6 +35,8 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
     productInCart,
     handleRemoveFromCart,
     handleDialog,
+    handleAddFromCart,
+    totalPrice,
   } = useShoppingCart();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -82,7 +84,7 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
         <DialogContent
           sx={{
             width: smallScreen ? "300px" : "400px",
-            height: smallScreen ? "400px" : "500px",
+            minHeight: smallScreen ? "200px" : "300px",
           }}
         >
           {orderQuantity === 0 ? (
@@ -100,61 +102,65 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
             </Box>
           ) : (
             <DialogContentText id="alert-dialog-slide-description">
-              <List sx={{ maxWidth: "100%" }}>
-                {productInCart.map((item) => (
-                  <ListItem key={item.productId} disablePadding>
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="space-between"
-                      sx={{ width: "100%", p: 1, marginBottom: 1 }}
-                    >
+              <Stack>
+                <List sx={{ maxWidth: "100%" }}>
+                  {productInCart.map((item) => (
+                    <ListItem key={item.productId} disablePadding>
                       <Box
-                        sx={{
-                          width: "160px",
-                          display: "flex",
-                          justifyContent: "center",
-                          py: 0.35,
-                          bgcolor: "#9c27b0",
-                          color: "white",
-                          borderRadius: 1.5,
-                        }}
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        sx={{ width: "100%", p: 1, marginBottom: 1 }}
                       >
-                        <Box>
-                          <ListItemText primary={item.productName} />
+                        <Box
+                          sx={{
+                            width: "160px",
+                            display: "flex",
+                            justifyContent: "center",
+                            py: 0.35,
+                            bgcolor: "#9c27b0",
+                            color: "white",
+                            borderRadius: 1.5,
+                          }}
+                        >
+                          <Box>
+                            <ListItemText primary={item.productName} />
+                          </Box>
                         </Box>
-                      </Box>
 
-                      <Badge badgeContent={item.orderQuantity} color="primary">
-                        {" "}
-                        <Avatar
-                          src={item.productImage}
-                          alt={item.productName}
-                        />
-                      </Badge>
-                      <Stack direction={"row"} spacing={1}>
-                        <IconButton
-                          onClick={() => handleRemoveFromCart(item.productId)}
+                        <Badge
+                          badgeContent={item.orderQuantity}
+                          color="primary"
                         >
-                          <AddIcon />
-                        </IconButton>
-                        <IconButton
-                          onClick={() => handleRemoveFromCart(item.productId)}
-                        >
-                          <RemoveIcon />
-                        </IconButton>
-                        {/* <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => handleRemoveFromCart(item.productId)}
-                        >
-                          Remove
-                        </Button> */}
-                      </Stack>
-                    </Box>
-                  </ListItem>
-                ))}
-              </List>
+                          {" "}
+                          <Avatar
+                            src={item.productImage}
+                            alt={item.productName}
+                          />
+                        </Badge>
+                        <Stack direction={"row"} spacing={1}>
+                          <IconButton onClick={() => handleAddFromCart(item)}>
+                            <AddIcon />
+                          </IconButton>
+                          <IconButton
+                            onClick={() => handleRemoveFromCart(item.productId)}
+                          >
+                            <RemoveIcon />
+                          </IconButton>
+                        </Stack>
+                      </Box>
+                    </ListItem>
+                  ))}
+                </List>
+               
+                  
+                  <Typography sx={{pb:1.5, margin: "auto"}}>To Pay: {totalPrice}€</Typography>
+           
+            
+                  <Button variant="contained">pay</Button>
+           
+                </Stack>
+        
             </DialogContentText>
           )}
         </DialogContent>

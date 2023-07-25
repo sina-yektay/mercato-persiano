@@ -1,10 +1,11 @@
-import { selectors } from "@/spas/productsSpa/redux-store/slices";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
+import { product } from "@/spas/productsSpa/redux-store/slices/cart";
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const useShoppingCart = () => {
   const orderQuantity = useSelector(selectors.getProductQuantity);
-
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
     setIsOpen(false);
@@ -12,10 +13,35 @@ export const useShoppingCart = () => {
 
   const productInCart = useSelector(selectors.getProductsInCart);
 
-  const handleRemoveFromCart = (productId: string) => {};
+  const handleRemoveFromCart = (productId: string) => {
+    dispatch(actions.removeProduct({ productId }));
+  };
 
   const handleDialog = () => {
     setIsOpen(true);
+  };
+
+  const totalPrice = useMemo(() => {
+    const pricesAndQuantity = productInCart.map((item) => {
+      const rawPrice = item.price.replace(/\D/g, "");
+
+      return Number(rawPrice) * item.orderQuantity;
+    });
+    const tPrice = pricesAndQuantity.reduce((acc, current) => acc + current, 0);
+
+    return tPrice;
+  }, [productInCart]);
+
+  const handleAddFromCart = (item: product) => {
+    dispatch(
+      actions.addProduct({
+        productId: item.productId,
+        productName: item.productName,
+        description: item.description,
+        price: item.price,
+        productImage: item.productImage,
+      })
+    );
   };
 
   return {
@@ -25,5 +51,7 @@ export const useShoppingCart = () => {
     productInCart,
     handleRemoveFromCart,
     handleDialog,
+    handleAddFromCart,
+    totalPrice,
   };
 };
