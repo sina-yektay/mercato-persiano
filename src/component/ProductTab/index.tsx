@@ -23,7 +23,6 @@ export const ProductTab = memo(() => {
         aria-label="scrollable force tabs example"
         sx={{
           backgroundColor: isScrolled ? "purple" : "white",
-
         }}
       >
         <Tab

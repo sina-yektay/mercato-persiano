@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { ProductDialog } from "../ProductDialog";
 import { ProductTab } from "../ProductTab";
+import Signup from "@/pages/Signup";
 
 type ProductRoutingProps = {};
 
