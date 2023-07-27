@@ -2,6 +2,7 @@ import {
   AppBar,
   Box,
   Button,
+  Divider,
   IconButton,
   Stack,
   Toolbar,
@@ -50,17 +51,25 @@ export const Bar = memo(({}: BarProps) => {
           <Box>
             <ShoppingCart />
           </Box>
-          {!smallScreen && (
+          {/* {!smallScreen && (
             <Typography
               sx={{ fontSize: "23px", color: "#FDDA0D" }}
               variant="h6"
             >
               سوپرمارکت ایرانی
             </Typography>
-          )}
+          )} */}
          
         </Stack>
         <Stack sx={{margin:"auto"}}><SearchBar /></Stack>
+        <Stack sx={{marginRight:"auto"}} direction={"row"}>
+          <Button variant="outlined" style={{minWidth: 0,padding:4,color:"white", borderColor:"white"}}>IT</Button>
+          <Button style={{minWidth: 0,padding:4,color:"white", borderColor:"white"}}>EN</Button>
+        </Stack>
+        <Stack><Link href={""}><Button sx={{color:"white"}}>login</Button></Link></Stack>
+        <Divider orientation="vertical" flexItem sx={{ width: "2px", backgroundColor: "white" }} />
+        <Stack><Link href={"/Signup"}><Button sx={{color:"white"}}>signup</Button></Link></Stack>
+
       </Toolbar>
     </AppBar>
   );

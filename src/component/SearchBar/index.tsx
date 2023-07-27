@@ -11,6 +11,8 @@ import {
   ListItemText,
   Popover,
   TextField,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 
@@ -26,9 +28,17 @@ export const SearchBar = memo(({}: SearchBarType) => {
     handleClose,
     handleItemClick,
   } = useSearchBar();
+  const theme = useTheme();
+  const largeScreen = useMediaQuery(theme.breakpoints.down("xl"));
   return (
     <>
       <TextField
+        sx={{
+          border: "solid white 1px",
+          p: 0.5,
+          borderRadius: 5,
+          width: largeScreen ? "360px" : "590px",
+        }}
         variant="standard"
         fullWidth
         value={searchQuery}
@@ -77,7 +87,7 @@ export const SearchBar = memo(({}: SearchBarType) => {
           horizontal: "left",
         }}
         disableAutoFocus
-        sx={{ "& .MuiPaper-root": { width: 250 } }}
+        sx={{ "& .MuiPaper-root": { width: largeScreen ? 250 : 500 } }}
       >
         <List sx={{ maxWidth: "100%" }}>
           {filteredProducts.map((item) => (
