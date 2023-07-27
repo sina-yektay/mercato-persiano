@@ -5,30 +5,27 @@ import { Session } from "next-auth";
 export type Iuser = {
   _id: string;
   email: string;
+  address: string;
+  phone: string;
+  name: string;
+  isAdmin: boolean;
+};
+
+export interface IUserSession extends Session {
+  email?: string;
   address?: string;
   phone?: string;
   name?: string;
   isAdmin?: boolean;
-};
-
-export interface IUserSession extends Session {
-  user: {
-    email: string;
-    password: string;
-    address?: string;
-    phone?: string;
-    name?: string;
-    isAdmin?: boolean;
-  };
 }
 
 export type LoginUserParams = {
   email: string;
   password: string;
-  address?: string;
-  phone?: string;
-  name?: string;
-  isAdmin?: boolean;
+  address: string;
+  phone: string;
+  name: string;
+  isAdmin: boolean;
 };
 
 export type IUser = {
@@ -36,10 +33,10 @@ export type IUser = {
   email: string;
   password: string;
   id?: string;
-  address?: string;
-  phone?: string;
-  isAdmin?: boolean;
-  name?: string;
+  address: string;
+  phone: string;
+  isAdmin: boolean;
+  name: string;
 };
 
 export class User {
@@ -79,7 +76,6 @@ export class User {
       );
       const document: IUser | null = await collection.findOne(filter);
       if (document) {
-        console.log(document);
         return new User(document);
       }
       return null;
@@ -89,19 +85,16 @@ export class User {
     }
   }
 
-
   static async insertOne(user: LoginUserParams): Promise<User | null> {
     try {
-      const collection: Collection<IUser> = getDB().collection(User.collectionName);
-      const result: any= await collection.insertOne(user);
+      const collection: Collection<IUser> = getDB().collection(
+        User.collectionName
+      );
+      const result: any = await collection.insertOne(user);
       return result;
     } catch (error) {
-      console.error('Failed to insert the user', error);
+      console.error("Failed to insert the user", error);
       throw error;
     }
   }
-
-
-
-
 }

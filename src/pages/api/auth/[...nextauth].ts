@@ -1,5 +1,6 @@
 import { connectToDatabase } from "@/dbConfig";
 import { IUserSession, Iuser, User } from "@/model/server/User";
+import { compare } from "bcryptjs";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -33,13 +34,20 @@ const options: NextAuthOptions = {
         if (!user) {
           throw new Error("Invalid Credentials");
         }
-        const isPasswordCorrect = credentials!.password === user.password;
+        const isPasswordCorrect = compare(
+          credentials!.password,
+          user.password ?? ""
+        );
         if (!isPasswordCorrect) {
           throw new Error("Invalid Credentials");
         }
         const sessionUser: any = {
           id: user._id?.toString(),
-          email: "user.email",
+          email: user.email,
+          address: user.address,
+          phone: user.phone,
+          name: user.name,
+          isAdmin: user.isAdmin,
         };
         return sessionUser;
       },
