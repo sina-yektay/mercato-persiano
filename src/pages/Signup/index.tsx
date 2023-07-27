@@ -14,6 +14,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import { FormProvider } from "react-hook-form";
+import { Bar } from "@/component/Bar";
 
 type SignupType = {};
 
@@ -31,6 +32,7 @@ export const Signup = memo(({}: SignupType) => {
   } = useSignup();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const largeScreen = useMediaQuery(theme.breakpoints.down("xl"));
   return (
     <Box
       sx={{
@@ -43,9 +45,10 @@ export const Signup = memo(({}: SignupType) => {
       <Paper
         elevation={3}
         sx={{
+          border:"solid gold 2px",
           maxWidth: 400,
           margin: "auto",
-          padding: 10,
+          padding: largeScreen ? 4 : 8,
           boxShadow: smallScreen
             ? "0px 2px 8px rgba(100, 0, 55, 0.2)"
             : "0px 8px 16px rgba(128, 0, 128, 0.3)",
