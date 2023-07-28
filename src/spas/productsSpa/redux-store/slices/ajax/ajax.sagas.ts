@@ -75,9 +75,6 @@ export function* ajaxRequestSaga() {
     (action: Action) => /^apis\/(.*?)\/request$/.test(action.type),
     function* (requestAction: ApiRequestAction<any>) {
       try {
-        console.log(
-          "0p0p0p0p0p0pp0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0p0pp"
-        );
         const { type } = requestAction;
         const api = type.replace("/request", "");
         const task: any = yield fork(productAjaxTask, requestAction);

@@ -40,7 +40,7 @@ export default async function handler(
             console.log(email);
             console.log(password);
 
-            console.log("222222220000000000000000000");
+      
 
             const user = await User.insertOne({
               email,
