@@ -23,7 +23,7 @@ import CloseIcon from "@mui/icons-material/Close";
 type productDialogType = {};
 
 export const ProductDialog = memo(({}: productDialogType) => {
-  const { dialog, handleClose, handleAddProduct } = useProductDialog();
+  const { dialog, handleClose, handleAddProduct, t } = useProductDialog();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -75,7 +75,7 @@ export const ProductDialog = memo(({}: productDialogType) => {
                   size="small"
                   color="primary"
                 >
-                  {dialog.quantity === 0 ? "not available" : "Add To Cart"}
+                  {dialog.quantity === 0 ? t("Not available") : t("Add To Cart")}
                 </Button>
               </CardActions>
             </Stack>

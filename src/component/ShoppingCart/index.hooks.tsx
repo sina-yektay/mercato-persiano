@@ -1,6 +1,7 @@
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { product } from "@/spas/productsSpa/redux-store/slices/cart";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 export const useShoppingCart = () => {
@@ -10,7 +11,7 @@ export const useShoppingCart = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
-
+  const { t } = useTranslation();
   const productInCart = useSelector(selectors.getProductsInCart);
 
   const handleRemoveFromCart = (productId: string) => {
@@ -53,5 +54,6 @@ export const useShoppingCart = () => {
     handleDialog,
     handleAddFromCart,
     totalPrice,
+    t,
   };
 };

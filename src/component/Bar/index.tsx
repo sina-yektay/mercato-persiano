@@ -24,15 +24,26 @@ import { SearchBar } from "../SearchBar";
 import { useSession, signOut } from "next-auth/react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 type BarProps = {};
 
 export const Bar = memo(({}: BarProps) => {
-  const { open, handleClick, handleClose, handleLogout, anchorEl } = useBar();
+  const {
+    open,
+    handleClick,
+    handleClose,
+    handleLogout,
+    anchorEl,
+    i18n,
+    handleLangChange,
+  } = useBar();
   const theme = useTheme();
   const { data: session } = useSession();
   const smallScreen = useMediaQuery(theme.breakpoints.down("lg"));
   const mediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const { t } = useTranslation();
 
   return (
     <AppBar position="static" sx={{ margin: 0, backgroundColor: "purple" }}>
@@ -84,7 +95,10 @@ export const Bar = memo(({}: BarProps) => {
         </Stack>
         <Stack sx={{ marginRight: "auto" }} direction={"row"}>
           <Button
-            variant="outlined"
+            onClick={() => {
+              handleLangChange("it");
+            }}
+            variant={i18n.language === "it" ? "outlined" : "text"}
             style={{
               minWidth: 0,
               padding: 4,
@@ -95,6 +109,10 @@ export const Bar = memo(({}: BarProps) => {
             IT
           </Button>
           <Button
+            onClick={() => {
+              handleLangChange("en");
+            }}
+            variant={i18n.language === "en" ? "outlined" : "text"}
             style={{
               minWidth: 0,
               padding: 4,
@@ -111,7 +129,7 @@ export const Bar = memo(({}: BarProps) => {
             sx={{ marginLeft: "auto", justifyContent: "center" }}
           >
             <Typography sx={{ alignSelf: "center" }}>
-              Ciao {session?.user?.name}
+              {t("Hi")} {session?.user?.name}
             </Typography>
             <Tooltip title="User Menu" placement="bottom">
               <IconButton onClick={handleClick}>
@@ -135,7 +153,10 @@ export const Bar = memo(({}: BarProps) => {
               <List sx={{ maxWidth: "100%" }}>
                 <ListItem disablePadding>
                   <ListItemButton onClick={handleLogout}>
-                    <ListItemText style={{paddingRight:20}} primary={"Logout"} />
+                    <ListItemText
+                      style={{ paddingRight: 20 }}
+                      primary={"Logout"}
+                    />
                     <LogoutIcon />
                   </ListItemButton>
                 </ListItem>
@@ -146,7 +167,7 @@ export const Bar = memo(({}: BarProps) => {
           <>
             <Stack>
               <Link href={"/Login"}>
-                <Button sx={{ color: "white" }}>login</Button>
+                <Button sx={{ color: "white" }}>{t("Login")}</Button>
               </Link>
             </Stack>
             <Divider
@@ -156,7 +177,7 @@ export const Bar = memo(({}: BarProps) => {
             />
             <Stack>
               <Link href={"/Signup"}>
-                <Button sx={{ color: "white" }}>signup</Button>
+                <Button sx={{ color: "white" }}>{t("Signup")}</Button>
               </Link>
             </Stack>
           </>

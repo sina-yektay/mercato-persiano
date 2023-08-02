@@ -37,6 +37,7 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
     handleDialog,
     handleAddFromCart,
     totalPrice,
+    t,
   } = useShoppingCart();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -73,7 +74,7 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
         aria-describedby="alert-dialog-slide-description"
       >
         <Stack direction="row">
-          <DialogTitle>Your Cart</DialogTitle>
+          <DialogTitle>{t("Your Cart")}</DialogTitle>
           <DialogActions sx={{ marginLeft: "auto" }}>
             <IconButton onClick={handleClose}>
               <CloseIcon />
@@ -97,70 +98,78 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
               }}
             >
               <Typography sx={{ fontSize: smallScreen ? "19px" : "25px" }}>
-                there is no product in your cart
+                {t("there is no product in your cart")}
               </Typography>
             </Box>
           ) : (
             <DialogContentText id="alert-dialog-slide-description">
               <Stack>
-                <List sx={{ maxWidth: "100%" }}>
-                  {productInCart.map((item) => (
-                    <ListItem key={item.productId} disablePadding>
-                      <Box
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        sx={{ width: "100%", p: 1, marginBottom: 1 }}
-                      >
+                <Box
+                  sx={{
+                    height: "300px",
+                    overflowY: "auto",
+                    boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.1)",
+                    mb:2
+                  }}
+                >
+                  <List sx={{ maxWidth: "100%" }}>
+                    {productInCart.map((item) => (
+                      <ListItem key={item.productId} disablePadding>
                         <Box
-                          sx={{
-                            width: "160px",
-                            display: "flex",
-                            justifyContent: "center",
-                            py: 0.35,
-                            bgcolor: "#9c27b0",
-                            color: "white",
-                            borderRadius: 1.5,
-                          }}
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="space-between"
+                          sx={{ width: "100%", p: 1, marginBottom: 1 }}
                         >
-                          <Box>
-                            <ListItemText primary={item.productName} />
-                          </Box>
-                        </Box>
-
-                        <Badge
-                          badgeContent={item.orderQuantity}
-                          color="primary"
-                        >
-                          {" "}
-                          <Avatar
-                            src={item.productImage}
-                            alt={item.productName}
-                          />
-                        </Badge>
-                        <Stack direction={"row"} spacing={1}>
-                          <IconButton onClick={() => handleAddFromCart(item)}>
-                            <AddIcon />
-                          </IconButton>
-                          <IconButton
-                            onClick={() => handleRemoveFromCart(item.productId)}
+                          <Box
+                            sx={{
+                              width: "160px",
+                              display: "flex",
+                              justifyContent: "center",
+                              py: 0.35,
+                              bgcolor: "#9c27b0",
+                              color: "white",
+                              borderRadius: 1.5,
+                            }}
                           >
-                            <RemoveIcon />
-                          </IconButton>
-                        </Stack>
-                      </Box>
-                    </ListItem>
-                  ))}
-                </List>
-               
-                  
-                  <Typography sx={{pb:1.5, margin: "auto"}}>To Pay: {totalPrice}€</Typography>
-           
-            
-                  <Button variant="contained">pay</Button>
-           
-                </Stack>
-        
+                            <Box>
+                              <ListItemText primary={item.productName} />
+                            </Box>
+                          </Box>
+
+                          <Badge
+                            badgeContent={item.orderQuantity}
+                            color="primary"
+                          >
+                            {" "}
+                            <Avatar
+                              src={item.productImage}
+                              alt={item.productName}
+                            />
+                          </Badge>
+                          <Stack direction={"row"} spacing={1}>
+                            <IconButton onClick={() => handleAddFromCart(item)}>
+                              <AddIcon />
+                            </IconButton>
+                            <IconButton
+                              onClick={() =>
+                                handleRemoveFromCart(item.productId)
+                              }
+                            >
+                              <RemoveIcon />
+                            </IconButton>
+                          </Stack>
+                        </Box>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Box>
+                <Typography sx={{ pb: 1.5, margin: "auto" }}>
+                  {t("To Pay")}: {totalPrice}€
+                </Typography>
+
+                <Button variant="contained">{t("Pay")}</Button>
+              </Stack>
             </DialogContentText>
           )}
         </DialogContent>

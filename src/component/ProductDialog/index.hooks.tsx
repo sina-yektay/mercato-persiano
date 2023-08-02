@@ -1,10 +1,11 @@
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 export const useProductDialog = () => {
   const dispatch = useDispatch();
   const dialog = useSelector(selectors.productDialog);
-
+  const { t } = useTranslation();
   const handleAddProduct = () => {
     dispatch(
       actions.addProduct({
@@ -33,5 +34,5 @@ export const useProductDialog = () => {
     );
   };
 
-  return { dialog, handleClose, handleAddProduct };
+  return { dialog, handleClose, handleAddProduct, t };
 };
