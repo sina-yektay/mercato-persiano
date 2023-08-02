@@ -1,4 +1,6 @@
-import { memo } from "react";
+// About.tsx
+
+import { memo, useEffect } from "react";
 
 type AboutType = {};
 

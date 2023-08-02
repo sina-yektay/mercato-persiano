@@ -15,6 +15,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 type SearchBarType = {};
 
@@ -30,6 +31,7 @@ export const SearchBar = memo(({}: SearchBarType) => {
   } = useSearchBar();
   const theme = useTheme();
   const largeScreen = useMediaQuery(theme.breakpoints.down("xl"));
+  const { t } = useTranslation();
   return (
     <>
       <TextField
@@ -69,7 +71,7 @@ export const SearchBar = memo(({}: SearchBarType) => {
             },
           },
         }}
-        placeholder="Cerca un prodotto qui..."
+        placeholder={t("Find a product...")}
         InputLabelProps={{
           shrink: false,
         }}

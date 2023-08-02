@@ -1,5 +1,6 @@
 import { actions } from "@/spas/productsSpa/redux-store/slices";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 export const useItemCard = (
@@ -14,7 +15,7 @@ export const useItemCard = (
   const handleHover = () => {
     setIsHovered(true);
   };
-
+  const { t } = useTranslation();
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
@@ -52,5 +53,6 @@ export const useItemCard = (
     isHovered,
     handleClick,
     handleAddProduct,
+    t,
   };
 };

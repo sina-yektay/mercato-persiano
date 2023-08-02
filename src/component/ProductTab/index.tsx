@@ -1,11 +1,13 @@
 import { Box, Tab, Tabs, useMediaQuery, useTheme } from "@mui/material";
 import { memo } from "react";
 import { useProductTab } from "./index.hooks";
+import { useTranslation } from "react-i18next";
 
 type ProductTabProps = {};
 
 export const ProductTab = memo(() => {
   const { handleChange, tabNumber, isScrolled } = useProductTab();
+  const { t } = useTranslation();
   return (
     <Box
       position="sticky"
@@ -33,7 +35,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Landing page"
+          label={t("Home")}
         />
         <Tab
           sx={{
@@ -43,7 +45,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Snack"
+          label={t("Snack")}
         />
         <Tab
           sx={{
@@ -53,7 +55,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Coffee"
+          label={t("Coffee")}
         />
         <Tab
           sx={{
@@ -63,7 +65,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Vegetable"
+          label={t("Vegetable")}
         />
         <Tab
           sx={{
@@ -73,7 +75,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Bread"
+          label={t("Bread")}
         />
         <Tab
           sx={{
@@ -83,7 +85,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Ready meals"
+          label={t("Ready meals")}
         />
         <Tab
           sx={{
@@ -93,7 +95,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Drinks"
+          label={t("Drinks")}
         />
         <Tab
           sx={{
@@ -103,7 +105,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Nut"
+          label={t("Nut")}
         />
         <Tab
           sx={{
@@ -113,7 +115,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="ice cream"
+          label={t("Ice cream")}
         />
         <Tab
           sx={{
@@ -123,7 +125,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Souvenir"
+          label={t("Saffron")}
         />
         <Tab
           sx={{
@@ -133,7 +135,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Nuts"
+          label={t("Breakfast")}
         />
         <Tab
           sx={{
@@ -143,9 +145,9 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label="Ready meals"
+          label={t("Spices")}
         />
-        <Tab
+        {/* <Tab
           sx={{
             "&.Mui-selected": {
               color: isScrolled ? "purple" : "white",
@@ -154,7 +156,7 @@ export const ProductTab = memo(() => {
             color: isScrolled ? "white" : "purple",
           }}
           label="Breakfast"
-        />
+        /> */}
       </Tabs>
     </Box>
   );

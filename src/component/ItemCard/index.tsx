@@ -22,7 +22,7 @@ type ItemCardProps = {
 
 export const ItemCard = memo(
   ({ productName, productId, price, quantity, image }: ItemCardProps) => {
-    const { handleHover, handleMouseLeave, isHovered, handleClick, handleAddProduct } =
+    const { handleHover, handleMouseLeave, isHovered, handleClick, handleAddProduct, t } =
       useItemCard(productName, productId, price, quantity, image);
 
     return (
@@ -88,7 +88,7 @@ export const ItemCard = memo(
                 handleAddProduct();
               }}
             >
-              {quantity === 0 ? "not available" :"Add"}
+              {quantity === 0 ? t("Not available") : t("Add")}
             </Button>
           </Stack>
         </Card>
