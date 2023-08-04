@@ -37,6 +37,7 @@ export const Bar = memo(({}: BarProps) => {
     anchorEl,
     i18n,
     handleLangChange,
+    isScrolled,
   } = useBar();
   const theme = useTheme();
   const { data: session } = useSession();
@@ -45,19 +46,30 @@ export const Bar = memo(({}: BarProps) => {
   const { t } = useTranslation();
 
   return (
-    <AppBar position="static" sx={{ margin: 0, backgroundColor: "purple" }}>
+    <AppBar
+      position="sticky"
+      sx={{
+        margin: 0,
+        backgroundColor: isScrolled ? "white" : "purple",
+        border: isScrolled ? "3px solid purple" : "none",
+      }}
+    >
       <Toolbar>
         <Stack
           direction="row"
           spacing={smallScreen && mediumScreen ? 4 : smallScreen ? 5 : 10}
         >
           <Stack>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, color: isScrolled ? "purple" : "white" }}
+            >
               Mercato{" "}
               <Typography
                 variant="h6"
                 component="span"
-                sx={{ color: "#FDDA0D" }}
+                sx={{ color: isScrolled ? "purple" : "white" }}
               >
                 Persiano
               </Typography>
@@ -66,31 +78,27 @@ export const Bar = memo(({}: BarProps) => {
           {!mediumScreen && (
             <>
               <Stack sx={{ justifyContent: "center" }}>
-                <Link href={"/About"}>
-                  <Typography sx={{ color: "white" }}>Chi Siamo</Typography>
+                <Link style={{ textDecoration: "none" }} href={"/About"}>
+                  <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
+                    Chi Siamo
+                  </Typography>
                 </Link>
               </Stack>
               <Stack sx={{ justifyContent: "center" }}>
-                <Link href={"/offerte"}>
-                  <Typography sx={{ color: "white" }}>Offerte</Typography>
+                <Link style={{ textDecoration: "none" }} href={"/offerte"}>
+                  <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
+                    Offerte
+                  </Typography>
                 </Link>
               </Stack>
             </>
           )}
           <Box>
-            <ShoppingCart />
+            <ShoppingCart color={isScrolled ? "purple" : "white"} />
           </Box>
-          {/* {!smallScreen && session && (
-            <Typography
-              sx={{ fontSize: "23px", color: "#FDDA0D" }}
-              variant="h6"
-            >
-              {session?.user?.email}
-            </Typography>
-          )} */}
         </Stack>
         <Stack sx={{ margin: "auto" }}>
-          <SearchBar />
+          <SearchBar color={isScrolled ? "purple" : "white"} />
         </Stack>
         <Stack sx={{ marginRight: "auto" }} direction={"row"}>
           <Button
@@ -101,8 +109,8 @@ export const Bar = memo(({}: BarProps) => {
             style={{
               minWidth: 0,
               padding: 4,
-              color: "white",
-              borderColor: "white",
+              color: isScrolled ? "purple" : "white",
+              borderColor: isScrolled ? "purple" : "white",
             }}
           >
             IT
@@ -115,8 +123,8 @@ export const Bar = memo(({}: BarProps) => {
             style={{
               minWidth: 0,
               padding: 4,
-              color: "white",
-              borderColor: "white",
+              color: isScrolled ? "purple" : "white",
+              borderColor: isScrolled ? "purple" : "white",
             }}
           >
             EN
@@ -127,12 +135,19 @@ export const Bar = memo(({}: BarProps) => {
             direction={"row"}
             sx={{ marginLeft: "auto", justifyContent: "center" }}
           >
-            <Typography sx={{ alignSelf: "center" }}>
+            <Typography
+              sx={{
+                alignSelf: "center",
+                color: isScrolled ? "purple" : "white",
+              }}
+            >
               {t("Hi")} {session?.user?.name}
             </Typography>
             <Tooltip title="User Menu" placement="bottom">
               <IconButton onClick={handleClick}>
-                <PermIdentityIcon style={{ color: "white" }} />
+                <PermIdentityIcon
+                  style={{ color: isScrolled ? "purple" : "white" }}
+                />
               </IconButton>
             </Tooltip>
             <Popover
@@ -166,17 +181,24 @@ export const Bar = memo(({}: BarProps) => {
           <>
             <Stack>
               <Link href={"/Login"}>
-                <Button sx={{ color: "white" }}>{t("Login")}</Button>
+                <Button sx={{ color: isScrolled ? "purple" : "white" }}>
+                  {t("Login")}
+                </Button>
               </Link>
             </Stack>
             <Divider
               orientation="vertical"
               flexItem
-              sx={{ width: "2px", backgroundColor: "white" }}
+              sx={{
+                width: "2px",
+                backgroundColor: isScrolled ? "purple" : "white",
+              }}
             />
             <Stack>
               <Link href={"/Signup"}>
-                <Button sx={{ color: "white" }}>{t("Signup")}</Button>
+                <Button sx={{ color: isScrolled ? "purple" : "white" }}>
+                  {t("Signup")}
+                </Button>
               </Link>
             </Stack>
           </>
