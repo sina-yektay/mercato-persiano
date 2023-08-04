@@ -3,12 +3,12 @@ import { Collection, ObjectId } from "mongodb";
 import { Session } from "next-auth";
 
 export type Iuser = {
-  _id: string;
-  email: string;
-  address: string;
-  phone: string;
-  name: string;
-  isAdmin: boolean;
+  _id?: string;
+  email?: string;
+  address?: string;
+  phone?: string;
+  name?: string;
+  isAdmin?: boolean;
 };
 
 export interface IUserSession extends Session {

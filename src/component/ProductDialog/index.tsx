@@ -32,6 +32,7 @@ export const ProductDialog = memo(({}: productDialogType) => {
       keepMounted
       onClose={handleClose}
       aria-describedby="alert-dialog-slide-description"
+      sx={{}}
     >
       <Stack direction="row">
         <DialogTitle>{dialog.productName}</DialogTitle>
@@ -44,8 +45,8 @@ export const ProductDialog = memo(({}: productDialogType) => {
 
       <DialogContent
         sx={{
-          width: smallScreen ? "300px" : "400px",
-          height: smallScreen ? "400px" : "500px",
+          width: smallScreen ? "250px" : "400px",
+          height: smallScreen ? "350px" : "500px",
         }}
       >
         <DialogContentText id="alert-dialog-slide-description">
@@ -53,8 +54,8 @@ export const ProductDialog = memo(({}: productDialogType) => {
             <Stack>
               <CardMedia
                 component="img"
-                height={smallScreen ? 300 : 400}
-                width={smallScreen ? 200 : 300}
+                height={smallScreen ? 250 : 400}
+                width={smallScreen ? 150 : 300}
                 image={dialog.image}
                 alt="Product"
               />
@@ -75,7 +76,9 @@ export const ProductDialog = memo(({}: productDialogType) => {
                   size="small"
                   color="primary"
                 >
-                  {dialog.quantity === 0 ? t("Not available") : t("Add To Cart")}
+                  {dialog.quantity === 0
+                    ? t("Not available")
+                    : t("Add To Cart")}
                 </Button>
               </CardActions>
             </Stack>

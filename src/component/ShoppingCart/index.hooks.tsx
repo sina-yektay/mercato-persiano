@@ -1,10 +1,12 @@
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { product } from "@/spas/productsSpa/redux-store/slices/cart";
+import { useSession } from "next-auth/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 export const useShoppingCart = () => {
+  const { data: session } = useSession();
   const orderQuantity = useSelector(selectors.getProductQuantity);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -55,5 +57,6 @@ export const useShoppingCart = () => {
     handleAddFromCart,
     totalPrice,
     t,
+    session,
   };
 };

@@ -21,5 +21,8 @@
   "there is no product in your cart": "there is no product in your cart",
   "Add To Cart": "Add To Cart",
   "Add": "Add",
-  "Not available": "Not available"
+  "Not available": "Not available",
+  "Delivery address:": "Delivery address:",
+  "your cart will be delivered to the address below": "your cart will be delivered to the address below in a few minutes, (if your cart costs more than 20 euro, the delivery is free of charge)",
+  "+ 5€ (delivery cost)": "+ 5€ (delivery cost)"
 }

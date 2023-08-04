@@ -24,7 +24,6 @@ import { SearchBar } from "../SearchBar";
 import { useSession, signOut } from "next-auth/react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 type BarProps = {};
