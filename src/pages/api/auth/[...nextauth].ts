@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/dbConfig";
-import { IUserSession, Iuser, User } from "@/model/server/User";
+import { IUser, IUserSession, Iuser, User } from "@/model/server/User";
 import { compare } from "bcryptjs";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -41,8 +41,8 @@ const options: NextAuthOptions = {
         if (!isPasswordCorrect) {
           throw new Error("Invalid Credentials");
         }
-        const sessionUser: any = {
-          id: user._id?.toString(),
+        const sessionUser: Iuser = {
+          _id: user._id?.toString(),
           email: user.email,
           address: user.address,
           phone: user.phone,
@@ -61,7 +61,16 @@ const options: NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
-      user && (token.user = user);
+      if (user) {
+        const customUser: Iuser = {
+          email: (user as Iuser).email || "",
+          address: (user as Iuser).address,
+          phone: (user as Iuser).phone,
+          name: (user as Iuser).name || "",
+          isAdmin: (user as Iuser).isAdmin,
+        };
+        token.user = customUser;
+      }
       return token;
     },
     session: async ({ session, token }) => {

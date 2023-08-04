@@ -17,6 +17,8 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   Stack,
+  TextField,
+  Tooltip,
   Typography,
   useMediaQuery,
   useTheme,
@@ -25,6 +27,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import InfoIcon from "@mui/icons-material/Info";
 type ShoppingCartProps = {};
 
 export const ShoppingCart = memo(({}: ShoppingCartProps) => {
@@ -38,6 +41,7 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
     handleAddFromCart,
     totalPrice,
     t,
+    session,
   } = useShoppingCart();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -106,10 +110,11 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
               <Stack>
                 <Box
                   sx={{
-                    height: "300px",
+                    minHeight: "100px",
+                    maxHeight: "250px",
                     overflowY: "auto",
                     boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.1)",
-                    mb:2
+                    mb: 2,
                   }}
                 >
                   <List sx={{ maxWidth: "100%" }}>
@@ -164,8 +169,35 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
                     ))}
                   </List>
                 </Box>
-                <Typography sx={{ pb: 1.5, margin: "auto" }}>
-                  {t("To Pay")}: {totalPrice}€
+                <Box>
+                  <Stack
+                    sx={{
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                    }}
+                    direction={"row"}
+                  >
+                    <Stack>
+                      <Typography sx={{ pb: 0.5, margin: "auto" }}>
+                        {t("Delivery address:")}
+                      </Typography>
+                    </Stack>
+                    <Stack sx={{ alignSelf: "center" }}>
+                      <Tooltip arrow placement="top" title={t("your cart will be delivered to the address below")}>
+                        <IconButton>
+                          <InfoIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </Stack>
+                  </Stack>
+                  <TextField
+                    sx={{ width: "100%" }}
+                    value={session?.user?.address}
+                    disabled={session ? true : false}
+                  />
+                </Box>
+                <Typography sx={{ py: 1.5, margin: "auto" }}>
+                  {t("To Pay")}: {totalPrice}€ {totalPrice < 20 ? t("+ 5€ (delivery cost)") : ""}
                 </Typography>
 
                 <Button variant="contained">{t("Pay")}</Button>
