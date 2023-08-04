@@ -17,9 +17,9 @@ import {
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
-type SearchBarType = { color: string };
+type SearchBarType = { color: string; isMobile?: boolean };
 
-export const SearchBar = memo(({ color }: SearchBarType) => {
+export const SearchBar = memo(({ color, isMobile = false }: SearchBarType) => {
   const {
     searchQuery,
     handleSearchChange,
@@ -37,10 +37,10 @@ export const SearchBar = memo(({ color }: SearchBarType) => {
       <TextField
         sx={{
           border: "solid 1px",
-          borderColor: color,
+          borderColor: isMobile ? "purple" : color,
           p: 0.5,
-          borderRadius: 5,
-          width: largeScreen ? "360px" : "590px",
+          borderRadius: isMobile ? 2 : 5,
+          width: largeScreen ? (isMobile ? "250px" : "360px") : "590px",
         }}
         variant="standard"
         fullWidth
@@ -50,11 +50,11 @@ export const SearchBar = memo(({ color }: SearchBarType) => {
           disableUnderline: true,
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon sx={{ color: color }} />
+              <SearchIcon sx={{ color: isMobile ? "purple" : color }} />
             </InputAdornment>
           ),
           sx: {
-            color: color,
+            color: isMobile ? "purple" : color,
             "& .MuiInputLabel-root": {
               display: "none",
             },
@@ -90,7 +90,11 @@ export const SearchBar = memo(({ color }: SearchBarType) => {
           horizontal: "left",
         }}
         disableAutoFocus
-        sx={{ "& .MuiPaper-root": { width: largeScreen ? 250 : 500 } }}
+        sx={{
+          "& .MuiPaper-root": {
+            width: largeScreen ? (isMobile ? 220 : 250) : 500,
+          },
+        }}
       >
         <List sx={{ maxWidth: "100%" }}>
           {filteredProducts.map((item) => (
