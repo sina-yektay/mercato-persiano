@@ -17,9 +17,9 @@ import {
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
-type SearchBarType = {};
+type SearchBarType = { color: string };
 
-export const SearchBar = memo(({}: SearchBarType) => {
+export const SearchBar = memo(({ color }: SearchBarType) => {
   const {
     searchQuery,
     handleSearchChange,
@@ -36,7 +36,8 @@ export const SearchBar = memo(({}: SearchBarType) => {
     <>
       <TextField
         sx={{
-          border: "solid white 1px",
+          border: "solid 1px",
+          borderColor: color,
           p: 0.5,
           borderRadius: 5,
           width: largeScreen ? "360px" : "590px",
@@ -49,11 +50,11 @@ export const SearchBar = memo(({}: SearchBarType) => {
           disableUnderline: true,
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon sx={{ color: "white" }} />
+              <SearchIcon sx={{ color: color }} />
             </InputAdornment>
           ),
           sx: {
-            color: "white",
+            color: color,
             "& .MuiInputLabel-root": {
               display: "none",
             },

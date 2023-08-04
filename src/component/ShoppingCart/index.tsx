@@ -28,9 +28,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import InfoIcon from "@mui/icons-material/Info";
-type ShoppingCartProps = {};
+type ShoppingCartProps = { color: string };
 
-export const ShoppingCart = memo(({}: ShoppingCartProps) => {
+export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
   const {
     orderQuantity,
     isOpen,
@@ -67,7 +67,7 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
               },
             }}
           >
-            <AddShoppingCartIcon style={{ color: "white" }} />
+            <AddShoppingCartIcon style={{ color: color }} />
           </Badge>
         </Box>
       </IconButton>
@@ -183,7 +183,13 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
                       </Typography>
                     </Stack>
                     <Stack sx={{ alignSelf: "center" }}>
-                      <Tooltip arrow placement="top" title={t("your cart will be delivered to the address below")}>
+                      <Tooltip
+                        arrow
+                        placement="top"
+                        title={t(
+                          "your cart will be delivered to the address below"
+                        )}
+                      >
                         <IconButton>
                           <InfoIcon />
                         </IconButton>
@@ -197,7 +203,8 @@ export const ShoppingCart = memo(({}: ShoppingCartProps) => {
                   />
                 </Box>
                 <Typography sx={{ py: 1.5, margin: "auto" }}>
-                  {t("To Pay")}: {totalPrice}€ {totalPrice < 20 ? t("+ 5€ (delivery cost)") : ""}
+                  {t("To Pay")}: {totalPrice}€{" "}
+                  {totalPrice < 20 ? t("+ 5€ (delivery cost)") : ""}
                 </Typography>
 
                 <Button variant="contained">{t("Pay")}</Button>

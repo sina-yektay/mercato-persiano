@@ -1,13 +1,30 @@
 import { signOut } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export const useBar = () => {
   const [anchorEl, setAnchorEl] = useState<any>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { i18n } = useTranslation();
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 130) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -31,5 +48,6 @@ export const useBar = () => {
     anchorEl,
     handleLangChange,
     i18n,
+    isScrolled,
   };
 };
