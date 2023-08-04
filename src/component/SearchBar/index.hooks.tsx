@@ -27,6 +27,7 @@ export const useSearchBar = () => {
 
   const handleItemClick = (item: IItem) => {
     setAnchorEl(null);
+    dispatch(actions.changeSearchPopover({ searchPopoverState: false }));
     dispatch(
       actions.changeDialogState({
         productDialog: {

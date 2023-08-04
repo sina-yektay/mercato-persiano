@@ -2,17 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import * as selectors from "./product.selectors";
 import { ItemState } from "./product.interface";
 import * as extraActions from "../../extra-actions";
-// import {
-//   ArticlesState,
-//   SetIsCloneArticleDialogOpenAction,
-//   SetIsCreateArticleDialogOpenAction,
-// } from "./articles.interfaces";
-// import * as extraActions from "../../extra-actions";
-// import * as sagas from "./articles.sagas";
-// import domNavigation from "models/client/DomNavigation";
 
 const initialState: ItemState = {
   list: [],
+  searchPopover: false,
   productDialog: {
     isDialogOpen: false,
     productName: "",
@@ -36,6 +29,12 @@ type changeDialogStateType = {
   };
 };
 
+type changeSearchPopoverStateType = {
+  payload: {
+    searchPopoverState: boolean;
+  };
+};
+
 export const productSlice = createSlice({
   name: "product",
   initialState,
@@ -45,6 +44,9 @@ export const productSlice = createSlice({
     },
     changeDialogState: (state, { payload }: changeDialogStateType) => {
       state.productDialog = payload.productDialog;
+    },
+    changeSearchPopover: (state, { payload }: changeSearchPopoverStateType) => {
+      state.searchPopover = payload.searchPopoverState;
     },
   },
   extraReducers: (builder) => {

@@ -2,6 +2,7 @@ import { IItem } from "@/model/server/Item";
 
 export interface ItemState {
   list: IItem[];
+  searchPopover: boolean;
   productDialog: {
     isDialogOpen: boolean;
     productName: string;

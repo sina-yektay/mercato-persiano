@@ -12,7 +12,7 @@ export const ProductTab = memo(() => {
     <Box
       position="sticky"
       zIndex={999}
-      top="64px"
+      top="55px"
       style={{ justifyContent: "center", borderBottom: "solid purple 5px" }}
     >
       <Tabs

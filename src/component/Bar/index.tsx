@@ -2,14 +2,18 @@ import {
   AppBar,
   Box,
   Button,
+  ClickAwayListener,
   Divider,
   IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
+  Paper,
   Popover,
+  Popper,
   Stack,
+  TextField,
   Toolbar,
   Tooltip,
   Typography,
@@ -25,6 +29,7 @@ import { useSession, signOut } from "next-auth/react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
+import { Search as SearchIcon } from "@mui/icons-material";
 
 type BarProps = {};
 
@@ -38,6 +43,10 @@ export const Bar = memo(({}: BarProps) => {
     i18n,
     handleLangChange,
     isScrolled,
+    handleOpenDialog,
+    handleClosePopper,
+    isPopperOpen,
+    anchorPopperEl,
   } = useBar();
   const theme = useTheme();
   const { data: session } = useSession();
@@ -58,6 +67,7 @@ export const Bar = memo(({}: BarProps) => {
         <Stack
           direction="row"
           spacing={smallScreen && mediumScreen ? 4 : smallScreen ? 5 : 10}
+          sx={{ alignItems: "center" }}
         >
           <Stack>
             <Typography
@@ -65,25 +75,18 @@ export const Bar = memo(({}: BarProps) => {
               component="div"
               sx={{ flexGrow: 1, color: isScrolled ? "purple" : "white" }}
             >
-              Mercato{" "}
-              <Typography
-                variant="h6"
-                component="span"
-                sx={{ color: isScrolled ? "purple" : "white" }}
-              >
-                Persiano
-              </Typography>
+              TorinAsia
             </Typography>
           </Stack>
           {!mediumScreen && (
             <>
-              <Stack sx={{ justifyContent: "center" }}>
+              {/* <Stack sx={{ justifyContent: "center" }}>
                 <Link style={{ textDecoration: "none" }} href={"/About"}>
                   <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
                     Chi Siamo
                   </Typography>
                 </Link>
-              </Stack>
+              </Stack> */}
               <Stack sx={{ justifyContent: "center" }}>
                 <Link style={{ textDecoration: "none" }} href={"/offerte"}>
                   <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
@@ -97,8 +100,39 @@ export const Bar = memo(({}: BarProps) => {
             <ShoppingCart color={isScrolled ? "purple" : "white"} />
           </Box>
         </Stack>
+
         <Stack sx={{ margin: "auto" }}>
-          <SearchBar color={isScrolled ? "purple" : "white"} />
+          {!mediumScreen ? (
+            <SearchBar color={isScrolled ? "purple" : "white"} />
+          ) : (
+            <>
+              <IconButton onClick={handleOpenDialog}>
+                <SearchIcon
+                  style={{ color: isScrolled ? "purple" : "white" }}
+                />
+              </IconButton>
+              <Popover
+                open={isPopperOpen}
+                anchorEl={anchorPopperEl}
+                onClose={handleClosePopper}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                sx={{width:"100%"}}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+              >
+                <ClickAwayListener onClickAway={handleClosePopper}>
+                  <Paper sx={{p:1.5}}>
+                    <SearchBar isMobile={true} color={isScrolled ? "purple" : "white"} />
+                  </Paper>
+                </ClickAwayListener>
+              </Popover>
+            </>
+          )}
         </Stack>
         <Stack sx={{ marginRight: "auto" }} direction={"row"}>
           <Button
