@@ -30,6 +30,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
 import { Search as SearchIcon } from "@mui/icons-material";
+import Image from "next/image";
 
 type BarProps = {};
 
@@ -41,12 +42,14 @@ export const Bar = memo(({}: BarProps) => {
     handleLogout,
     anchorEl,
     i18n,
-    handleLangChange,
     isScrolled,
     handleOpenDialog,
     handleClosePopper,
     isPopperOpen,
     anchorPopperEl,
+    handleOpen,
+    anchorLngEl,
+    handleCloseLng,
   } = useBar();
   const theme = useTheme();
   const { data: session } = useSession();
@@ -90,7 +93,7 @@ export const Bar = memo(({}: BarProps) => {
               <Stack sx={{ justifyContent: "center" }}>
                 <Link style={{ textDecoration: "none" }} href={"/offerte"}>
                   <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
-                    Offerte
+                    {t("Offers")}
                   </Typography>
                 </Link>
               </Stack>
@@ -119,51 +122,77 @@ export const Bar = memo(({}: BarProps) => {
                   vertical: "bottom",
                   horizontal: "center",
                 }}
-                sx={{width:"100%"}}
                 transformOrigin={{
                   vertical: "top",
                   horizontal: "center",
                 }}
               >
                 <ClickAwayListener onClickAway={handleClosePopper}>
-                  <Paper sx={{p:1.5}}>
-                    <SearchBar isMobile={true} color={isScrolled ? "purple" : "white"} />
+                  <Paper sx={{ p: 1.5 }}>
+                    <SearchBar
+                      isMobile={true}
+                      color={isScrolled ? "purple" : "white"}
+                    />
                   </Paper>
                 </ClickAwayListener>
               </Popover>
             </>
           )}
         </Stack>
-        <Stack sx={{ marginRight: "auto" }} direction={"row"}>
-          <Button
-            onClick={() => {
-              handleLangChange("it");
+
+        <Stack sx={{marginRight:"2%"}}>
+          <Button onClick={handleOpen}>
+            <Image
+              src={i18n.language === "en" ? "/assets/uk.png" : "/assets/it.png"}
+              alt={i18n.language === "en" ? "English" : "Italian"}
+              width={20}
+              height={20}
+            />
+          </Button>
+          <Popover
+            open={Boolean(anchorLngEl)}
+            anchorEl={anchorLngEl}
+            onClose={handleCloseLng}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
             }}
-            variant={i18n.language === "it" ? "outlined" : "text"}
-            style={{
-              minWidth: 0,
-              padding: 4,
-              color: isScrolled ? "purple" : "white",
-              borderColor: isScrolled ? "purple" : "white",
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
             }}
           >
-            IT
-          </Button>
-          <Button
-            onClick={() => {
-              handleLangChange("en");
-            }}
-            variant={i18n.language === "en" ? "outlined" : "text"}
-            style={{
-              minWidth: 0,
-              padding: 4,
-              color: isScrolled ? "purple" : "white",
-              borderColor: isScrolled ? "purple" : "white",
-            }}
-          >
-            EN
-          </Button>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => handleCloseLng("it")}>
+                  <Stack direction={"row"} spacing={2}>
+                    <Image
+                      src="/assets/it.png"
+                      alt="Italy Flag"
+                      width={20}
+                      height={20}
+                    />
+                    <ListItemText primary="Italiano" />
+                  </Stack>
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => handleCloseLng("en")}>
+                  <Stack direction={"row"} spacing={2}>
+                    <Image
+                      src="/assets/uk.png"
+                      alt="UK Flag"
+                      width={20}
+                      height={20}
+                    />
+                    <ListItemText primary="English" />
+                  </Stack>
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Popover>
         </Stack>
+
         {session ? (
           <Stack
             direction={"row"}
