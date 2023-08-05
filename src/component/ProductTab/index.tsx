@@ -8,11 +8,13 @@ type ProductTabProps = {};
 export const ProductTab = memo(() => {
   const { handleChange, tabNumber, isScrolled } = useProductTab();
   const { t } = useTranslation();
+  const theme = useTheme();
+  const mediumScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Box
       position="sticky"
       zIndex={999}
-      top="55px"
+      top={mediumScreen ? "55px" : "63px"}
       style={{ justifyContent: "center", borderBottom: "solid purple 5px" }}
     >
       <Tabs

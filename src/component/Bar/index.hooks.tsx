@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const useBar = () => {
   const [anchorEl, setAnchorEl] = useState<any>(null);
+  const [anchorLngEl, setAnchorLngEl] = useState<any>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [anchorPopperEl, setAnchorPopperEl] = useState<any>(null);
   const { i18n } = useTranslation();
@@ -37,10 +38,6 @@ export const useBar = () => {
     await signOut();
   };
 
-  const handleLangChange = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
   const handleOpenDialog = (event: React.MouseEvent<HTMLElement>) => {
     dispatch(actions.changeSearchPopover({ searchPopoverState: true }));
     setAnchorPopperEl(event.currentTarget);
@@ -52,6 +49,15 @@ export const useBar = () => {
     dispatch(actions.changeSearchPopover({ searchPopoverState: false }));
   };
 
+  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorLngEl(event.currentTarget);
+  };
+
+  const handleCloseLng = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setAnchorLngEl(null);
+  };
+
   const open = Boolean(anchorEl);
   return {
     open,
@@ -59,12 +65,14 @@ export const useBar = () => {
     handleClose,
     handleLogout,
     anchorEl,
-    handleLangChange,
     i18n,
     isScrolled,
     handleOpenDialog,
     handleClosePopper,
     isPopperOpen,
     anchorPopperEl,
+    handleOpen,
+    anchorLngEl,
+    handleCloseLng,
   };
 };
