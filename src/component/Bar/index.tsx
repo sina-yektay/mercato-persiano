@@ -31,6 +31,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
 import { Search as SearchIcon } from "@mui/icons-material";
 import Image from "next/image";
+import { MobileMenu } from "../MobileMenu";
 
 type BarProps = {};
 
@@ -140,7 +141,7 @@ export const Bar = memo(({}: BarProps) => {
           )}
         </Stack>
 
-        <Stack sx={{marginRight:"2%"}}>
+        <Stack sx={{ marginRight: "2%" }}>
           <Button onClick={handleOpen}>
             <Image
               src={i18n.language === "en" ? "/assets/uk.png" : "/assets/it.png"}
@@ -152,7 +153,7 @@ export const Bar = memo(({}: BarProps) => {
           <Popover
             open={Boolean(anchorLngEl)}
             anchorEl={anchorLngEl}
-            onClose={handleCloseLng}
+            onClose={() => handleCloseLng(i18n.language)}
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left",
@@ -198,14 +199,17 @@ export const Bar = memo(({}: BarProps) => {
             direction={"row"}
             sx={{ marginLeft: "auto", justifyContent: "center" }}
           >
-            <Typography
-              sx={{
-                alignSelf: "center",
-                color: isScrolled ? "purple" : "white",
-              }}
-            >
-              {t("Hi")} {session?.user?.name}
-            </Typography>
+            {!mediumScreen && (
+              <Typography
+                sx={{
+                  alignSelf: "center",
+                  color: isScrolled ? "purple" : "white",
+                  fontSize: "18px",
+                }}
+              >
+                {t("Hi")} {session?.user?.name}
+              </Typography>
+            )}
             <Tooltip title="User Menu" placement="bottom">
               <IconButton onClick={handleClick}>
                 <PermIdentityIcon
@@ -240,7 +244,7 @@ export const Bar = memo(({}: BarProps) => {
               </List>
             </Popover>
           </Stack>
-        ) : (
+        ) : !mediumScreen ? (
           <>
             <Stack>
               <Link href={"/Login"}>
@@ -265,6 +269,8 @@ export const Bar = memo(({}: BarProps) => {
               </Link>
             </Stack>
           </>
+        ) : (
+          <MobileMenu isScrolled={isScrolled} />
         )}
       </Toolbar>
     </AppBar>
