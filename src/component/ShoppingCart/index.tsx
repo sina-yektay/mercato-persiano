@@ -186,6 +186,7 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
                       <Tooltip
                         arrow
                         placement="top"
+                        enterTouchDelay={300}
                         title={t(
                           "your cart will be delivered to the address below"
                         )}
