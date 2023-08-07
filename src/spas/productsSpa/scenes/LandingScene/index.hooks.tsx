@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../redux-store/slices";
-import icecream from "../../../../../public/assets/icecream.png";
-import nuts from "../../../../../public/assets/nuts.png";
 import hm1 from "../../../../../public/assets/hm1.png";
-import vegetable from "../../../../../public/assets/vegetable.png";
 import bread from "../../../../../public/assets/uk.png";
 import drink from "../../../../../public/assets/it.png";
 import del1 from "../../../../../public/assets/del1.png";
-import hamburger from "../../../../../public/assets/hamburger.png";
 
 export const useLandingScene = () => {
   const dispatch = useDispatch();
