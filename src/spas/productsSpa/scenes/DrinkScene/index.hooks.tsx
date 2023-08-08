@@ -5,7 +5,7 @@ import { actions, selectors } from "../../redux-store/slices";
 export const useDrinkScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.changeRoute({ index: 6 }));
+    dispatch(actions.changeRoute({ index: 7 }));
   });
 
   const drinks = useSelector(selectors.products);

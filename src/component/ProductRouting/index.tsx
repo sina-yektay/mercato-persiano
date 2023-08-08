@@ -16,6 +16,7 @@ import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { ProductDialog } from "../ProductDialog";
 import { ProductTab } from "../ProductTab";
 import Signup from "@/pages/Signup";
+import { AllProductsScene } from "@/spas/productsSpa/scenes/AllProductsScene";
 
 type ProductRoutingProps = {};
 
@@ -27,7 +28,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
     if (products.length === 0) {
       dispatch(actions.getItems.request({}));
     }
-  }, [products, dispatch]);
+  }, [dispatch]);
   return (
     <Box>
       <ProductDialog />
@@ -35,6 +36,8 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
         <ProductTab />
         <Routes>
           <Route path="/" element={<LandingScene />} />
+
+          <Route path="/all-products" element={<AllProductsScene />} />
 
           <Route path="/snack" element={<SnackScene />} />
 

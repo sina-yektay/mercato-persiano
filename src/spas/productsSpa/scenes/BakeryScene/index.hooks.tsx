@@ -5,7 +5,7 @@ import { actions } from "../../redux-store/slices";
 export const useBakeryScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.changeRoute({ index: 4 }));
+    dispatch(actions.changeRoute({ index: 5 }));
   });
   return {};
 };

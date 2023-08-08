@@ -18,10 +18,11 @@ type ItemCardProps = {
   price: string;
   quantity: number;
   image: string;
+  homePage?: boolean;
 };
 
 export const ItemCard = memo(
-  ({ productName, productId, price, quantity, image }: ItemCardProps) => {
+  ({ productName, productId, price, quantity, image, homePage = false }: ItemCardProps) => {
     const { handleHover, handleMouseLeave, isHovered, handleClick, handleAddProduct, t } =
       useItemCard(productName, productId, price, quantity, image);
 
@@ -29,9 +30,9 @@ export const ItemCard = memo(
       <Box sx={{ padding: "0px", margin: "0px" }}>
         <Card
           sx={{
-            maxWidth: 140,
+            width: 140,
             height: 280,
-            // boxShadow: "none",
+            boxShadow: homePage ? "none" : "0px 2px 4px rgba(0, 0, 0, 0.1)",
             padding:2,
             backgroundColor: "transparent",
             background: "transparent !important",

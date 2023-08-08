@@ -47,6 +47,16 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
+          label={t("All products")}
+        />
+        <Tab
+          sx={{
+            "&.Mui-selected": {
+              color: isScrolled ? "purple" : "white",
+              backgroundColor: isScrolled ? "white" : "purple",
+            },
+            color: isScrolled ? "white" : "purple",
+          }}
           label={t("Snack")}
         />
         <Tab
@@ -139,16 +149,7 @@ export const ProductTab = memo(() => {
           }}
           label={t("Breakfast")}
         />
-        <Tab
-          sx={{
-            "&.Mui-selected": {
-              color: isScrolled ? "purple" : "white",
-              backgroundColor: isScrolled ? "white" : "purple",
-            },
-            color: isScrolled ? "white" : "purple",
-          }}
-          label={t("Spices")}
-        />
+
         {/* <Tab
           sx={{
             "&.Mui-selected": {
