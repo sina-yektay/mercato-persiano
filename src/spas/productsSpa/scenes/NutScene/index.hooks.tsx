@@ -5,7 +5,7 @@ import { actions } from "../../redux-store/slices";
 export const useNutScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actions.changeRoute({ index: 7 }));
+    dispatch(actions.changeRoute({ index: 8 }));
   });
   return {};
 };

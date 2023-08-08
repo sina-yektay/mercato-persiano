@@ -1,15 +1,12 @@
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
-import { memo } from "react";
-import { useDrinkScene } from "./index.hooks";
-import { ProductTab } from "@/component/ProductTab";
+import { memo, useEffect } from "react";
+import { useAllProducts } from "./index.hooks";
 import { ItemCard } from "@/component/ItemCard";
+import { Grid } from "@mui/material";
 
-type DrinkSceneProps = {};
+type AllProductsSceneProps = {};
 
-export const DrinkScene = memo(({}: DrinkSceneProps) => {
-  const { drinks } = useDrinkScene();
-  const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+export const AllProductsScene = memo(({}: AllProductsSceneProps) => {
+  const { products } = useAllProducts();
 
   return (
     <>
@@ -22,7 +19,7 @@ export const DrinkScene = memo(({}: DrinkSceneProps) => {
         }}
         spacing={0}
       >
-        {drinks.map((item, index) => {
+        {products.map((item, index) => {
           return (
             <Grid
               item
@@ -48,3 +45,5 @@ export const DrinkScene = memo(({}: DrinkSceneProps) => {
     </>
   );
 });
+
+AllProductsScene.displayName = "AllProductsScene";
