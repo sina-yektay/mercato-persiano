@@ -17,6 +17,7 @@ import { ProductDialog } from "../ProductDialog";
 import { ProductTab } from "../ProductTab";
 import Signup from "@/pages/Signup";
 import { AllProductsScene } from "@/spas/productsSpa/scenes/AllProductsScene";
+import { Footer } from "../Footer";
 
 type ProductRoutingProps = {};
 
@@ -56,6 +57,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
           <Route path="/nut" element={<NutScene />} />
         </Routes>
       </Router>
+      <Footer />
     </Box>
   );
 });
