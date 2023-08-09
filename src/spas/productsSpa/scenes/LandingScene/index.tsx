@@ -13,9 +13,7 @@ import {
 } from "@mui/material";
 import { memo } from "react";
 import { useLandingScene } from "./index.hooks";
-import { ProductTab } from "@/component/ProductTab";
-import { CustomLink } from "@/component/CustomLink";
-import { ProductCard } from "@/component/ProductCard";
+
 import Image from "next/image";
 import { Link } from "react-router-dom";
 import bread from "../../../../../public/assets/uk.png";
