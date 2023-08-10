@@ -8,13 +8,13 @@ import {
 
 export interface GetItemParams {}
 
-export interface PostItemResponseData {
+export interface GetItemResponseData {
   data: Iitem[];
 }
 
 export default apiActionBuilder<
   GetItemParams,
-  ApiSuccessAction<PostItemResponseData, GetItemParams>
+  ApiSuccessAction<GetItemResponseData, GetItemParams>
 >("apis/items/get", (params: GetItemParams) => ({
   payload: apiRequestPayloadBuilder<GetItemParams>({
     path: "/api/get-items",

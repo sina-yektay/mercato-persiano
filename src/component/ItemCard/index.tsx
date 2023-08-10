@@ -17,14 +17,36 @@ type ItemCardProps = {
   productId: string;
   price: string;
   quantity: number;
+  description: string;
   image: string;
   homePage?: boolean;
 };
 
 export const ItemCard = memo(
-  ({ productName, productId, price, quantity, image, homePage = false }: ItemCardProps) => {
-    const { handleHover, handleMouseLeave, isHovered, handleClick, handleAddProduct, t } =
-      useItemCard(productName, productId, price, quantity, image);
+  ({
+    productName,
+    productId,
+    price,
+    quantity,
+    description,
+    image,
+    homePage = false,
+  }: ItemCardProps) => {
+    const {
+      handleHover,
+      handleMouseLeave,
+      isHovered,
+      handleClick,
+      handleAddProduct,
+      t,
+    } = useItemCard(
+      productName,
+      productId,
+      price,
+      quantity,
+      description,
+      image
+    );
 
     return (
       <Box sx={{ padding: "0px", margin: "0px" }}>
@@ -33,7 +55,7 @@ export const ItemCard = memo(
             width: 140,
             height: 280,
             boxShadow: homePage ? "none" : "0px 2px 4px rgba(0, 0, 0, 0.1)",
-            padding:2,
+            padding: 2,
             backgroundColor: "transparent",
             background: "transparent !important",
             transform: isHovered ? "scale(1.1)" : "scale(1)",
@@ -84,7 +106,7 @@ export const ItemCard = memo(
                 width: "100%",
                 color: "white",
               }}
-              onClick={event => {
+              onClick={(event) => {
                 event.stopPropagation();
                 handleAddProduct();
               }}

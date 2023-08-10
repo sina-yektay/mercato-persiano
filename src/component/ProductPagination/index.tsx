@@ -16,7 +16,7 @@ export const ProductPagination = memo(({}: ProductPaginationProps) => {
   } = useProductPagination();
 
   return (
-    <Grid container direction={"column"} sx={{ alignItems: "center", pt: 1 }}>
+    <Grid container direction={"column"} sx={{ alignItems: "center", pt: 6 }}>
       <Grid item xs={11} container sx={{ justifyContent: "flex-start" }}>
         {displayedProducts.map((item, index) => {
           return (
@@ -35,6 +35,7 @@ export const ProductPagination = memo(({}: ProductPaginationProps) => {
                 productId={item.productId}
                 price={item.price}
                 quantity={item.quantity}
+                description={item.description}
                 image={item.image}
               />
             </Grid>
@@ -47,7 +48,7 @@ export const ProductPagination = memo(({}: ProductPaginationProps) => {
         xs={1}
         container
         spacing={0}
-        sx={{ justifyContent: "center", py: 6, mt: 2 }}
+        sx={{ justifyContent: "center", py: 6, mt: 8 }}
       >
         <Box>
           <Button

@@ -8,6 +8,7 @@ export const useItemCard = (
   productId: string,
   price: string,
   quantity: number,
+  description: string,
   image: string
 ) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +26,7 @@ export const useItemCard = (
       actions.addProduct({
         productId: productId,
         productName: productName,
-        description: "",
+        description: description,
         price: price,
         productImage: image,
       })
@@ -41,6 +42,7 @@ export const useItemCard = (
           productId: productId,
           price: price,
           quantity: quantity,
+          description: description,
           image: image,
         },
       })

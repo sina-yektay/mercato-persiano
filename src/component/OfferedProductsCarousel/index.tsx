@@ -34,10 +34,10 @@ export const OfferedProductsCarousel = memo(
             gap={mediumScreen ? 0 : 10}
             sx={{
               "&::-webkit-scrollbar": {
-                display: "none", 
+                display: "none",
               },
-              scrollbarWidth: "none", 
-              "-ms-overflow-style": "none", 
+              scrollbarWidth: "none",
+              "-ms-overflow-style": "none",
               overflowX: "scroll",
               transition: "transform 0.3s ease-in-out",
               transform: "translateX(0)",
@@ -50,6 +50,7 @@ export const OfferedProductsCarousel = memo(
                 productId={item.productId}
                 price={item.price}
                 quantity={item.quantity}
+                description={item.description}
                 image={item.image}
                 homePage={true}
               />

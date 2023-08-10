@@ -11,6 +11,7 @@ const schema = yup.object().shape({
   productId: yup.string().min(4).required(),
   price: yup.string().required(),
   quantity: yup.number().required(),
+  description: yup.string().required(),
   image: yup
     .mixed()
     .test("fileType", "Invalid file format", function (value) {
@@ -44,6 +45,7 @@ export const useAddItemDialog = () => {
     productId: string;
     price: string;
     quantity: number;
+    description: string;
     image: FileList | null;
   };
 
@@ -54,6 +56,7 @@ export const useAddItemDialog = () => {
       productId: "",
       price: "",
       quantity: 0,
+      description: "",
       image: null,
     },
   });
@@ -117,6 +120,7 @@ export const useAddItemDialog = () => {
       productId: string;
       price: string;
       quantity: number;
+      description: string;
       image: FileList | null;
     }) => {
       setLoading(true);
@@ -128,6 +132,7 @@ export const useAddItemDialog = () => {
               productName: formData.productName,
               price: formData.price,
               quantity: formData.quantity,
+              description: formData.description,
               image: imageUrl || "",
             })
           );
@@ -136,6 +141,7 @@ export const useAddItemDialog = () => {
           setValue("productId", "");
           setValue("price", "");
           setValue("quantity", 0);
+          setValue("description", "");
           setValue("image", null);
           setLoading(false);
         })

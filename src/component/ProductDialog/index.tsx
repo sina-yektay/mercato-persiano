@@ -1,6 +1,9 @@
 import { memo } from "react";
 import { useProductDialog } from "./index.hooks";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Button,
   Card,
   CardActionArea,
@@ -19,11 +22,19 @@ import {
   useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-
+import product from "@/spas/adminSpa/redux-store/slices/product";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 type productDialogType = {};
 
 export const ProductDialog = memo(({}: productDialogType) => {
-  const { dialog, handleClose, handleAddProduct, t } = useProductDialog();
+  const {
+    dialog,
+    handleClose,
+    handleAddProduct,
+    t,
+    handleAccordionChange,
+    expanded,
+  } = useProductDialog();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -46,7 +57,7 @@ export const ProductDialog = memo(({}: productDialogType) => {
       <DialogContent
         sx={{
           width: smallScreen ? "250px" : "400px",
-          height: smallScreen ? "350px" : "500px",
+          height: smallScreen ? "350px" : "470px",
         }}
       >
         <DialogContentText id="alert-dialog-slide-description">
@@ -54,15 +65,41 @@ export const ProductDialog = memo(({}: productDialogType) => {
             <Stack>
               <CardMedia
                 component="img"
-                height={smallScreen ? 250 : 400}
-                width={smallScreen ? 150 : 300}
+                height={smallScreen ? 200 : 300}
+                width={smallScreen ? 130 : 200}
                 image={dialog.image}
                 alt="Product"
               />
+
               <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {dialog.price}
-                </Typography>
+                <Stack direction={"column"}>
+                  <Stack sx={{ my: 1 }}>
+                    <Accordion
+                      expanded={expanded}
+                      onChange={handleAccordionChange}
+                    >
+                      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant="subtitle1">
+                          {t("Product Description")}
+                        </Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant="body2">
+                          {t(dialog.description)}
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Stack>
+                  <Stack sx={{ margin: "auto" ,}}>
+                    <Typography
+                      sx={{ fontWeight: "bold" }}
+                      variant="body2"
+                      color="text.secondary"
+                    >
+                      {dialog.price}
+                    </Typography>
+                  </Stack>
+                </Stack>
               </CardContent>
 
               <CardActions sx={{ margin: "auto" }}>

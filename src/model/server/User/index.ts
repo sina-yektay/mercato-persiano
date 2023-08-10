@@ -22,6 +22,15 @@ export interface IUserSession extends Session {
 export type LoginUserParams = {
   email: string;
   password: string;
+  address?: string;
+  phone?: string;
+  name?: string;
+  isAdmin?: boolean;
+};
+
+export type NewUserParams = {
+  email: string;
+  password: string;
   address: string;
   phone: string;
   name: string;
@@ -85,7 +94,7 @@ export class User {
     }
   }
 
-  static async insertOne(user: LoginUserParams): Promise<User | null> {
+  static async insertOne(user: NewUserParams): Promise<User | null> {
     try {
       const collection: Collection<IUser> = getDB().collection(
         User.collectionName

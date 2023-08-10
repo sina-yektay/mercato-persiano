@@ -1,11 +1,8 @@
-
-
-
-
 export type Iitem = {
-    productId: string;
-    productName: string;
-    price: string;
-    quantity: number;
-    image: string;
-}
+  productId: string;
+  productName: string;
+  price: string;
+  quantity: number;
+  description: string;
+  image: string;
+};

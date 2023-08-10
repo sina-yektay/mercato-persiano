@@ -9,6 +9,7 @@ export interface ItemState {
     productId: string;
     price: string;
     quantity: number;
+    description: string;
     image: string;
   };
 }

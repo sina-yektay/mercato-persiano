@@ -89,6 +89,15 @@ export const AddItemDialog = memo(({}: AddItemDialogType) => {
                       label="quantity"
                       variant="outlined"
                     />{" "}
+                    </Stack>
+                    <Stack>
+                    <TextField
+                      id="outlined-basic"
+                      {...register("description")}
+                      name="description"
+                      label="description"
+                      variant="outlined"
+                    />
                   </Stack>
                   <Stack>
                     {" "}
