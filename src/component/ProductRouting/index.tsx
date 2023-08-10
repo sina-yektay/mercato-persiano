@@ -31,7 +31,17 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
     }
   }, [dispatch]);
   return (
-    <Box>
+    <Box
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
+      sx={{
+        flexGrow: 1,
+        height: "100%",
+        position: "relative", // Add relative positioning
+      }}
+    >
+      <Box sx={{display:"flex", flexDirection:"column", minHeight:"50vh",flexGrow:1}}>
       <ProductDialog />
       <Router>
         <ProductTab />
@@ -57,7 +67,8 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
           <Route path="/nut" element={<NutScene />} />
         </Routes>
       </Router>
-      <Footer />
+      </Box>
+      <Footer sx={{ position: "statick", width: "100%" }} />
     </Box>
   );
 });

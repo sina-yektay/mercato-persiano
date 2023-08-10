@@ -33,7 +33,12 @@ export const OfferedProductsCarousel = memo(
             maxWidth="100%"
             gap={mediumScreen ? 0 : 10}
             sx={{
-              "&::-webkit-scrollbar": { display: "none" },
+              "&::-webkit-scrollbar": {
+                display: "none", 
+              },
+              scrollbarWidth: "none", 
+              "-ms-overflow-style": "none", 
+              overflowX: "scroll",
               transition: "transform 0.3s ease-in-out",
               transform: "translateX(0)",
             }}
