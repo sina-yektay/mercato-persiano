@@ -41,34 +41,41 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
         position: "relative", // Add relative positioning
       }}
     >
-      <Box sx={{display:"flex", flexDirection:"column", minHeight:"50vh",flexGrow:1}}>
-      <ProductDialog />
-      <Router>
-        <ProductTab />
-        <Routes>
-          <Route path="/" element={<LandingScene />} />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "50vh",
+          flexGrow: 1,
+        }}
+      >
+        <ProductDialog />
+        <Router>
+          <ProductTab />
+          <Routes>
+            <Route path="/" element={<LandingScene />} />
 
-          <Route path="/all-products" element={<AllProductsScene />} />
+            <Route path="/all-products" element={<AllProductsScene />} />
 
-          <Route path="/snack" element={<SnackScene />} />
+            <Route path="/snack" element={<SnackScene />} />
 
-          <Route path="/coffee-tea" element={<CoffeeAndTeaScene />} />
+            <Route path="/coffee-tea" element={<CoffeeAndTeaScene />} />
 
-          <Route path="/icecream" element={<IceCreamScene />} />
+            <Route path="/icecream" element={<IceCreamScene />} />
 
-          <Route path="/vegetable" element={<Vegetable />} />
+            <Route path="/vegetable" element={<Vegetable />} />
 
-          <Route path="/bakery" element={<BakeryScene />} />
+            <Route path="/bakery" element={<BakeryScene />} />
 
-          <Route path="/ready-meals" element={<ReadyMealsScene />} />
+            <Route path="/ready-meals" element={<ReadyMealsScene />} />
 
-          <Route path="/drink" element={<DrinkScene />} />
+            <Route path="/drink" element={<DrinkScene />} />
 
-          <Route path="/nut" element={<NutScene />} />
-        </Routes>
-      </Router>
+            <Route path="/nut" element={<NutScene />} />
+          </Routes>
+        </Router>
       </Box>
-      <Footer sx={{ position: "statick", width: "100%" }} />
+      <Footer sx={{ position: "static", width: "100%" }} />
     </Box>
   );
 });

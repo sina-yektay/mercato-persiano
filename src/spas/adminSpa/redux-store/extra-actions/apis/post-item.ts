@@ -11,6 +11,7 @@ export interface PostItemParams {
   productName: string;
   price: string;
   quantity: number;
+  description: string;
   image: string;
 }
 
@@ -31,6 +32,7 @@ export default apiActionBuilder<
       productName: params.productName,
       price: params.price,
       quantity: params.quantity,
+      description: params.description,
       image: params.image,
     },
   }),
