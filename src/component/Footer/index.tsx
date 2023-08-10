@@ -1,6 +1,8 @@
 import { memo } from "react";
 import { useFooter } from "./index.hooks";
 import {
+  Box,
+  BoxProps,
   Divider,
   Grid,
   Stack,
@@ -14,14 +16,14 @@ import visa from "../../../public/assets/visa.png";
 import master from "../../../public/assets/master.png";
 import Image from "next/image";
 
-type FooterProps = {};
+type FooterProps = BoxProps;
 
-export const Footer = memo(({}: FooterProps) => {
+export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
   const { t } = useFooter();
   const theme = useTheme();
   const mScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <>
+    <Box sx={sx}>
       <Grid
         container
         direction={"column"}
@@ -171,6 +173,6 @@ export const Footer = memo(({}: FooterProps) => {
           </Typography>
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 });
