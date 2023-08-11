@@ -16,7 +16,6 @@ import { useLandingScene } from "./index.hooks";
 
 import Image from "next/image";
 import { Link } from "react-router-dom";
-import bread from "../../../../../public/assets/uk.png";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { ItemCard } from "@/component/ItemCard";
@@ -44,6 +43,9 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const xlScreen = useMediaQuery(theme.breakpoints.down("xl"));
+  const mdScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const lgScreen = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
     <Box>
       <Box
@@ -53,7 +55,8 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
           justifyContent: "center",
           display: "flex",
           alignItems: "center",
-          height: xlScreen ? "480px" : "750px",
+          // height: xlScreen ? "480px" : "750px",
+          height: "auto",
           pt: 0,
         }}
       >
@@ -72,33 +75,45 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
             opacity: activeStep === visibleStep ? 1 : 0,
           }}
         >
-          <Grid item container xs={5} direction={"column"} sx={{}}>
+          <Grid item container xs={12} md={5} direction={"column"} sx={{}}>
             <Grid
               item
               container
-              xs={7}
+              xs={mdScreen ? 2 : 7}
               sx={{
                 alignItems: "center",
                 justifyContent: "center",
                 width: "100%",
                 color: "purple",
-                pl: 6,
+                pl: 0,
+                mt: mdScreen ? 2 : 0,
               }}
             >
-              <Slide
-                timeout={{ enter: 1000, exit: 0 }}
-                in={textSlider}
-                direction="down"
-              >
-                <Typography
-                  sx={{ fontSize: i18n.language === "en" ? "50px" : "36px" }}
+              <Stack sx={{}}>
+                <Slide
+                  timeout={{ enter: 1000, exit: 0 }}
+                  in={textSlider}
+                  direction="down"
                 >
-                  {t("Asian grocery store")}
-                </Typography>
-              </Slide>
+                  <Typography
+                    sx={{
+                      fontSize:
+                        i18n.language === "en"
+                          ? lgScreen
+                            ? "30px"
+                            : "50px"
+                          : lgScreen
+                          ? "25px"
+                          : "36px",
+                    }}
+                  >
+                    {t("Asian grocery store")}
+                  </Typography>
+                </Slide>
+              </Stack>
             </Grid>
             <Grid
-              xs={5}
+              xs={mdScreen ? 3 : 5}
               item
               container
               sx={{
@@ -107,7 +122,14 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
                 alignItems: "center",
               }}
             >
-              <Box sx={{ height: textSlider ? "auto" : 0, overflow: "hidden" }}>
+              <Box
+                sx={{
+                  height: "100px",
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
                 <Slide
                   timeout={{ enter: 1000, exit: 0 }}
                   in={textSlider}
@@ -149,7 +171,8 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
           </Grid>
           <Grid
             item
-            xs={7}
+            xs={12}
+            md={7}
             sx={{
               maxWidth: xlScreen ? "800px" : "1000px",
               maxHeight: xlScreen ? "650px" : "850px",
@@ -161,14 +184,7 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
                 alt={"shopping"}
                 layout={"responsive"}
                 objectFit="contain"
-                style={
-                  {
-                    // transition: "opacity 0.5s ease-in-out",
-                    // opacity: activeStep === visibleStep ? 1 : 0,
-                    // width: "900px",
-                    // height: "600px"
-                  }
-                }
+                style={{}}
               />
             </Link>
           </Grid>
