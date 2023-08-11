@@ -9,6 +9,8 @@ import {
   CardMedia,
   Stack,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { StaticImageData } from "next/image";
 
@@ -47,12 +49,14 @@ export const ItemCard = memo(
       description,
       image
     );
+    const theme = useTheme();
+    const mScreen = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
       <Box sx={{ padding: "0px", margin: "0px" }}>
         <Card
           sx={{
-            width: 140,
+            width: mScreen ? 122 : 140,
             height: 280,
             boxShadow: homePage ? "none" : "0px 2px 4px rgba(0, 0, 0, 0.1)",
             padding: 2,
