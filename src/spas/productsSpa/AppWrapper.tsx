@@ -11,7 +11,6 @@ const AppWrapper = () => {
   return (
     <Provider store={store}>
       <Box>
-        <Bar />
         <App />
       </Box>
     </Provider>

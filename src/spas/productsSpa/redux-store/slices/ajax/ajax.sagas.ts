@@ -17,11 +17,15 @@ function* productAjaxTask(requestAction: ApiRequestAction<any>): any {
   const { params } = payload;
   const { path, method, body, query } = params;
   const api = type.replace("/request", "");
-
   yield put(
     actions.setApiLoading({
       api,
       isLoading: true,
+    })
+  );
+  yield put(
+    actions.changeBackDropState({
+      backDropState: true,
     })
   );
 
@@ -32,9 +36,6 @@ function* productAjaxTask(requestAction: ApiRequestAction<any>): any {
       data: body,
       params: query,
     });
-
-    //  console.log(response.data)
-
     yield put({
       type: `${api}/success`,
       payload: {
@@ -42,6 +43,7 @@ function* productAjaxTask(requestAction: ApiRequestAction<any>): any {
         data: response?.data,
       },
     });
+
     yield put(
       actions.setApiLoading({
         api,
@@ -51,14 +53,14 @@ function* productAjaxTask(requestAction: ApiRequestAction<any>): any {
   } catch (e: any) {
     const axiosError = e as AxiosError<any>;
     const status = axiosError?.response?.status || 500;
-    const message: string =
-      axiosError?.response?.data?.message || axiosError.message;
+    const error: string =
+      axiosError?.response?.data?.error || axiosError.message;
 
     yield put({
       type: `${api}/fail`,
       payload: {
         status,
-        message,
+        error,
       },
     });
     yield put(

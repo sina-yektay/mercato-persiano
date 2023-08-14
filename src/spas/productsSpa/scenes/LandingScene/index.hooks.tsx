@@ -39,8 +39,8 @@ export const useLandingScene = () => {
     }
   };
   const images = [
-    { img: bread, link: "/drink" },
-    { img: drink, link: "/drink" },
+    { img: hm1, link: "/drink" },
+    { img: hm1, link: "/drink" },
     { img: hm1, link: "/drink" },
   ];
 

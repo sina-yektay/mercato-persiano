@@ -18,6 +18,9 @@ import { ProductTab } from "../ProductTab";
 import Signup from "@/pages/Signup";
 import { AllProductsScene } from "@/spas/productsSpa/scenes/AllProductsScene";
 import { Footer } from "../Footer";
+import { SignupScene } from "@/spas/productsSpa/scenes/SignupScene";
+import { Bar } from "../Bar";
+import { SideEffect } from "../SideEffects";
 
 type ProductRoutingProps = {};
 
@@ -38,7 +41,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
       sx={{
         flexGrow: 1,
         height: "100%",
-        position: "relative", // Add relative positioning
+        position: "relative",
       }}
     >
       <Box
@@ -51,9 +54,13 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
       >
         <ProductDialog />
         <Router>
+          <Bar />
           <ProductTab />
+          <SideEffect />
           <Routes>
             <Route path="/" element={<LandingScene />} />
+
+            <Route path="/signup" element={<SignupScene />} />
 
             <Route path="/all-products" element={<AllProductsScene />} />
 

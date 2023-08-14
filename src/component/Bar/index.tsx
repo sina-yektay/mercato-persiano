@@ -23,7 +23,7 @@ import {
 import { memo } from "react";
 import { useBar } from "./index.hooks";
 import { ShoppingCart } from "../ShoppingCart";
-import Link from "next/link";
+
 import { SearchBar } from "../SearchBar";
 import { useSession, signOut } from "next-auth/react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -32,6 +32,7 @@ import { useTranslation } from "react-i18next";
 import { Search as SearchIcon } from "@mui/icons-material";
 import Image from "next/image";
 import { MobileMenu } from "../MobileMenu";
+import { Link } from "react-router-dom";
 
 type BarProps = {};
 
@@ -51,6 +52,7 @@ export const Bar = memo(({}: BarProps) => {
     handleOpen,
     anchorLngEl,
     handleCloseLng,
+    handleSignup,
   } = useBar();
   const theme = useTheme();
   const { data: session } = useSession();
@@ -92,11 +94,11 @@ export const Bar = memo(({}: BarProps) => {
                 </Link>
               </Stack> */}
               <Stack sx={{ justifyContent: "center" }}>
-                <Link style={{ textDecoration: "none" }} href={"/offerte"}>
-                  <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
-                    {t("Offers")}
-                  </Typography>
-                </Link>
+                {/* <Link style={{ textDecoration: "none" }} href={"/offerte"}> */}
+                <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
+                  {t("Offers")}
+                </Typography>
+                {/* </Link> */}
               </Stack>
             </>
           )}
@@ -247,11 +249,11 @@ export const Bar = memo(({}: BarProps) => {
         ) : !mediumScreen ? (
           <>
             <Stack>
-              <Link href={"/Login"}>
-                <Button sx={{ color: isScrolled ? "purple" : "white" }}>
-                  {t("Login")}
-                </Button>
-              </Link>
+              {/* <Link href={"/Login"}> */}
+              <Button sx={{ color: isScrolled ? "purple" : "white" }}>
+                {t("Login")}
+              </Button>
+              {/* </Link> */}
             </Stack>
             <Divider
               orientation="vertical"
@@ -262,11 +264,12 @@ export const Bar = memo(({}: BarProps) => {
               }}
             />
             <Stack>
-              <Link href={"/Signup"}>
-                <Button sx={{ color: isScrolled ? "purple" : "white" }}>
-                  {t("Signup")}
-                </Button>
-              </Link>
+              <Button
+                onClick={handleSignup}
+                sx={{ color: isScrolled ? "purple" : "white" }}
+              >
+                {t("Signup")}
+              </Button>
             </Stack>
           </>
         ) : (

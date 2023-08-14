@@ -44,14 +44,15 @@ export interface ApiRequestAction<T> extends Action<string> {
 interface ApiSuccessData<T, U> {
   status: number;
   data: T;
-  prepareParams: U;
+  prepareParams?: U;
 }
 
 export interface ApiFailData<U> {
   status: number;
-  message: string;
-  prepareParams: U;
+  error: string;
+  prepareParams?: U;
 }
+export type ApiFailAction<U = any> = PayloadActionCreator<ApiFailData<U>>;
 
 export type ApiSuccessAction<T, U = any> = PayloadActionCreator<
   ApiSuccessData<T, U>
@@ -71,5 +72,8 @@ export const apiActionBuilder = <ApiRequestParams, ApiResponseAction>(
     success: createAction(`${api}/success`, (payload) => ({
       payload,
     })) as unknown as ApiResponseAction,
+    fail: createAction(`${api}/fail`, (payload) => ({
+      payload,
+    })) as unknown as ApiFailAction,
   };
 };

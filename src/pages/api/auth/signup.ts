@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 type responseData = {
   error?: string;
-  success?: boolean;
+  status?: boolean;
   message?: string;
 };
 
@@ -24,7 +24,7 @@ export default async function handler(
         return res.status(400).json({ error: "Data is missing" });
       } else {
         const { email, password, address, phone, name, isAdmin } = req.body;
-        console.log(isAdmin);
+
         const userExists = await User.findOne({ email });
 
         if (userExists) {
@@ -37,11 +37,6 @@ export default async function handler(
           } else {
             const hashedPassword = await hash(password, 12);
 
-            console.log(email);
-            console.log(password);
-
-      
-
             const user = await User.insertOne({
               email,
               password: hashedPassword,
@@ -52,19 +47,19 @@ export default async function handler(
             });
 
             return res.status(201).json({
-              success: true,
-              message: "user created correctly",
+              status: true,
+              message: "account created correctly",
             });
           }
         }
       }
     } else {
-      res.status(405).json({ success: false, error: "Method Not Allowed" });
+      res.status(405).json({ status: false, error: "Method Not Allowed" });
     }
   } catch (error) {
     console.error("Error creating user:", error);
     return res
       .status(409)
-      .json({ success: false, error: "error in creating user" });
+      .json({ status: false, error: "error in creating user" });
   }
 }
