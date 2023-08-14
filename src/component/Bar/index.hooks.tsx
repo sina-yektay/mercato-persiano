@@ -3,6 +3,7 @@ import { signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const useBar = () => {
   const [anchorEl, setAnchorEl] = useState<any>(null);
@@ -13,6 +14,7 @@ export const useBar = () => {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +60,10 @@ export const useBar = () => {
     setAnchorLngEl(null);
   };
 
+  const handleSignup = () => {
+    navigate('/signup');
+  }
+
   const open = Boolean(anchorEl);
   return {
     open,
@@ -74,5 +80,6 @@ export const useBar = () => {
     handleOpen,
     anchorLngEl,
     handleCloseLng,
+    handleSignup
   };
 };
