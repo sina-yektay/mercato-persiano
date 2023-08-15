@@ -25,6 +25,8 @@ const DynamicRoute = () => {
     case "drink":
     case "nut":
     case "all-products":
+    case "signup":
+    case "login":
       return <ProductSpa />;
   }
 };

@@ -249,11 +249,11 @@ export const Bar = memo(({}: BarProps) => {
         ) : !mediumScreen ? (
           <>
             <Stack>
-              {/* <Link href={"/Login"}> */}
-              <Button sx={{ color: isScrolled ? "purple" : "white" }}>
-                {t("Login")}
-              </Button>
-              {/* </Link> */}
+              <Link to={"/login"}>
+                <Button sx={{ color: isScrolled ? "purple" : "white" }}>
+                  {t("Login")}
+                </Button>
+              </Link>
             </Stack>
             <Divider
               orientation="vertical"

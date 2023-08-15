@@ -1,13 +1,16 @@
 import { loginUser } from "@/helper";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AxiosError } from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  email: yup.string().required("email is required"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("email is required"),
   password: yup.string().required("Password is required"),
 });
 
@@ -16,7 +19,7 @@ type loginFormData = {
   password: string;
 };
 
-export const useLogin = () => {
+export const useLoginScene = () => {
   const formData = useForm<loginFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -26,7 +29,8 @@ export const useLogin = () => {
   });
 
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [warning, setWarning] = useState("");
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -39,25 +43,24 @@ export const useLogin = () => {
     async (formData: { email: string; password: string }) => {
       try {
         setLoading(true);
-        console.log("wwwwwwwwwwwwwwwwwwwwwwppppppppppppppppppppppppp")
         const loginRes = await loginUser({
           email: formData.email,
           password: formData.password,
         });
 
-        if (loginRes && !loginRes.ok) {
+        if (loginRes && loginRes.error) {
+          setWarning(loginRes.error);
         } else {
-          router.push("/");
+          navigate("/");
         }
       } catch (error) {
         if (error instanceof AxiosError) {
           const errorMsg = error.response?.data?.error;
-          // setSubmitError(errorMsg)
         }
       }
       setLoading(false);
     }
   );
 
-  return { formData, onSubmit, register, errors, loading };
+  return { formData, onSubmit, register, errors, loading, warning };
 };

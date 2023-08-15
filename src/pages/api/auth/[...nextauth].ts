@@ -16,15 +16,6 @@ const options: NextAuthOptions = {
       async authorize(
         credentials: Record<"email" | "password", string> | undefined
       ): Promise<any> {
-        // try {
-        //     const db = await connectToDatabase();
-        //     console.log('Database connected successfully:', db);
-        //     // Perform further database operations or logic here
-        //   } catch (error) {
-        //     console.error('Failed to connect to the database:', error);
-        //     // Handle the error or throw it to be caught elsewhere
-        //   }
-
         await connectToDatabase();
 
         const user = await User.findOne({
@@ -34,10 +25,11 @@ const options: NextAuthOptions = {
         if (!user) {
           throw new Error("Invalid Credentials");
         }
-        const isPasswordCorrect = compare(
+        const isPasswordCorrect = await compare(
           credentials!.password,
           user.password ?? ""
         );
+
         if (!isPasswordCorrect) {
           throw new Error("Invalid Credentials");
         }
