@@ -20,7 +20,10 @@ type userSignupForm = {
 };
 
 const schema = yup.object().shape({
-  email: yup.string().required("email is a required field"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("email is a required field"),
   password: yup.string().required("Password is required"),
   repeatPassword: yup
     .string()

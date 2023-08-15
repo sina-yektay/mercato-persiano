@@ -15,12 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { ProductDialog } from "../ProductDialog";
 import { ProductTab } from "../ProductTab";
-import Signup from "@/pages/Signup";
 import { AllProductsScene } from "@/spas/productsSpa/scenes/AllProductsScene";
 import { Footer } from "../Footer";
 import { SignupScene } from "@/spas/productsSpa/scenes/SignupScene";
 import { Bar } from "../Bar";
 import { SideEffect } from "../SideEffects";
+import { LoginScene } from "@/spas/productsSpa/scenes/LoginScene";
 
 type ProductRoutingProps = {};
 
@@ -61,6 +61,8 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
             <Route path="/" element={<LandingScene />} />
 
             <Route path="/signup" element={<SignupScene />} />
+
+            <Route path="/login" element={<LoginScene />} />
 
             <Route path="/all-products" element={<AllProductsScene />} />
 

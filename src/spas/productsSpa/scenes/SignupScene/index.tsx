@@ -60,7 +60,7 @@ export const SignupScene = memo(({}: SignupSceneProps) => {
           sx={{
             mb: "20px",
             backgroundColor: "white",
-            py: smallScreen ? 2 : 5,
+            py: smallScreen ? 2 : 2,
             justifyContent: "center",
           }}
           direction="row"
@@ -228,7 +228,7 @@ export const SignupScene = memo(({}: SignupSceneProps) => {
               variant="contained"
               type={"submit"}
             >
-              "signup"
+              signup
             </Button>
           </form>
         </FormProvider>
