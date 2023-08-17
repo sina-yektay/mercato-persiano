@@ -44,6 +44,21 @@ export const sideEffectsSlice = createSlice({
       state.feedbackMesssage = action?.payload?.error || "";
       state.feedbackSeverity = "warning";
     });
+    builder.addCase(extraActions.getUser.success, (state, action) => {
+      state.backDropState = false;
+    });
+    builder.addCase(extraActions.patchUser.success, (state, action) => {
+      state.backDropState = false;
+      state.feedBackState = true;
+      state.feedbackMesssage = action?.payload?.data.message || "";
+      state.feedbackSeverity = "success";
+    });
+    builder.addCase(extraActions.patchUser.fail, (state, action) => {
+      state.backDropState = false;
+      state.feedBackState = true;
+      state.feedbackMesssage = action?.payload?.error || "";
+      state.feedbackSeverity = "warning";
+    });
   },
 });
 

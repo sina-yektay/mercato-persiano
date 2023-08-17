@@ -19,7 +19,6 @@ export default async function handler(
       } else {
         const { productId, productName, quantity, description, price, image } =
           req.body;
-        console.log(req.body);
 
         await connectToDatabase();
 

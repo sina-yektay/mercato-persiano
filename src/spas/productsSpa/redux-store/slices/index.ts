@@ -4,12 +4,14 @@ import * as extraActions from "../extra-actions";
 import * as ajax from "./ajax";
 import * as product from "./product";
 import * as sideEffects from "./sideEffects";
+import * as user from "./user";
 export const reducers = {
   navigation: navigation.navigationSlice.reducer,
   cart: cart.cartSlice.reducer,
   ajax: ajax.ajaxStore.reducer,
   product: product.productSlice.reducer,
   sideEffect: sideEffects.sideEffectsSlice.reducer,
+  user: user.userSlice.reducer,
 };
 
 export const actions = {
@@ -19,13 +21,15 @@ export const actions = {
   ...ajax.ajaxStore.actions,
   ...product.productSlice.actions,
   ...sideEffects.sideEffectsSlice.actions,
+  ...user.userSlice.actions,
 };
 
 export const selectors = {
   ...navigation.selectors,
   ...cart.selectors,
   ...product.selectors,
-  ...sideEffects.selectors
+  ...sideEffects.selectors,
+  ...user.selectors,
 };
 
 // export const sagas = [

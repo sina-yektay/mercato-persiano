@@ -61,8 +61,12 @@ export const useBar = () => {
   };
 
   const handleSignup = () => {
-    navigate('/signup');
-  }
+    navigate("/signup");
+  };
+
+  const handleEditProfile = () => {
+    navigate("/edit-profile");
+  };
 
   const open = Boolean(anchorEl);
   return {
@@ -80,6 +84,7 @@ export const useBar = () => {
     handleOpen,
     anchorLngEl,
     handleCloseLng,
-    handleSignup
+    handleSignup,
+    handleEditProfile,
   };
 };

@@ -23,7 +23,7 @@ import {
 import { memo } from "react";
 import { useBar } from "./index.hooks";
 import { ShoppingCart } from "../ShoppingCart";
-
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { SearchBar } from "../SearchBar";
 import { useSession, signOut } from "next-auth/react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
@@ -53,6 +53,7 @@ export const Bar = memo(({}: BarProps) => {
     anchorLngEl,
     handleCloseLng,
     handleSignup,
+    handleEditProfile,
   } = useBar();
   const theme = useTheme();
   const { data: session } = useSession();
@@ -233,7 +234,7 @@ export const Bar = memo(({}: BarProps) => {
                 horizontal: "center",
               }}
             >
-              <List sx={{ maxWidth: "100%" }}>
+              <List sx={{ maxWidth: "100%", minWidth: "210px" }}>
                 <ListItem disablePadding>
                   <ListItemButton onClick={handleLogout}>
                     <ListItemText
@@ -241,6 +242,15 @@ export const Bar = memo(({}: BarProps) => {
                       primary={"Logout"}
                     />
                     <LogoutIcon />
+                  </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton onClick={handleEditProfile}>
+                    <ListItemText
+                      style={{ paddingRight: 20 }}
+                      primary={"Edit Profile"}
+                    />
+                    <ModeEditIcon />
                   </ListItemButton>
                 </ListItem>
               </List>
