@@ -106,4 +106,21 @@ export class User {
       throw error;
     }
   }
+
+  async patch(fields: Partial<IUser>): Promise<void> {
+    const collection: Collection<IUser> = getDB().collection(
+      User.collectionName
+    );
+    const result = await collection.updateOne(
+      {
+        _id: this._id,
+      },
+      {
+        $set: fields,
+      }
+    );
+    if (result.modifiedCount !== 1) {
+      throw new Error("Patch op was not applied successfully");
+    }
+  }
 }

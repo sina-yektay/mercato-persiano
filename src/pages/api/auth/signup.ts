@@ -14,8 +14,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<responseData>
 ) {
-  console.log("wwwwwwwwwwwwwwwwwwwwewewewwwwwwwwwwwwwwwwwwwwwwwwwwww");
-
   try {
     await connectToDatabase();
 

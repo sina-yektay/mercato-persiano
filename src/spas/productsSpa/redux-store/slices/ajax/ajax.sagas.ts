@@ -55,7 +55,6 @@ function* productAjaxTask(requestAction: ApiRequestAction<any>): any {
     const status = axiosError?.response?.status || 500;
     const error: string =
       axiosError?.response?.data?.error || axiosError.message;
-
     yield put({
       type: `${api}/fail`,
       payload: {

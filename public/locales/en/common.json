@@ -42,5 +42,9 @@
   "Product Description": "Product Description",
   "This Address is used to deliver your products.": "This Address is used to deliver your products.",
   "Later you can change the address in your profile.": "Later you can change the address in your profile.",
-  "Create your account":"Create your account"
+  "Create your account": "Create your account",
+  "Dear": "Dear ",
+  "here you can modify your data": " here you can modify your data",
+  "save the changes":"save the changes",
+  "i want to change my password too (if you don't want to change the password leave the password field blank)":"i want to change my password too (if you don't want to change the password leave the password field blank)"
 }
