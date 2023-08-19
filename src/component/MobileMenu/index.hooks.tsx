@@ -1,20 +1,20 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useMobileMenu = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<any>(null);
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleLogin = () => {
-    router.push("/Login");
+    navigate("/login");
     setAnchorEl(null);
   };
 
   const handleLogout = () => {
-    router.push("/Signup");
+    navigate("/signup");
     setAnchorEl(null);
   };
 

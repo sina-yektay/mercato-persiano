@@ -4,11 +4,13 @@ import { useSession } from "next-auth/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const useShoppingCart = () => {
   const { data: session } = useSession();
   const orderQuantity = useSelector(selectors.getProductQuantity);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
     setIsOpen(false);
@@ -47,6 +49,12 @@ export const useShoppingCart = () => {
     );
   };
 
+  const handlePayment = () => {
+    dispatch(actions.setPaymentAmount({amount:totalPrice}))
+    setIsOpen(false);
+    navigate("/payment");
+  };
+
   return {
     orderQuantity,
     isOpen,
@@ -58,5 +66,6 @@ export const useShoppingCart = () => {
     totalPrice,
     t,
     session,
+    handlePayment,
   };
 };
