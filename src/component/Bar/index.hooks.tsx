@@ -37,6 +37,7 @@ export const useBar = () => {
   };
 
   const handleLogout = async () => {
+    navigate("/");
     await signOut();
   };
 
