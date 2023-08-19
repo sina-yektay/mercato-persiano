@@ -94,6 +94,9 @@ export const useSignupScene = () => {
     }
   }, [navigate, changeRouteAfterSignup]);
 
+  useEffect(() => {
+    dispatch(actions.changeRoute({ index: false }));
+  });
   const onSubmit = handleSubmit(
     async (formData: {
       email: string;

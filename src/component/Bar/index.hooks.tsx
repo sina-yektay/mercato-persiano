@@ -37,6 +37,7 @@ export const useBar = () => {
   };
 
   const handleLogout = async () => {
+    setAnchorEl(null);
     navigate("/");
     await signOut();
   };
@@ -66,6 +67,7 @@ export const useBar = () => {
   };
 
   const handleEditProfile = () => {
+    setAnchorEl(null);
     navigate("/edit-profile");
   };
 

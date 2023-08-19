@@ -3,7 +3,7 @@ import * as selectors from "./productNavigation.selectors";
 import * as extraActions from "../../extra-actions";
 
 type productNavigationType = {
-  index: number;
+  index: number | boolean;
   changeRouteAfterSignup: boolean;
 };
 
@@ -13,7 +13,7 @@ const initialState: productNavigationType = {
 };
 
 type changeRouteType = {
-  payload: { index: number };
+  payload: { index: number | boolean };
 };
 
 type changeRouteSignupType = {

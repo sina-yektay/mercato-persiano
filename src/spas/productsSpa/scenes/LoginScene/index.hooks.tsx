@@ -1,10 +1,12 @@
 import { loginUser } from "@/helper";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { actions } from "../../redux-store/slices";
 
 const schema = yup.object().shape({
   email: yup
@@ -38,6 +40,11 @@ export const useLoginScene = () => {
     register,
     formState: { errors },
   } = formData;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.changeRoute({ index: false }));
+  });
 
   const onSubmit = handleSubmit(
     async (formData: { email: string; password: string }) => {
