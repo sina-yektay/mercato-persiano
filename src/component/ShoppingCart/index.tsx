@@ -42,6 +42,7 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
     totalPrice,
     t,
     session,
+    handlePayment,
   } = useShoppingCart();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -88,7 +89,7 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
 
         <DialogContent
           sx={{
-            width: smallScreen ? "300px" : "400px",
+            width: smallScreen ? "280px" : "400px",
             minHeight: smallScreen ? "200px" : "300px",
           }}
         >
@@ -208,7 +209,9 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
                   {totalPrice < 20 ? t("+ 5€ (delivery cost)") : ""}
                 </Typography>
 
-                <Button variant="contained">{t("Pay")}</Button>
+                <Button onClick={handlePayment} variant="contained">
+                  {t("Proceed")}
+                </Button>
               </Stack>
             </DialogContentText>
           )}

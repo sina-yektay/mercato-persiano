@@ -22,6 +22,7 @@ import { Bar } from "../Bar";
 import { SideEffect } from "../SideEffects";
 import { LoginScene } from "@/spas/productsSpa/scenes/LoginScene";
 import { EditProfile } from "@/spas/productsSpa/scenes/EditProfile";
+import { PaymentScene } from "@/spas/productsSpa/scenes/PaymentScene";
 
 type ProductRoutingProps = {};
 
@@ -64,6 +65,8 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
             <Route path="/signup" element={<SignupScene />} />
 
             <Route path="/login" element={<LoginScene />} />
+
+            <Route path="/payment" element={<PaymentScene />} />
 
             <Route path="/edit-profile" element={<EditProfile />} />
 

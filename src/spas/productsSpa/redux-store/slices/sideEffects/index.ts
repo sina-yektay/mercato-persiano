@@ -59,6 +59,9 @@ export const sideEffectsSlice = createSlice({
       state.feedbackMesssage = action?.payload?.error || "";
       state.feedbackSeverity = "warning";
     });
+    builder.addCase(extraActions.getClientSecret.success, (state, action) => {
+      state.backDropState = false;
+    });
   },
 });
 

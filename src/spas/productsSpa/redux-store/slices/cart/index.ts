@@ -11,11 +11,13 @@ export type product = {
 };
 
 type productNavigationType = {
+  paymentAmount: number;
   orderQuantity: number;
   chosenProducts: product[];
 };
 
 const initialState: productNavigationType = {
+  paymentAmount: 0,
   orderQuantity: 0,
   chosenProducts: [],
 };
@@ -35,6 +37,8 @@ type removeProductType = {
     productId: string;
   };
 };
+
+type setPaymentAmountType = { payload: { amount: number } };
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -80,6 +84,9 @@ export const cartSlice = createSlice({
         );
         state.chosenProducts = [...newProductArray];
       }
+    },
+    setPaymentAmount: (state, action: setPaymentAmountType) => {
+      state.paymentAmount = action.payload.amount;
     },
   },
 });
