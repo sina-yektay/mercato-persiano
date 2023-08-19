@@ -21,23 +21,23 @@ export const usePaymentScene = () => {
       console.log("CardElement is not ready yet.");
       return;
     }
-    try{
-    const result = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: cardElement,
-      },
-    });
+    try {
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+        },
+      });
 
-    if (result.error) {
+      if (result.error) {
+        console.log("error occured in the payment process");
+        dispatch(actions.changeBackDropState({ backDropState: true }));
+      } else {
+        console.log("payment done successfully");
+        dispatch(actions.changeBackDropState({ backDropState: true }));
+      }
+    } catch {
       console.log("error occured in the payment process");
-      dispatch(actions.changeBackDropState({ backDropState: true }));
-    } else {
-      console.log("payment done successfully");
-      dispatch(actions.changeBackDropState({ backDropState: true }));
     }
-  }catch{
-    console.log("error occured in the payment process");
-  }
   };
   const paymentAmount = useSelector(selectors.getAmount);
   const dispatch = useDispatch();
@@ -45,6 +45,10 @@ export const usePaymentScene = () => {
   const handlePaymentChange = (event: any) => {
     setIsPaymentValid(event.complete);
   };
+
+  useEffect(() => {
+    dispatch(actions.changeRoute({ index: false }));
+  });
 
   useEffect(() => {
     dispatch(actions.changeBackDropState({ backDropState: true }));

@@ -50,6 +50,10 @@ export const useEditProfile = () => {
   });
 
   useEffect(() => {
+    dispatch(actions.changeRoute({ index: false }));
+  });
+
+  useEffect(() => {
     if (!session) {
       navigate("/");
     } else {

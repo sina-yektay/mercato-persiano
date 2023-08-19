@@ -77,29 +77,22 @@ export const Bar = memo(({}: BarProps) => {
           sx={{ alignItems: "center" }}
         >
           <Stack>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1, color: isScrolled ? "purple" : "white" }}
-            >
-              TorinAsia
-            </Typography>
+            <Link style={{ textDecoration: "none" }} to={"/"}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, color: isScrolled ? "purple" : "white" }}
+              >
+                TorinAsia
+              </Typography>
+            </Link>
           </Stack>
           {!mediumScreen && (
             <>
-              {/* <Stack sx={{ justifyContent: "center" }}>
-                <Link style={{ textDecoration: "none" }} href={"/About"}>
-                  <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
-                    Chi Siamo
-                  </Typography>
-                </Link>
-              </Stack> */}
               <Stack sx={{ justifyContent: "center" }}>
-                {/* <Link style={{ textDecoration: "none" }} href={"/offerte"}> */}
                 <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
                   {t("Offers")}
                 </Typography>
-                {/* </Link> */}
               </Stack>
             </>
           )}
