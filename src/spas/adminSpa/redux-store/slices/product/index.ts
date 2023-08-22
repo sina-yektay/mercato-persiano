@@ -22,28 +22,7 @@ export const productSlice = createSlice({
       state.list = [];
     },
   },
-  extraReducers: (builder) => {
-    // builder.addCase(extraActions.getArticles.success, (state, action) => {
-    //   state.list.push(...action.payload.data.articles);
-    // });
-    // builder.addCase(
-    //   extraActions.getArticlesByArticleId.success,
-    //   (state, action) => {
-    //     state.chosenArticle = action.payload.data.article;
-    //   }
-    // );
-    // builder.addCase(
-    //   extraActions.patchArticlesByArticleId.success,
-    //   (state, action) => {
-    //     state.chosenArticle = action.payload.data.article;
-    //   }
-    // );
-    // builder.addCase(extraActions.postArticles.success, (state, action) => {
-    //   state.list.push(action.payload.data.article);
-    //   state.isCreateArticleDialogOpen = false;
-    //   domNavigation.navigate("/articles");
-    // });
-  },
+  extraReducers: (builder) => {},
 });
 
 export { selectors };

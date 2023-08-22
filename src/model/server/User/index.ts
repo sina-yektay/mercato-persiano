@@ -46,6 +46,7 @@ export type IUser = {
   phone: string;
   isAdmin: boolean;
   name: string;
+  resetToken?: string;
 };
 
 export class User {
@@ -56,6 +57,7 @@ export class User {
   phone?: string;
   name?: string;
   isAdmin?: boolean;
+  resetToken?: string;
 
   static get collectionName() {
     return "user";
@@ -74,6 +76,7 @@ export class User {
       this.phone = iUser.phone;
       this.name = iUser.name;
       this.isAdmin = iUser.isAdmin;
+      this.resetToken = iUser.resetToken || undefined;
     }
   }
 

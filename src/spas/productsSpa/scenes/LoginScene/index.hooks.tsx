@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { actions } from "../../redux-store/slices";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   email: yup
@@ -16,21 +17,40 @@ const schema = yup.object().shape({
   password: yup.string().required("Password is required"),
 });
 
+const resetSchema = yup.object().shape({
+  resetEmail: yup
+    .string()
+    .email("Invalid email format")
+    .required("email is required"),
+});
+
 type loginFormData = {
   email: string;
   password: string;
 };
 
+type resetPasswordFormData = {
+  resetEmail: string;
+};
+
 export const useLoginScene = () => {
-  const formData = useForm<loginFormData>({
+  const loginFormData = useForm<loginFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
+  const { t } = useTranslation();
+  const resetFormData = useForm<resetPasswordFormData>({
+    resolver: yupResolver(resetSchema),
+    defaultValues: {
+      resetEmail: "",
+    },
+  });
 
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const [warning, setWarning] = useState("");
   const navigate = useNavigate();
   const {
@@ -39,7 +59,15 @@ export const useLoginScene = () => {
     watch,
     register,
     formState: { errors },
-  } = formData;
+  } = loginFormData;
+
+  const {
+    control: resetControl,
+    handleSubmit: resetHandleSubmit,
+    watch: resetWatch,
+    register: resetRegister,
+    formState: { errors: resetError },
+  } = resetFormData;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -68,6 +96,34 @@ export const useLoginScene = () => {
       setLoading(false);
     }
   );
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const openDialog = () => {
+    setOpen(true);
+  };
 
-  return { formData, onSubmit, register, errors, loading, warning };
+  const resetonSubmit = resetHandleSubmit((resetFormData) => {
+    setOpen(false);
+    dispatch(
+      actions.postResetPassword.request({ email: resetFormData.resetEmail })
+    );
+  });
+
+  return {
+    loginFormData,
+    resetRegister,
+    resetonSubmit,
+    resetError,
+    onSubmit,
+    register,
+    errors,
+    loading,
+    warning,
+    resetFormData,
+    open,
+    handleClose,
+    openDialog,
+    t,
+  };
 };

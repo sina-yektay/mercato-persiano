@@ -8,15 +8,40 @@ import {
   TextField,
   Button,
   CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { t } from "i18next";
 
 type LoginSceneProps = {};
 
 export const LoginScene = memo(({}: LoginSceneProps) => {
-  const { formData, onSubmit, register, errors, loading, warning } =
-    useLoginScene();
+  const {
+    loginFormData,
+    onSubmit,
+    resetRegister,
+    resetonSubmit,
+    resetError,
+    register,
+    errors,
+    loading,
+    warning,
+    resetFormData,
+    open,
+    handleClose,
+    openDialog,
+    t,
+  } = useLoginScene();
+
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box
@@ -53,11 +78,11 @@ export const LoginScene = memo(({}: LoginSceneProps) => {
           </Stack>
         </Stack>
         <Stack>
-            <Typography sx={{ fontSize: "15px", color: "red",margin:"auto" }}>
-              {warning}
-            </Typography>
-          </Stack>
-        <FormProvider {...formData}>
+          <Typography sx={{ fontSize: "15px", color: "red", margin: "auto" }}>
+            {warning}
+          </Typography>
+        </Stack>
+        <FormProvider {...loginFormData}>
           <form onSubmit={onSubmit}>
             <TextField
               InputLabelProps={{
@@ -107,21 +132,53 @@ export const LoginScene = memo(({}: LoginSceneProps) => {
           </form>
         </FormProvider>
         <Stack>
-          <Link
-            to={""}
-            style={{
-              fontSize: "14px",
-              textDecoration: "none",
-              margin: "auto",
-              color: "purple",
-              marginTop: 20,
-              fontWeight: "bold",
+          <Button
+            sx={{
+              "&:hover": {
+                boxShadow: "none !important",
+              },
+              textTransform: "none",
+              color: "inherit",
             }}
+            variant="text"
+            disableRipple
+            onClick={openDialog}
           >
             forgot password?
-          </Link>
+          </Button>
         </Stack>
       </Paper>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>{t("Please enter your email")}</DialogTitle>
+        <FormProvider {...resetFormData}>
+          <form onSubmit={resetonSubmit}>
+            <DialogContent
+              sx={{
+                width: smallScreen ? "240px" : "400px",
+                minHeight: "100px",
+              }}
+            >
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                {...resetRegister("resetEmail")}
+                name="resetEmail"
+                label="Email Address"
+                type="email"
+                fullWidth
+                variant="standard"
+                error={!!resetError.resetEmail}
+                helperText={resetError.resetEmail?.message}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button type="submit">{t("send")}</Button>
+            </DialogActions>
+          </form>
+        </FormProvider>
+      </Dialog>
     </Box>
   );
 });

@@ -21,7 +21,6 @@ export default async function handler(
         const { email } = req.query as { email: string };
         await connectToDatabase();
         const user = await User.findOne({ email: email });
-        console.log(user);
         return res.status(201).json({
           success: true,
           message: "User received correctly",

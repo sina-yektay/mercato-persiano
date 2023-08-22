@@ -149,17 +149,6 @@ export const ProductTab = memo(() => {
           }}
           label={t("Breakfast")}
         />
-
-        {/* <Tab
-          sx={{
-            "&.Mui-selected": {
-              color: isScrolled ? "purple" : "white",
-              backgroundColor: isScrolled ? "white" : "purple",
-            },
-            color: isScrolled ? "white" : "purple",
-          }}
-          label="Breakfast"
-        /> */}
       </Tabs>
     </Box>
   );

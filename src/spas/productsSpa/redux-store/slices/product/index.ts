@@ -12,6 +12,7 @@ const initialState: ItemState = {
     productId: "",
     price: "",
     quantity: 0,
+    description: "",
     image: "",
   },
 };
