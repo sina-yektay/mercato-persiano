@@ -62,6 +62,18 @@ export const sideEffectsSlice = createSlice({
     builder.addCase(extraActions.getClientSecret.success, (state, action) => {
       state.backDropState = false;
     });
+    builder.addCase(extraActions.postResetPassword.success, (state, action) => {
+      state.backDropState = false;
+      state.feedBackState = true;
+      state.feedbackMesssage = action?.payload?.data?.message || "";
+      state.feedbackSeverity = "success";
+    });
+    builder.addCase(extraActions.postResetPassword.fail, (state, action) => {
+      state.backDropState = false;
+      state.feedBackState = true;
+      state.feedbackMesssage = action?.payload?.error || "";
+      state.feedbackSeverity = "warning";
+    });
   },
 });
 

@@ -58,7 +58,6 @@ export class Item {
       );
       const document: IItem | null = await collection.findOne(filter);
       if (document) {
-        console.log(document);
         return new Item(document);
       }
       return null;

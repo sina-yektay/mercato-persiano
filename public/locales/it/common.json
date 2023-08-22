@@ -49,5 +49,7 @@
   "save the changes": "Salva le modifiche",
   "i want to change my password too (if you don't want to change the password leave the password field blank)": "Voglio cambiare anche la mia password (se non vuoi cambiare la password, lascia il campo password vuoto)",
   "Proceed": "Procedere",
-  "Card's detail": "Dettaglio della carta"
+  "Card's detail": "Dettaglio della carta",
+  "Please enter your email":"Per favore, inserisci la tua email",
+  "send":"invia"
 }
