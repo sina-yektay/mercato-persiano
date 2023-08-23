@@ -1,6 +1,7 @@
 import { getDB } from "@/dbConfig";
 import { Collection, ObjectId } from "mongodb";
 import { Session } from "next-auth";
+import { Iitem } from "../Item";
 
 export type Iuser = {
   _id?: string;
@@ -47,6 +48,7 @@ export type IUser = {
   isAdmin: boolean;
   name: string;
   resetToken?: string;
+  products?: Iitem[];
 };
 
 export class User {
@@ -58,6 +60,7 @@ export class User {
   name?: string;
   isAdmin?: boolean;
   resetToken?: string;
+  products?: Iitem[];
 
   static get collectionName() {
     return "user";
@@ -77,6 +80,7 @@ export class User {
       this.name = iUser.name;
       this.isAdmin = iUser.isAdmin;
       this.resetToken = iUser.resetToken || undefined;
+      this.products = iUser.products || undefined;
     }
   }
 
@@ -120,6 +124,23 @@ export class User {
       },
       {
         $set: fields,
+      }
+    );
+    if (result.modifiedCount === 0) {
+      throw new Error("Patch op was not applied successfully");
+    }
+  }
+
+  async addCart(cart: Iitem[]): Promise<void> {
+    const collection: Collection<IUser> = getDB().collection(
+      User.collectionName
+    );
+    const result = await collection.updateOne(
+      {
+        _id: this._id,
+      },
+      {
+        $push: { products: { $each: cart } },
       }
     );
     if (result.modifiedCount !== 1) {

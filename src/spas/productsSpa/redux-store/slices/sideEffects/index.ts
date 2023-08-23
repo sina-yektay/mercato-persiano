@@ -74,6 +74,12 @@ export const sideEffectsSlice = createSlice({
       state.feedbackMesssage = action?.payload?.error || "";
       state.feedbackSeverity = "warning";
     });
+    builder.addCase(extraActions.patchCart.success, (state, action) => {
+      state.backDropState = false;
+    });
+    builder.addCase(extraActions.patchCart.fail, (state, action) => {
+      state.backDropState = false;
+    });
   },
 });
 

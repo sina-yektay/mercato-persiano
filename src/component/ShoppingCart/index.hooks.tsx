@@ -50,7 +50,15 @@ export const useShoppingCart = () => {
   };
 
   const handlePayment = () => {
-    dispatch(actions.setPaymentAmount({amount:totalPrice}))
+    dispatch(actions.setPaymentAmount({ amount: totalPrice }));
+    dispatch(
+      actions.addUserToState({
+        email: session?.user.email || "",
+        address: session?.user.address || "",
+        phone: session?.user.phone || "",
+        name: session?.user.name || "",
+      })
+    );
     setIsOpen(false);
     navigate("/payment");
   };

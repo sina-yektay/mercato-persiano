@@ -11,7 +11,8 @@ export const usePaymentScene = () => {
     event.preventDefault();
     const stripe = useStripe();
     const elements = useElements();
-
+    const user = useSelector(selectors.getUser);
+    const products = useSelector(selectors.getProductsInCart);
     dispatch(actions.changeBackDropState({ backDropState: true }));
     if (!stripe || !elements) {
       return;
@@ -30,10 +31,22 @@ export const usePaymentScene = () => {
 
       if (result.error) {
         console.log("error occured in the payment process");
-        dispatch(actions.changeBackDropState({ backDropState: true }));
+        dispatch(actions.changeBackDropState({ backDropState: false }));
       } else {
         console.log("payment done successfully");
-        dispatch(actions.changeBackDropState({ backDropState: true }));
+        dispatch(
+          actions.patchCart.request({
+            email: user.email,
+            products: products.map((item) => ({
+              productName: item.productName,
+              productId: item.productId,
+              price: item.price,
+              quantity: item.orderQuantity,
+              description: item.description,
+              image: item.productImage,
+            })),
+          })
+        );
       }
     } catch {
       console.log("error occured in the payment process");
