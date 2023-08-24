@@ -24,7 +24,10 @@ const schema = yup.object().shape({
     .string()
     .email("Invalid email format")
     .required("email is a required field"),
-  password: yup.string().required("Password is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters long"),
   repeatPassword: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
@@ -74,7 +77,7 @@ export const useSignupScene = () => {
   const open = Boolean(anchorEl);
 
   useEffect(() => {
-    dispatch(actions.changeRoute({ index: -1 }));
+    dispatch(actions.changeRoute({ index: false }));
   }, []);
 
   useEffect(() => {
