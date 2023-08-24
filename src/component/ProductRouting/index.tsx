@@ -23,6 +23,7 @@ import { SideEffect } from "../SideEffects";
 import { LoginScene } from "@/spas/productsSpa/scenes/LoginScene";
 import { EditProfile } from "@/spas/productsSpa/scenes/EditProfile";
 import { PaymentScene } from "@/spas/productsSpa/scenes/PaymentScene";
+import { AboutScene } from "@/spas/productsSpa/scenes/AboutScene";
 
 type ProductRoutingProps = {};
 
@@ -46,16 +47,16 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
         position: "relative",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "50vh",
-          flexGrow: 1,
-        }}
-      >
-        <ProductDialog />
-        <Router>
+      <ProductDialog />
+      <Router>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "50vh",
+            flexGrow: 1,
+          }}
+        >
           <Bar />
           <ProductTab />
           <SideEffect />
@@ -74,6 +75,8 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
 
             <Route path="/snack" element={<SnackScene />} />
 
+            <Route path="/about" element={<AboutScene />} />
+
             <Route path="/coffee-tea" element={<CoffeeAndTeaScene />} />
 
             <Route path="/icecream" element={<IceCreamScene />} />
@@ -88,9 +91,9 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
 
             <Route path="/nut" element={<NutScene />} />
           </Routes>
-        </Router>
-      </Box>
-      <Footer sx={{ position: "static", width: "100%" }} />
+        </Box>
+        <Footer sx={{ position: "static", width: "100%" }} />
+      </Router>
     </Box>
   );
 });

@@ -1,5 +1,6 @@
 import { actions, selectors } from "@/spas/productsSpa/redux-store/slices";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -70,6 +71,8 @@ export const useBar = () => {
     setAnchorEl(null);
     navigate("/edit-profile");
   };
+  const router = useRouter();
+
 
   const open = Boolean(anchorEl);
   return {
