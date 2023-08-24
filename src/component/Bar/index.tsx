@@ -33,7 +33,7 @@ import { Search as SearchIcon } from "@mui/icons-material";
 import Image from "next/image";
 import { MobileMenu } from "../MobileMenu";
 import { Link } from "react-router-dom";
-
+import NextLink from "next/link";
 type BarProps = {};
 
 export const Bar = memo(({}: BarProps) => {
@@ -90,9 +90,11 @@ export const Bar = memo(({}: BarProps) => {
           {!mediumScreen && (
             <>
               <Stack sx={{ justifyContent: "center" }}>
-                <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
-                  {t("Offers")}
-                </Typography>
+                <Link to={"/about"}>
+                  <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
+                    {t("About us")}
+                  </Typography>
+                </Link>
               </Stack>
             </>
           )}

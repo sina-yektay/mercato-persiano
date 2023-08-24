@@ -10,11 +10,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import Link from "next/link";
+
 import paypal from "../../../public/assets/paypal.png";
 import visa from "../../../public/assets/visa.png";
 import master from "../../../public/assets/master.png";
 import Image from "next/image";
+import { Link } from "react-router-dom";
 
 type FooterProps = BoxProps;
 
@@ -109,24 +110,18 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
               <Grid container item sx={{ justifyContent: "center" }}>
                 <Link
                   style={{ color: "white", textDecoration: "none" }}
-                  href=""
+                  to="/about"
                 >
                   {t("About us")}
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
-                <Link
-                  style={{ color: "white", textDecoration: "none" }}
-                  href=""
-                >
+                <Link style={{ color: "white", textDecoration: "none" }} to="">
                   {t("Order Tracking")}
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
-                <Link
-                  style={{ color: "white", textDecoration: "none" }}
-                  href=""
-                >
+                <Link style={{ color: "white", textDecoration: "none" }} to="">
                   {t("Returns and Exchanges")}
                 </Link>
               </Grid>
@@ -137,7 +132,7 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                     textDecoration: "none",
                     display: "block",
                   }}
-                  href=""
+                  to=""
                 >
                   {t("Shopping History")}
                 </Link>
