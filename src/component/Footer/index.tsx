@@ -116,12 +116,18 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
-                <Link style={{ color: "white", textDecoration: "none" }} to="">
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/support"
+                >
                   {t("Order Tracking")}
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
-                <Link style={{ color: "white", textDecoration: "none" }} to="">
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/support"
+                >
                   {t("Returns and Exchanges")}
                 </Link>
               </Grid>
@@ -132,7 +138,7 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                     textDecoration: "none",
                     display: "block",
                   }}
-                  to=""
+                  to="/support"
                 >
                   {t("Shopping History")}
                 </Link>

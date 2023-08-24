@@ -24,6 +24,8 @@ import { LoginScene } from "@/spas/productsSpa/scenes/LoginScene";
 import { EditProfile } from "@/spas/productsSpa/scenes/EditProfile";
 import { PaymentScene } from "@/spas/productsSpa/scenes/PaymentScene";
 import { AboutScene } from "@/spas/productsSpa/scenes/AboutScene";
+import { ResetPassword } from "@/spas/productsSpa/scenes/ResetPassword";
+import { SupportScene } from "@/spas/productsSpa/scenes/SupportScene";
 
 type ProductRoutingProps = {};
 
@@ -73,9 +75,13 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
 
             <Route path="/all-products" element={<AllProductsScene />} />
 
+            <Route path="/reset-password" element={<ResetPassword />} />
+
             <Route path="/snack" element={<SnackScene />} />
 
             <Route path="/about" element={<AboutScene />} />
+
+            <Route path="/support" element={<SupportScene />} />
 
             <Route path="/coffee-tea" element={<CoffeeAndTeaScene />} />
 

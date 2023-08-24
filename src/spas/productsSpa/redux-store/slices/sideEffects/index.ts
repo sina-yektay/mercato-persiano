@@ -80,6 +80,18 @@ export const sideEffectsSlice = createSlice({
     builder.addCase(extraActions.patchCart.fail, (state, action) => {
       state.backDropState = false;
     });
+    builder.addCase(extraActions.patchPassword.fail, (state, action) => {
+      state.backDropState = false;
+      state.feedBackState = true;
+      state.feedbackMesssage = action?.payload?.error || "";
+      state.feedbackSeverity = "warning";
+    });
+    builder.addCase(extraActions.patchPassword.success, (state, action) => {
+      state.backDropState = false;
+      state.feedBackState = true;
+      state.feedbackMesssage = action?.payload?.data.message || "";
+      state.feedbackSeverity = "success";
+    });
   },
 });
 

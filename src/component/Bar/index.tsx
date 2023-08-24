@@ -90,7 +90,7 @@ export const Bar = memo(({}: BarProps) => {
           {!mediumScreen && (
             <>
               <Stack sx={{ justifyContent: "center" }}>
-                <Link to={"/about"}>
+                <Link to={"/about"} style={{ textDecoration: "none" }}>
                   <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
                     {t("About us")}
                   </Typography>

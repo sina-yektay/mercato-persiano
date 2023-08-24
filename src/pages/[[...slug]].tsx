@@ -29,6 +29,7 @@ const DynamicRoute = () => {
     case "login":
     case "edit-profile":
     case "payment":
+    case "reset-password":
       return <ProductSpa />;
   }
 };
