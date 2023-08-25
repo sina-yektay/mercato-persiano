@@ -62,7 +62,11 @@ export const ItemCard = memo(
             padding: 2,
             backgroundColor: "transparent",
             background: "transparent !important",
-            transform: isHovered ? "scale(1.1)" : "scale(1)",
+            transform: isHovered
+              ? !homePage
+                ? "scale(1.1)"
+                : "scale(1)"
+              : "scale(1)",
             transition: "transform 0.2s ease-in-out",
           }}
           onClick={handleClick}
