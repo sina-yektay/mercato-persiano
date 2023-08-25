@@ -37,6 +37,7 @@ export const useSearchBar = () => {
           price: item.price,
           quantity: item.quantity,
           image: item.image,
+          description: item.description,
         },
       })
     );
