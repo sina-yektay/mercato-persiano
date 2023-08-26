@@ -34,8 +34,6 @@ function* ajaxTask(
       params: query,
     });
     
-   console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-   console.log(response.data)
 
     yield put(
       actions.setFeedback({isOpen: true, message: response?.data?.message, type: "success"})

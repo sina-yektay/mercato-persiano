@@ -35,6 +35,7 @@ export const ProductPagination = memo(({}: ProductPaginationProps) => {
                 productId={item.productId}
                 price={item.price}
                 quantity={item.quantity}
+                isDiscounted={item.isDiscounted}
                 description={item.description}
                 image={item.image}
               />

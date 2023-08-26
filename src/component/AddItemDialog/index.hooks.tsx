@@ -12,12 +12,12 @@ const schema = yup.object().shape({
   price: yup.string().required(),
   quantity: yup.number().required(),
   description: yup.string().required(),
+  isDiscounted: yup.boolean().required(),
   image: yup
     .mixed()
     .test("fileType", "Invalid file format", function (value) {
-      if (!value) return false; // Skip validation if no file is selected
-
-      const supportedFormats = ["image/jpeg", "image/png", "image/gif"];
+      if (!value) return false; 
+      const supportedFormats = ["image/jpeg", "image/png", "image/gif", "image/webp"];
       const fileList = value as FileList;
       const file = fileList[0];
       const isValidFormat = supportedFormats.includes(file.type);
@@ -46,6 +46,7 @@ export const useAddItemDialog = () => {
     price: string;
     quantity: number;
     description: string;
+    isDiscounted: boolean;
     image: FileList | null;
   };
 
@@ -57,6 +58,7 @@ export const useAddItemDialog = () => {
       price: "",
       quantity: 0,
       description: "",
+      isDiscounted: false,
       image: null,
     },
   });
@@ -120,10 +122,20 @@ export const useAddItemDialog = () => {
       productId: string;
       price: string;
       quantity: number;
+      isDiscounted: boolean,
       description: string;
       image: FileList | null;
     }) => {
       setLoading(true);
+      setDialog(false);
+      setValue("productName", "");
+      setValue("productId", "");
+      setValue("price", "");
+      setValue("quantity", 0);
+      setValue("isDiscounted", false);
+      setValue("description", "");
+      setValue("image", null);
+      setLoading(false);
       handleUpload(formData.image)
         .then((imageUrl) => {
           dispatch(
@@ -132,18 +144,12 @@ export const useAddItemDialog = () => {
               productName: formData.productName,
               price: formData.price,
               quantity: formData.quantity,
+              isDiscounted: formData.isDiscounted,
               description: formData.description,
               image: imageUrl || "",
             })
           );
-          setDialog(false);
-          setValue("productName", "");
-          setValue("productId", "");
-          setValue("price", "");
-          setValue("quantity", 0);
-          setValue("description", "");
-          setValue("image", null);
-          setLoading(false);
+
         })
         .catch((error) => {
           dispatch(
@@ -153,13 +159,6 @@ export const useAddItemDialog = () => {
               type: "warning",
             })
           );
-          setDialog(false);
-          setValue("productName", "");
-          setValue("productId", "");
-          setValue("price", "");
-          setValue("quantity", 0);
-          setValue("image", null);
-          setLoading(false);
           console.log(
             "the handleUpload function in AdminDashboard returned an error(line: 121)"
           );
@@ -178,5 +177,6 @@ export const useAddItemDialog = () => {
     onSubmit,
     loading,
     handleClear,
+    control
   };
 };

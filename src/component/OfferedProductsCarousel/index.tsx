@@ -15,7 +15,7 @@ type OfferedProductsCarouselType = {};
 
 export const OfferedProductsCarousel = memo(
   ({}: OfferedProductsCarouselType) => {
-    const { products, containerRef, scrollRight, scrollLeft } =
+    const { discountedProducts, containerRef, scrollRight, scrollLeft } =
       useOfferedProductsCarousel();
     const theme = useTheme();
     const mediumScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,13 +43,14 @@ export const OfferedProductsCarousel = memo(
               transform: "translateX(0)",
             }}
           >
-            {products?.map((item, index) => (
+            {discountedProducts?.map((item, index) => (
               <ItemCard
                 key={index}
                 productName={item.productName}
                 productId={item.productId}
                 price={item.price}
                 quantity={item.quantity}
+                isDiscounted={item.isDiscounted}
                 description={item.description}
                 image={item.image}
                 homePage={true}

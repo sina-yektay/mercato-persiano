@@ -10,9 +10,11 @@ import {
   Stack,
   IconButton,
   TextField,
+  Checkbox,
+  Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { FormProvider } from "react-hook-form";
+import { Controller, FormProvider } from "react-hook-form";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 type AddItemDialogType = {};
@@ -29,6 +31,7 @@ export const AddItemDialog = memo(({}: AddItemDialogType) => {
     onSubmit,
     loading,
     handleClear,
+    control,
   } = useAddItemDialog();
 
   return (
@@ -108,6 +111,21 @@ export const AddItemDialog = memo(({}: AddItemDialogType) => {
                       label="price"
                       variant="outlined"
                     />{" "}
+                  </Stack>
+                  <Stack direction={"row"}>
+                    <Typography sx={{ alignSelf: "center" }}>
+                      discounted?
+                    </Typography>
+                    <Controller
+                      name="isDiscounted"
+                      control={control}
+                      render={({ field }) => (
+                        <Stack direction="row" alignItems="center">
+                          <Checkbox {...field} style={{ color: "purple" }} />
+
+                        </Stack>
+                      )}
+                    />
                   </Stack>
                   <Stack>
                     {" "}

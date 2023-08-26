@@ -1,4 +1,5 @@
-import { Iitem } from "@/model/client/item";
+
+import { Iitem } from "@/model/server/Item";
 import {
   ApiSuccessAction,
   HttpMethod,
