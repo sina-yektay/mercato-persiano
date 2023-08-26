@@ -17,7 +17,7 @@ export default async function handler(
       if (!req.body) {
         return res.status(400).json({ error: "Data is missing" });
       } else {
-        const { productId, productName, quantity, description, price, image } =
+        const { productId, productName, quantity,isDiscounted, description, price, image } =
           req.body;
 
         await connectToDatabase();
@@ -30,6 +30,7 @@ export default async function handler(
             productName,
             productId,
             quantity,
+            isDiscounted,
             description,
             price,
             image,

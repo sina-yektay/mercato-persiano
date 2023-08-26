@@ -23,5 +23,9 @@ export const useOfferedProductsCarousel = () => {
     }
   };
 
-  return { products, containerRef, scrollRight, scrollLeft };
+  const discountedProducts = products.filter(
+    (item) => item.isDiscounted === true
+  );
+
+  return { discountedProducts, containerRef, scrollRight, scrollLeft };
 };

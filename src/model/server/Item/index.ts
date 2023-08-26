@@ -9,6 +9,7 @@ export type IItem = {
   productId: string;
   price: string;
   quantity: number;
+  isDiscounted: boolean;
   description: string;
   image: string;
 };
@@ -17,6 +18,7 @@ export type Iitem = {
   productId: string;
   price: string;
   quantity: number;
+  isDiscounted: boolean;
   description: string;
   image: string;
 };
@@ -27,6 +29,7 @@ export class Item {
   productId?: string;
   price?: string;
   quantity?: number;
+  isDiscounted?: boolean;
   description?: string;
   image?: string;
 
@@ -44,6 +47,7 @@ export class Item {
       this.productName = iItem.productName;
       this.productId = iItem.productId;
       this.quantity = iItem.quantity;
+      this.isDiscounted = iItem.isDiscounted;
       this.description = iItem.description;
       this.price = iItem.price;
       this.image = iItem.image;

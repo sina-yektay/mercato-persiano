@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../redux-store/slices";
 import hm1 from "../../../../../public/assets/hm1.png";
-import bread from "../../../../../public/assets/uk.png";
-import drink from "../../../../../public/assets/it.png";
 import { selectors } from "../../redux-store/slices";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -81,7 +79,7 @@ export const useLandingScene = () => {
 
   const handleScrollDown = () => {
     window.scrollBy({
-      top: 400,
+      top: 404,
       behavior: "smooth",
     });
   };
