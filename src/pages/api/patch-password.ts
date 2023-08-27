@@ -23,7 +23,11 @@ export default async function handler(
       const user = await User.findOne({ resetToken: token });
 
       if (!user) {
-        return res.status(409).json({ error: "You are not allowed to modify the password with this link" });
+        return res
+          .status(409)
+          .json({
+            error: "You are not allowed to modify the password with this link",
+          });
       } else {
         if (password.length < 6 && password.length !== 0) {
           return res

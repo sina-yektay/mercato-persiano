@@ -76,7 +76,7 @@ export class Item {
     const collection: Collection<IItem> = database.collection(
       Item.collectionName
     );
-    const result = await collection.deleteOne({_id:_id});
+    const result = await collection.deleteOne({ _id: _id });
     if (result.deletedCount !== 1) {
       throw new Error("Deleting the product was not applied successfully");
     }
@@ -117,6 +117,23 @@ export class Item {
     } catch (error) {
       console.error("Failed to find products", error);
       throw error;
+    }
+  }
+
+  async patch(fields: Partial<Iitem>): Promise<void> {
+    const collection: Collection<Item> = getDB().collection(
+      Item.collectionName
+    );
+    const result = await collection.updateOne(
+      {
+        _id: this._id,
+      },
+      {
+        $set: fields,
+      }
+    );
+    if (result.modifiedCount === 0) {
+      throw new Error("Update was not applied successfully");
     }
   }
 }

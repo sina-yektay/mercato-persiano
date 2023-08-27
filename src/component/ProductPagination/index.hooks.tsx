@@ -14,7 +14,9 @@ export const useProductPagination = () => {
 
   const handlePageChange = (index: number) => {
     setPageIndex(index);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(()=> {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },100)
   };
 
   return {
