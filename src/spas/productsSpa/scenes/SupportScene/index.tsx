@@ -20,13 +20,13 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
           border: "solid purple 2px",
           borderRadius: 5,
           p: 2,
-          minHeight: "35vh",
+          minHeight: "350px",
           marginBottom: smallScreen ? 5 : 0,
         }}
       >
         <Grid item container xs={3}>
           <Typography
-            sx={{ fontWeight: "bold", fontSize: "18px", color: "purple" }}
+            sx={{ fontWeight: "bold", fontSize: "16px", color: "purple" }}
           >
             {t("Shopping history")}
           </Typography>
@@ -38,7 +38,7 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
                 fontWeight: "bold",
                 margin: "auto",
                 alignSelf: "flex-start",
-                fontSize: "17px",
+                fontSize: "16px",
                 color: "purple",
               }}
             >
@@ -51,7 +51,7 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
                 fontWeight: "bold",
                 margin: "auto",
                 alignSelf: "flex-start",
-                fontSize: "17px",
+                fontSize: "16px",
                 color: "purple",
               }}
             >
@@ -72,13 +72,13 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
           border: "solid purple 2px",
           borderRadius: 5,
           p: 2,
-          minHeight: "35vh",
+          minHeight: "350px",
           marginBottom: smallScreen ? 5 : 0,
         }}
       >
         <Grid item container xs={3}>
           <Typography
-            sx={{ fontWeight: "bold", fontSize: "18px", color: "purple" }}
+            sx={{ fontWeight: "bold", fontSize: "16px", color: "purple" }}
           >
             {t(
               "For return and exchange send your order number to the email below, shortly you will be contacted"
@@ -91,7 +91,7 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
               fontWeight: "bold",
               margin: "auto",
               alignSelf: "flex-start",
-              fontSize: "17px",
+              fontSize: "16px",
               color: "purple",
             }}
           >

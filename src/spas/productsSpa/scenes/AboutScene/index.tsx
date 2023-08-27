@@ -13,7 +13,8 @@ export const AboutScene = memo(() => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
-  });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Grid
       container

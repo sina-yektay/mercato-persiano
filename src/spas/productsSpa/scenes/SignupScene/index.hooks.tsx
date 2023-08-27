@@ -78,6 +78,7 @@ export const useSignupScene = () => {
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   useEffect(() => {

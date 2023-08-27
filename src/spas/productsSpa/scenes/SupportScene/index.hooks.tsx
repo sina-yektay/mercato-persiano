@@ -10,6 +10,7 @@ export const useSupportScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return { t, session };
 };

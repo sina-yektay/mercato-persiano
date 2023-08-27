@@ -1,4 +1,4 @@
-import { Iitem } from "@/model/client/item";
+import { Iitem } from "@/model/server/Item";
 import {
   ApiSuccessAction,
   HttpMethod,
@@ -9,15 +9,15 @@ import {
 export interface GetItemParams {}
 
 export interface GetItemResponseData {
-  items: Iitem[];
+  data: Iitem[];
 }
 
 export default apiActionBuilder<
   GetItemParams,
   ApiSuccessAction<GetItemResponseData, GetItemParams>
->("apis/articles/post", (params: GetItemParams) => ({
+>("apis/items/get", (params: GetItemParams) => ({
   payload: apiRequestPayloadBuilder<GetItemParams>({
-    path: "/api/get-item",
+    path: "/api/get-items",
     method: HttpMethod.GET,
   }),
 }));

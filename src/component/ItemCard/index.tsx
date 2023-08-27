@@ -67,7 +67,7 @@ export const ItemCard = memo(
               background: "transparent !important",
               transform: isHovered
                 ? !homePage
-                  ? "scale(1.1)"
+                  ? "scale(1)"
                   : "scale(1)"
                 : "scale(1)",
               transition: "transform 0.2s ease-in-out",
@@ -101,7 +101,16 @@ export const ItemCard = memo(
               </Box>
             )}
             <Stack>
-              <CardActionArea sx={{}}>
+              <Box
+                sx={{
+                  cursor: "pointer",
+                  transform: isHovered
+                    ? !homePage
+                      ? "scale(1.05)"
+                      : "scale(1)"
+                    : "scale(1)",
+                }}
+              >
                 <CardMedia
                   component="img"
                   height={135}
@@ -129,7 +138,7 @@ export const ItemCard = memo(
                     </Typography>
                   </Stack>
                 </CardContent>
-              </CardActionArea>
+              </Box>
 
               <Button
                 variant="contained"
