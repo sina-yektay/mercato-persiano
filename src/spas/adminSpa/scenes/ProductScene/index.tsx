@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { AddItemDialog } from "@/component/AddItemDialog";
+import Image from "next/image";
 import {
   Alert,
   Box,
@@ -8,18 +9,40 @@ import {
   CardContent,
   CardMedia,
   Checkbox,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Grid,
   IconButton,
   Snackbar,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useProductScene } from "./index.hooks";
+import { Controller, FormProvider } from "react-hook-form";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 type AdminPortalSceneProps = {};
 
 export const ProductScene = memo(({}: AdminPortalSceneProps) => {
-  const { products, handleDeletion } = useProductScene();
+  const {
+    products,
+    handleDeletion,
+    dialog,
+    handleClose,
+    control,
+    watch,
+    loading,
+    register,
+    errors,
+    formData,
+    onSubmit,
+    handleEdit,
+    image,
+  } = useProductScene();
 
   return (
     <Grid container>
@@ -90,6 +113,7 @@ export const ProductScene = memo(({}: AdminPortalSceneProps) => {
                     delete
                   </Button>
                   <Button
+                    onClick={() => handleEdit(item)}
                     variant={"contained"}
                     sx={{
                       ml: "30px",
@@ -111,6 +135,136 @@ export const ProductScene = memo(({}: AdminPortalSceneProps) => {
           </Grid>
         );
       })}
+
+      <Dialog
+        open={dialog}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Add Item"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            <FormProvider {...formData}>
+              <form onSubmit={onSubmit}>
+                <Stack direction={"column"} spacing={2}>
+                  <Stack direction={"row"} spacing={1} sx={{ mt: 2 }}>
+                    <Stack>
+                      {" "}
+                      <TextField
+                        sx={{ mt: 0 }}
+                        InputLabelProps={{
+                          style: { color: "purple" },
+                          shrink: true,
+                        }}
+                        id="outlined-basic"
+                        {...register("productName")}
+                        name="productName"
+                        label="product name"
+                        variant="outlined"
+                      />{" "}
+                    </Stack>
+                    <Stack>
+                      {" "}
+                      <TextField
+                        id="outlined-basic"
+                        {...register("productId")}
+                        InputLabelProps={{
+                          style: { color: "purple" },
+                          shrink: true,
+                        }}
+                        name="productId"
+                        label="Product id"
+                        variant="outlined"
+                      />{" "}
+                    </Stack>
+                  </Stack>
+                  <Stack direction={"row"} spacing={1} sx={{ mt: 2 }}>
+                    <Stack>
+                      {" "}
+                      <TextField
+                        id="outlined-basic"
+                        {...register("quantity")}
+                        InputLabelProps={{
+                          style: { color: "purple" },
+                          shrink: true,
+                        }}
+                        name="quantity"
+                        label="quantity"
+                        variant="outlined"
+                      />{" "}
+                    </Stack>
+                    <Stack>
+                      <TextField
+                        id="outlined-basic"
+                        {...register("description")}
+                        InputLabelProps={{
+                          style: { color: "purple" },
+                          shrink: true,
+                        }}
+                        name="description"
+                        label="description"
+                        variant="outlined"
+                      />
+                    </Stack>
+                  </Stack>
+                  <Stack direction={"row"} spacing={1} sx={{ mt: 2 }}>
+                    <Stack>
+                      {" "}
+                      <TextField
+                        id="outlined-basic"
+                        {...register("price")}
+                        InputLabelProps={{
+                          style: { color: "purple" },
+                          shrink: true,
+                        }}
+                        name="price"
+                        label="price"
+                        variant="outlined"
+                      />{" "}
+                    </Stack>
+                    <Stack
+                      sx={{ justifyContent: "center", alignItems: "center" }}
+                    >
+                      <Stack direction={"row"}>
+                        <Typography sx={{ alignSelf: "center" }}>
+                          discounted?
+                        </Typography>
+                        <Controller
+                          name="isDiscounted"
+                          control={control}
+                          render={({ field }) => (
+                            <Stack direction="row" alignItems="center">
+                              <Checkbox
+                                {...field}
+                                style={{ color: "purple" }}
+                              />
+                            </Stack>
+                          )}
+                        />
+                      </Stack>
+                    </Stack>
+                  </Stack>
+                  <Image
+                    style={{ margin: "auto", marginTop: 20 }}
+                    src={image}
+                    alt="Product"
+                    width={140}
+                    height={150}
+                  />
+                </Stack>
+
+                <Button disabled={loading} type={"submit"}>
+                  upload
+                </Button>
+              </form>
+            </FormProvider>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
   );
 });

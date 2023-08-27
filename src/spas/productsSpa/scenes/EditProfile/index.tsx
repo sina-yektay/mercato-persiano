@@ -197,7 +197,13 @@ export const EditProfile = memo(({}: EditProfileProps) => {
                 marginX: "auto",
                 backgroundColor: "purple",
               }}
-              disabled={user.name === watch("name") && user.email === watch("email") && user.address===watch("address") && user.phone===watch("phone") && watch("password") === ""}
+              disabled={
+                user.name === watch("name") &&
+                user.email === watch("email") &&
+                user.address === watch("address") &&
+                user.phone === watch("phone") &&
+                watch("password") === ""
+              }
               variant="contained"
               type={"submit"}
             >

@@ -127,7 +127,7 @@ export class User {
       }
     );
     if (result.modifiedCount === 0) {
-      throw new Error("Patch op was not applied successfully");
+      throw new Error("Update was not applied successfully");
     }
   }
 
