@@ -1,14 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as selectors from "./product.selectors";
-// import {
-//   ArticlesState,
-//   SetIsCloneArticleDialogOpenAction,
-//   SetIsCreateArticleDialogOpenAction,
-// } from "./articles.interfaces";
-// import * as extraActions from "../../extra-actions";
-// import * as sagas from "./articles.sagas";
-// import domNavigation from "models/client/DomNavigation";
 import { ItemState } from "./product.interface";
+import * as extraActions from "../../extra-actions";
 
 const initialState: ItemState = {
   list: [],
@@ -22,7 +15,11 @@ export const productSlice = createSlice({
       state.list = [];
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(extraActions.getItems.success, (state, action) => {
+      state.list.push(...action.payload.data.data);
+    });
+  },
 });
 
 export { selectors };

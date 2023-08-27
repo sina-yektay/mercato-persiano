@@ -6,6 +6,7 @@ export const useSnackScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 2 }));
-  });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return {};
 };

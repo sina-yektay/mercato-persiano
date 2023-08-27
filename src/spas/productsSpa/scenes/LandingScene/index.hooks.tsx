@@ -73,6 +73,7 @@ export const useLandingScene = () => {
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 0 }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const products = useSelector(selectors.products);

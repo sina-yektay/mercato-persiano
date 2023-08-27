@@ -26,12 +26,14 @@ export default async function handler(
           currency: "eur",
           description: "Shopping Payment",
         });
-        res.status(200).json({ clientSecret: paymentIntent.client_secret });
+        return res
+          .status(200)
+          .json({ clientSecret: paymentIntent.client_secret });
       }
     } catch {
-      res.status(500).json({ error: "Server Error" });
+      return res.status(500).json({ error: "Server Error" });
     }
   } else {
-    res.status(405).json({ error: "Method Not Allowed" });
+    return res.status(405).json({ error: "Method Not Allowed" });
   }
 }

@@ -9,7 +9,7 @@ export type IItem = {
   productId: string;
   price: string;
   quantity: number;
-  isDiscounted: boolean;
+  isDiscounted?: boolean;
   description: string;
   image: string;
 };
@@ -18,7 +18,7 @@ export type Iitem = {
   productId: string;
   price: string;
   quantity: number;
-  isDiscounted: boolean;
+  isDiscounted?: boolean;
   description: string;
   image: string;
 };
@@ -68,6 +68,17 @@ export class Item {
     } catch (error) {
       console.error("Failed to find article", error);
       throw error;
+    }
+  }
+
+  static async delete(_id: ObjectId): Promise<void> {
+    const database = getDB();
+    const collection: Collection<IItem> = database.collection(
+      Item.collectionName
+    );
+    const result = await collection.deleteOne({_id:_id});
+    if (result.deletedCount !== 1) {
+      throw new Error("Deleting the product was not applied successfully");
     }
   }
 

@@ -16,6 +16,7 @@ export default async function handler(
   try {
     if (req.method === "GET") {
       await connectToDatabase();
+
       const items = await Item.findMany();
       return res.status(201).json({
         success: true,

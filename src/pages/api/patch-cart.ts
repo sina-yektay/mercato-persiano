@@ -22,6 +22,7 @@ export default async function handler(
         return res.status(409).json({ error: "User Does Not Exist" });
       } else {
         await userExists.addCart(products);
+        return res.status(200).json({ error: "Card added successfully" });
       }
     } catch (error) {
       console.error("Error updating user:", error);

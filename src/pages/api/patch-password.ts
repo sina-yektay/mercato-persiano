@@ -33,7 +33,7 @@ export default async function handler(
           const hashedPassword = await hash(password, 12);
           await user.patch({ password: hashedPassword, resetToken: "" });
 
-          return res.status(201).json({
+          return res.status(200).json({
             status: true,
             message: "Password modified correctly",
           });

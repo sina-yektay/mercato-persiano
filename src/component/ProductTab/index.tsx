@@ -13,7 +13,7 @@ export const ProductTab = memo(() => {
   return (
     <Box
       position="sticky"
-      zIndex={999}
+      zIndex={1000}
       top={mediumScreen ? "55px" : "63px"}
       style={{ justifyContent: "center", borderBottom: "solid purple 5px" }}
     >

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export const useProductPagination = () => {
   const products = useSelector(selectors.products);
   const [pageIndex, setPageIndex] = useState(1);
-  const productPerPage = 11;
+  const productPerPage = 12;
   const pageNumber = Math.ceil(products.length / productPerPage);
   const displayedProducts = products.slice(
     (pageIndex - 1) * productPerPage,
@@ -14,6 +14,7 @@ export const useProductPagination = () => {
 
   const handlePageChange = (index: number) => {
     setPageIndex(index);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return {

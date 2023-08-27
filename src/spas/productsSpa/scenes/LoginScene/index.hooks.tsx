@@ -72,7 +72,8 @@ export const useLoginScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
-  });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const onSubmit = handleSubmit(
     async (formData: { email: string; password: string }) => {
