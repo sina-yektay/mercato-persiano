@@ -60,6 +60,9 @@ export const Bar = memo(({}: BarProps) => {
   const smallScreen = useMediaQuery(theme.breakpoints.down("lg"));
   const mediumScreen = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
+  const customFont = {
+    fontFamily: "Open Sans, sans-serif",
+  };
 
   return (
     <AppBar
@@ -81,7 +84,8 @@ export const Bar = memo(({}: BarProps) => {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ flexGrow: 1, color: isScrolled ? "purple" : "white" }}
+                style={customFont}
+                sx={{ flexGrow: 1, color: isScrolled ? "purple" : "white", fontWeight:"bold" }}
               >
                 TorinAsia
               </Typography>
@@ -91,7 +95,7 @@ export const Bar = memo(({}: BarProps) => {
             <>
               <Stack sx={{ justifyContent: "center" }}>
                 <Link to={"/about"} style={{ textDecoration: "none" }}>
-                  <Typography sx={{ color: isScrolled ? "purple" : "white" }}>
+                  <Typography style={customFont} sx={{ color: isScrolled ? "purple" : "white" }}>
                     {t("About us")}
                   </Typography>
                 </Link>
@@ -255,7 +259,7 @@ export const Bar = memo(({}: BarProps) => {
           <>
             <Stack>
               <Link to={"/login"}>
-                <Button sx={{ color: isScrolled ? "purple" : "white" }}>
+                <Button style={customFont} sx={{ fontWeight:"bold" ,color: isScrolled ? "purple" : "white" }}>
                   {t("Login")}
                 </Button>
               </Link>
@@ -270,8 +274,9 @@ export const Bar = memo(({}: BarProps) => {
             />
             <Stack>
               <Button
+              style={customFont}
                 onClick={handleSignup}
-                sx={{ color: isScrolled ? "purple" : "white" }}
+                sx={{ color: isScrolled ? "purple" : "white", fontWeight:"bold" }}
               >
                 {t("Signup")}
               </Button>

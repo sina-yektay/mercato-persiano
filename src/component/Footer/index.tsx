@@ -23,6 +23,9 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
   const { t } = useFooter();
   const theme = useTheme();
   const mScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const customFont = {
+    fontFamily: "Open Sans, sans-serif",
+  };
   return (
     <Box sx={sx}>
       <Grid
@@ -57,12 +60,13 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
               }}
             >
               <Grid item xs={2} sx={{}}>
-                <Typography sx={{ color: "white" }}>
+                <Typography style={customFont} sx={{ color: "white" }}>
                   {t("Brings the taste of Asia")}
                 </Typography>
               </Grid>
               <Grid item sx={{}} xs={5}>
                 <Typography
+                style={customFont}
                   sx={{
                     border: "solid 3px white",
                     borderRadius: "25px",
@@ -112,7 +116,7 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   style={{ color: "white", textDecoration: "none" }}
                   to="/about"
                 >
-                  {t("About us")}
+                  <Typography style={customFont}> {t("About us")}</Typography>
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
@@ -120,7 +124,8 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   style={{ color: "white", textDecoration: "none" }}
                   to="/support"
                 >
-                  {t("Order Tracking")}
+                  <Typography style={customFont}> {t("Order Tracking")}</Typography>
+                  
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
@@ -128,7 +133,8 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   style={{ color: "white", textDecoration: "none" }}
                   to="/support"
                 >
-                  {t("Returns and Exchanges")}
+                  <Typography style={customFont}> {t("Returns and Exchanges")}</Typography>
+                  
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
@@ -140,7 +146,8 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   }}
                   to="/support"
                 >
-                  {t("Shopping History")}
+                  <Typography style={customFont}> {t("Shopping History")}</Typography>
+                  
                 </Link>
               </Grid>
             </Grid>
