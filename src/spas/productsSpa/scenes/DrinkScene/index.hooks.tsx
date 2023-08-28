@@ -9,7 +9,5 @@ export const useDrinkScene = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const drinks = useSelector(selectors.products);
-
-  return { drinks };
+  return {};
 };

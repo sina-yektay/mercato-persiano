@@ -29,6 +29,8 @@ const DynamicRoute = () => {
     case "login":
     case "edit-profile":
     case "payment":
+    case "dairy":
+    case "saffron":
     case "support":
     case "reset-password":
       return <ProductSpa />;

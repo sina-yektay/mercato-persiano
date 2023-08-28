@@ -9,4 +9,6 @@ export const RouteModel = {
   7: "/drink",
   8: "/nut",
   9: "/icecream",
+  10: "/saffron",
+  11: "/dairy",
 };
