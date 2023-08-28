@@ -81,7 +81,7 @@ export const ProductDialog = memo(({}: productDialogType) => {
                     >
                       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography variant="subtitle1">
-                          {t("Product Description")}
+                          {t("Description")}
                         </Typography>
                       </AccordionSummary>
                       <AccordionDetails>
