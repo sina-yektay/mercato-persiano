@@ -4,16 +4,16 @@ import { memo } from "react";
 import { Box, Button, Grid, IconButton } from "@mui/material";
 import { ItemCard } from "../ItemCard";
 
-type ProductPaginationProps = {};
+type ProductPaginationProps = {productType?: string};
 
-export const ProductPagination = memo(({}: ProductPaginationProps) => {
+export const ProductPagination = memo(({productType = ""}: ProductPaginationProps) => {
   const {
     products,
     pageNumber,
     pageIndex,
     displayedProducts,
     handlePageChange,
-  } = useProductPagination();
+  } = useProductPagination(productType);
 
   return (
     <Grid container direction={"column"} sx={{ alignItems: "center", pt: 6 }}>

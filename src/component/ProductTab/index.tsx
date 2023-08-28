@@ -87,7 +87,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label={t("Bread")}
+          label={t("Breakfast")}
         />
         <Tab
           sx={{
@@ -147,7 +147,7 @@ export const ProductTab = memo(() => {
             },
             color: isScrolled ? "white" : "purple",
           }}
-          label={t("Breakfast")}
+          label={t("Dairy")}
         />
       </Tabs>
     </Box>

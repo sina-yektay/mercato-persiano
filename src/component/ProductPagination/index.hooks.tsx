@@ -2,12 +2,13 @@ import { selectors } from "@/spas/productsSpa/redux-store/slices";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-export const useProductPagination = () => {
+export const useProductPagination = (productType: string) => {
   const products = useSelector(selectors.products);
   const [pageIndex, setPageIndex] = useState(1);
   const productPerPage = 12;
-  const pageNumber = Math.ceil(products.length / productPerPage);
-  const displayedProducts = products.slice(
+  const filteredProducts = products.filter((product)=> product.productId.includes(productType) )
+  const pageNumber = Math.ceil(filteredProducts.length / productPerPage);
+  const displayedProducts = filteredProducts.slice(
     (pageIndex - 1) * productPerPage,
     pageIndex * productPerPage
   );
