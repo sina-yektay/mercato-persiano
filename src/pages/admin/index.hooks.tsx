@@ -52,7 +52,6 @@ export const useAdminLogin = () => {
       } catch (error) {
         if (error instanceof AxiosError) {
           const errorMsg = error.response?.data?.error;
-          // setSubmitError(errorMsg)
         }
       }
       setLoading(false);

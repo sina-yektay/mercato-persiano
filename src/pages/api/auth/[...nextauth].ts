@@ -3,6 +3,7 @@ import { IUser, IUserSession, Iuser, User } from "@/model/server/User";
 import { compare } from "bcryptjs";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import crypto from "crypto";
 
 const options: NextAuthOptions = {
   providers: [
@@ -25,13 +26,21 @@ const options: NextAuthOptions = {
         if (!user) {
           throw new Error("Invalid Credentials");
         }
-        const isPasswordCorrect = await compare(
-          credentials!.password,
-          user.password ?? ""
-        );
+        if (!user.isAdmin) {
+          const isPasswordCorrect = await compare(
+            credentials!.password,
+            user.password ?? ""
+          );
 
-        if (!isPasswordCorrect) {
-          throw new Error("Invalid Credentials");
+          if (!isPasswordCorrect) {
+            throw new Error("Invalid Credentials");
+          }
+        } else {
+          const storedPassBuffer = Buffer.from(user.password || "");
+          const enteredPassBuffer = Buffer.from(credentials?.password || "");
+          if (!crypto.timingSafeEqual(storedPassBuffer, enteredPassBuffer)) {
+            throw new Error("Invalid Credentials");
+          }
         }
         const sessionUser: Iuser = {
           _id: user._id?.toString(),

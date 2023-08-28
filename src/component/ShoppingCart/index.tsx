@@ -129,13 +129,12 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
                         >
                           <Box
                             sx={{
-                              width: "160px",
+                              minWidth:"130px",
                               display: "flex",
-                              justifyContent: "center",
+                              justifyContent: "flex-start",
                               py: 0.35,
-                              bgcolor: "#9c27b0",
-                              color: "white",
-                              borderRadius: 1.5,
+                              color: "purple",
+                              fontWeight: "bold",
                             }}
                           >
                             <Box>
