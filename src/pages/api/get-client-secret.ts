@@ -1,20 +1,23 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+import { getParameterFromSSM } from "@/helper";
 
 type responseType = {
   message?: string;
   error?: string;
 };
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY as string, {
-  apiVersion: "2022-11-15",
-});
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === "GET") {
+    const STRIPE_SECRET_KEY = await getParameterFromSSM(
+      "TORINASIA_STRIPE_SECRET_KEY"
+    );
+    const stripe = new Stripe(STRIPE_SECRET_KEY as string, {
+      apiVersion: "2022-11-15",
+    });
     try {
       if (!req.query) {
         return res.status(400).json({ error: "Data is missing" });

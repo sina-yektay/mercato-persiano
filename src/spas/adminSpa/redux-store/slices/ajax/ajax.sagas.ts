@@ -7,8 +7,9 @@ import { actions } from "..";
 function* ajaxTask(requestAction: ApiRequestAction<any>): any {
   const { type, payload } = requestAction;
   const { params } = payload;
-  const { path, method, body, query } = params;
+  const { path, method, body, query, header } = params;
   const api = type.replace("/request", "");
+
 
   yield put(
     actions.setApiLoading({
@@ -23,6 +24,7 @@ function* ajaxTask(requestAction: ApiRequestAction<any>): any {
       url: path,
       data: body,
       params: query,
+      headers: header
     });
 
     yield put({
