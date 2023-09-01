@@ -13,7 +13,7 @@ export interface PostItemParams {
   quantity: number;
   isDiscounted: boolean;
   description: string;
-  image: string;
+  image: File;
 }
 
 export interface PostItemResponseData {
@@ -36,6 +36,9 @@ export default apiActionBuilder<
       isDiscounted: params.isDiscounted,
       description: params.description,
       image: params.image,
+    },
+    header: {
+      "Content-Type": "multipart/form-data",
     },
   }),
 }));

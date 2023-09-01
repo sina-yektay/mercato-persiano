@@ -1,6 +1,6 @@
 import { actions } from "@/spas/adminSpa/redux-store/slices";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
@@ -16,8 +16,13 @@ const schema = yup.object().shape({
   image: yup
     .mixed()
     .test("fileType", "Invalid file format", function (value) {
-      if (!value) return false; 
-      const supportedFormats = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+      if (!value) return false;
+      const supportedFormats = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/webp",
+      ];
       const fileList = value as FileList;
       const file = fileList[0];
       const isValidFormat = supportedFormats.includes(file.type);
@@ -76,58 +81,30 @@ export const useAddItemDialog = () => {
     setValue("image", null);
   };
 
-  const s3 = new S3({
-    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-    region: process.env.NEXT_PUBLIC_AWS_REGION,
-  });
-
-  async function uploadFileToS3(file: FileList): Promise<string> {
-    const fileName = file[0].name;
-    const fileBlob = new Blob([file[0]], { type: file[0].type });
-
-    const params = {
-      Bucket: "sina9612-bucket",
-      Key: fileName,
-      Body: file[0],
-      ContentType: "image/jpeg",
-      ContentDisposition: "inline",
-    };
-
-    try {
-      const { Location } = await s3.upload(params).promise();
-      return Location;
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      throw error;
-    }
-  }
-
-  const handleUpload = async (image: FileList | null) => {
-    try {
-      if (image !== null) {
-        const imageUrl = await uploadFileToS3(image);
-        console.log("File uploaded:", imageUrl);
-        return imageUrl;
-      }
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      throw error;
-    }
-  };
-
   const onSubmit = handleSubmit(
     (formData: {
       productName: string;
       productId: string;
       price: string;
       quantity: number;
-      isDiscounted: boolean,
+      isDiscounted: boolean;
       description: string;
       image: FileList | null;
     }) => {
       setLoading(true);
       setDialog(false);
+
+      dispatch(
+        actions.postItem.request({
+          productId: formData.productId,
+          productName: formData.productName,
+          price: formData.price,
+          quantity: formData.quantity,
+          isDiscounted: formData.isDiscounted,
+          description: formData.description,
+          image: formData.image![0] as File,
+        })
+      );
       setValue("productName", "");
       setValue("productId", "");
       setValue("price", "");
@@ -136,33 +113,6 @@ export const useAddItemDialog = () => {
       setValue("description", "");
       setValue("image", null);
       setLoading(false);
-      handleUpload(formData.image)
-        .then((imageUrl) => {
-          dispatch(
-            actions.postItem.request({
-              productId: formData.productId,
-              productName: formData.productName,
-              price: formData.price,
-              quantity: formData.quantity,
-              isDiscounted: formData.isDiscounted,
-              description: formData.description,
-              image: imageUrl || "",
-            })
-          );
-
-        })
-        .catch((error) => {
-          dispatch(
-            actions.setFeedback({
-              isOpen: true,
-              message: "Error in uploading the image",
-              type: "warning",
-            })
-          );
-          console.log(
-            "the handleUpload function in AdminDashboard returned an error(line: 121)"
-          );
-        });
     }
   );
 
@@ -177,6 +127,6 @@ export const useAddItemDialog = () => {
     onSubmit,
     loading,
     handleClear,
-    control
+    control,
   };
 };

@@ -23,9 +23,11 @@ export const useOfferedProductsCarousel = () => {
     }
   };
 
-  const discountedProducts = products.filter(
-    (item) => item.isDiscounted === true
-  );
-
+  const discountedProducts = products.filter((item) => {
+    console.log(item.productName);
+    console.log(item.isDiscounted);
+    return item.isDiscounted === true;
+  });
+console.log(discountedProducts)
   return { discountedProducts, containerRef, scrollRight, scrollLeft };
 };

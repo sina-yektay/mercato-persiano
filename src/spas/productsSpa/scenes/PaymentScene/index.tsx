@@ -15,7 +15,7 @@ export const PaymentScene = memo(({}: PaymentSceneProps) => {
   const { handleSubmit, clientSecret, handlePaymentChange, isPaymentValid } =
     usePaymentScene();
   const stripePromise = loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+    "pk_test_51Ng0klJSYYGIFSc6gKjj7npJKZ42KmiJOkWH47c7wQhhbAw5tePFljOdyFaobOuG05jEvA0WD5JMn25lPSIlZKnE00OGzAjMSE"
   );
 
   return (
