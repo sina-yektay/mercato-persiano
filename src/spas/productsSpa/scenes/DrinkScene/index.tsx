@@ -9,8 +9,6 @@ type DrinkSceneProps = {};
 
 export const DrinkScene = memo(({}: DrinkSceneProps) => {
   const {} = useDrinkScene();
-  const theme = useTheme();
-  const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return <ProductPagination productType="drink" />;
 });

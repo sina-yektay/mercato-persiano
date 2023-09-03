@@ -59,14 +59,14 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                 alignItems: mScreen ? "center" : "flex-end",
               }}
             >
-              <Grid item xs={2} sx={{}}>
+              <Grid item xs={2}>
                 <Typography style={customFont} sx={{ color: "white" }}>
                   {t("Brings the taste of Asia")}
                 </Typography>
               </Grid>
               <Grid item sx={{}} xs={5}>
                 <Typography
-                style={customFont}
+                  style={customFont}
                   sx={{
                     border: "solid 3px white",
                     borderRadius: "25px",
@@ -124,8 +124,10 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   style={{ color: "white", textDecoration: "none" }}
                   to="/support"
                 >
-                  <Typography style={customFont}> {t("Order Tracking")}</Typography>
-                  
+                  <Typography style={customFont}>
+                    {" "}
+                    {t("Order Tracking")}
+                  </Typography>
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
@@ -133,8 +135,10 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   style={{ color: "white", textDecoration: "none" }}
                   to="/support"
                 >
-                  <Typography style={customFont}> {t("Returns and Exchanges")}</Typography>
-                  
+                  <Typography style={customFont}>
+                    {" "}
+                    {t("Returns and Exchanges")}
+                  </Typography>
                 </Link>
               </Grid>
               <Grid container item sx={{ justifyContent: "center" }}>
@@ -146,8 +150,10 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
                   }}
                   to="/support"
                 >
-                  <Typography style={customFont}> {t("Shopping History")}</Typography>
-                  
+                  <Typography style={customFont}>
+                    {" "}
+                    {t("Shopping History")}
+                  </Typography>
                 </Link>
               </Grid>
             </Grid>

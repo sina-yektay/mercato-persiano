@@ -5,16 +5,18 @@ import { getParameterFromSSM } from "@/helper";
 type responseType = {
   message?: string;
   error?: string;
+  clientSecret?: string | null;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<responseType>
 ) {
   if (req.method === "GET") {
     const STRIPE_SECRET_KEY = await getParameterFromSSM(
       "TORINASIA_STRIPE_SECRET_KEY"
     );
+
     const stripe = new Stripe(STRIPE_SECRET_KEY as string, {
       apiVersion: "2022-11-15",
     });

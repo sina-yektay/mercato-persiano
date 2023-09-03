@@ -89,7 +89,7 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
 
         <DialogContent
           sx={{
-            width: smallScreen ? "280px" : "400px",
+            width: smallScreen ? "auto" : "400px",
             minHeight: smallScreen ? "200px" : "300px",
           }}
         >
