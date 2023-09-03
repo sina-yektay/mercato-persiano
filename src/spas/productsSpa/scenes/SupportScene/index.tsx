@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { useSupportScene } from "./index.hooks";
-import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 type SupportSceneProps = {};
 
@@ -9,6 +9,7 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
+    <Box>
     <Grid container sx={{ padding: 5, justifyContent: "space-around" }}>
       <Grid
         item
@@ -85,7 +86,7 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
             )}
           </Typography>
         </Grid>
-        <Grid item container xs={9}>
+        <Grid item container xs={smallScreen ? 8 : 9}>
           <Typography
             sx={{
               fontWeight: "bold",
@@ -101,5 +102,6 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
         </Grid>
       </Grid>
     </Grid>
+    </Box>
   );
 });

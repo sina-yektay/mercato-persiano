@@ -1,6 +1,4 @@
 {
-  "Hi": "Ciao",
-  "Snack": "Merende",
   "Login": "Accedi",
   "Signup": "Registrati",
   "Find a product...": "Cerca un prodotto qui...",
@@ -21,7 +19,7 @@
   "there is no product in your cart": "non c'è nessun prodotto nel tuo carrello",
   "Add To Cart": "Aggiungi al carrello",
   "Add": "Aggiungi",
-  "Not available": "Esaurito",
+  "Sold out": "Esaurito",
   "Delivery address:": "indirizzo di consegna:",
   "your cart will be delivered to the address below": "il tuo carrello sarà consegnato all'indirizzo sotto indicato in pochi minuti, (se il tuo carrello costa più di 20 euro, la consegna è gratuita)",
   "+ 5€ (delivery cost)": "+ 5€ (costo di consegna)",
@@ -80,5 +78,8 @@
   "Experience the allure of Iran with BAM, where culture meets style. Explore our curated collection, embodying the essence of Persian inspiration":"Experience the allure of Iran with BAM, where culture meets style. Explore our curated collection, embodying the essence of Persian inspiration",
   "Discover the exquisite essence of Iran's finest pomegranate in every drop of Sanich's vibrant and luscious pomegranate juice":"Scopri l'esquisita essenza del miglior melograno dell'Iran in ogni sorso del succoso succo di melograno di Sanich",
   "Discover the rich essence of Ruzaneh's premium white cheese - a harmonious blend of tradition and flavor that captivates with every bite":"Scopri l'essenza ricca del formaggio bianco di alta qualità di Ruzaneh - un'armoniosa miscela di tradizione e sapore che incanta ad ogni morso",
-  "Elevate your palate with Draje's exquisite chocolate ball. Crafted to perfection, each bite promises a symphony of flavors that redefine indulgence":"Elevalo al palato con la squisita pallina di cioccolato Draje. Realizzata alla perfezione, ogni morso promette una sinfonia di sapori che ridefiniscono l'arte del gusto"
+  "Elevate your palate with Draje's exquisite chocolate ball. Crafted to perfection, each bite promises a symphony of flavors that redefine indulgence":"Elevalo al palato con la squisita pallina di cioccolato Draje. Realizzata alla perfezione, ogni morso promette una sinfonia di sapori che ridefiniscono l'arte del gusto",
+  "Persian saffron": "Zafferano persiano",
+  "Snack": "Merendine",
+  "Discover more": "Scopri di più"
 }

@@ -155,7 +155,7 @@ export const ItemCard = memo(
                   handleAddProduct();
                 }}
               >
-                {quantity === 0 ? t("Not available") : t("Add")}
+                {quantity === 0 ? t("Sold out") : t("Add")}
               </Button>
             </Stack>
           </Card>

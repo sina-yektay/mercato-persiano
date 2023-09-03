@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { memo } from "react";
 import { useLandingScene } from "./index.hooks";
-
+import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import Image from "next/image";
 import { Link } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -39,6 +39,7 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
     products,
     handleScrollDown,
     handleShopNow,
+    navigate,
   } = useLandingScene();
   const theme = useTheme();
   const smallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -66,6 +67,7 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
         >
           <ArrowBackIcon style={{ fontSize: 52 }} />
         </IconButton>
+
         <Grid
           container
           direction={"row"}
@@ -75,7 +77,7 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
             opacity: activeStep === visibleStep ? 1 : 0,
           }}
         >
-          <Grid item container xs={12} md={5} direction={"column"} sx={{}}>
+          <Grid item container xs={12} md={5} direction={"column"}>
             <Grid
               item
               container
@@ -107,68 +109,94 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
                           : "36px",
                     }}
                   >
-                    {t("Asian grocery store")}
+                    {t(images[activeStep].group)}
                   </Typography>
                 </Slide>
               </Stack>
             </Grid>
-            <Grid
-              xs={mdScreen ? 3 : 5}
-              item
-              container
-              sx={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            {activeStep === 0 ? (
+              <Grid
+                xs={mdScreen ? 3 : 5}
+                item
+                container
+                sx={{
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  sx={{
+                    height: "100px",
+                    overflow: "hidden",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Slide
+                    timeout={{ enter: 1000, exit: 0 }}
+                    in={textSlider}
+                    direction="up"
+                  >
+                    <Stack
+                      direction={"row"}
+                      spacing={2}
+                      sx={{ justifyContent: "flex-start" }}
+                    >
+                      <Stack>
+                        <Button
+                          onClick={handleShopNow}
+                          style={{
+                            backgroundColor: "#9932CC",
+                            width: "130px",
+                            color: "white",
+                          }}
+                        >
+                          {t("Shop now!")}
+                        </Button>
+                      </Stack>
+                      <Stack>
+                        <Button
+                          onClick={handleScrollDown}
+                          style={{
+                            backgroundColor: "#9932CC",
+                            width: "130px",
+                            color: "white",
+                          }}
+                        >
+                          {t("Offers")}
+                        </Button>
+                      </Stack>
+                    </Stack>
+                  </Slide>
+                </Box>
+              </Grid>
+            ) : (
               <Box
                 sx={{
                   height: "100px",
-                  overflow: "hidden",
+                  justifyContent: "center",
                   display: "flex",
                   alignItems: "center",
                 }}
               >
-                <Slide
-                  timeout={{ enter: 1000, exit: 0 }}
-                  in={textSlider}
-                  direction="up"
-                >
-                  <Stack
-                    direction={"row"}
-                    spacing={2}
-                    sx={{ justifyContent: "flex-start" }}
-                  >
-                    <Stack>
-                      <Button
-                        onClick={handleShopNow}
-                        style={{
-                          backgroundColor: "#9932CC",
-                          width: "130px",
-                          color: "white",
-                        }}
-                      >
-                        {t("Shop now!")}
-                      </Button>
-                    </Stack>
-                    <Stack>
-                      <Button
-                        onClick={handleScrollDown}
-                        style={{
-                          backgroundColor: "#9932CC",
-                          width: "130px",
-                          color: "white",
-                        }}
-                      >
-                        {t("Offers")}
-                      </Button>
-                    </Stack>
-                  </Stack>
+                <Slide timeout={{ enter: 1000, exit: 0 }} in={textSlider}>
+                  <Box sx={{ justifyContent: "center", display: "flex" }}>
+                    <Button
+                      variant={"contained"}
+                      sx={{ fontWeight: "bold", backgroundColor: "#9932CC" }}
+                      onClick={() => {
+                        navigate(images[activeStep].link);
+                      }}
+                    >
+                      {t("Discover more")}
+                    </Button>
+                  </Box>
                 </Slide>
               </Box>
-            </Grid>
+            )}
           </Grid>
+
           <Grid
             item
             xs={12}
@@ -178,7 +206,7 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
               maxHeight: xlScreen ? "650px" : "850px",
             }}
           >
-            <Link to={images[activeStep].link}>
+            <Box>
               <Image
                 src={images[activeStep].img}
                 alt={"shopping"}
@@ -186,9 +214,10 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
                 objectFit="contain"
                 style={{}}
               />
-            </Link>
+            </Box>
           </Grid>
         </Grid>
+
         <IconButton
           onClick={handleStepChangeForward}
           style={{ position: "absolute", right: 0, zIndex: 999 }}

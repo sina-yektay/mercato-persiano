@@ -25,12 +25,14 @@ export const useShoppingCart = () => {
   const handleDialog = () => {
     setIsOpen(true);
   };
-
+  const regex = /([\d.]+)€/;
   const totalPrice = useMemo(() => {
     const pricesAndQuantity = productInCart.map((item) => {
-      const rawPrice = item.price.replace(/\D/g, "");
-
-      return Number(rawPrice) * item.orderQuantity;
+      // const rawPrice = item.price.replace(/\D/g, "");
+      const match = regex.exec(item.price);
+      const float = parseFloat(match![1]);
+      const roundedTotal = float.toFixed(2);
+      return Number(roundedTotal) * item.orderQuantity;
     });
     const tPrice = pricesAndQuantity.reduce((acc, current) => acc + current, 0);
 
