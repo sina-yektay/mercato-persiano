@@ -211,8 +211,7 @@ export const LandingScene = memo(({}: LandingSceneProps) => {
                 src={images[activeStep].img}
                 alt={"shopping"}
                 layout={"responsive"}
-                objectFit="contain"
-                style={{}}
+                style={{ objectFit: "contain" }}
               />
             </Box>
           </Grid>

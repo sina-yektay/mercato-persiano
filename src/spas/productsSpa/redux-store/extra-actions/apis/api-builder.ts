@@ -62,7 +62,6 @@ export const apiActionBuilder = <ApiRequestParams, ApiResponseAction>(
   api: string,
   prepare: PrepareAction<ApiRequestPayloadType<ApiRequestParams>>
 ) => {
-  console.log(api);
   return {
     api,
     request: createAction(
