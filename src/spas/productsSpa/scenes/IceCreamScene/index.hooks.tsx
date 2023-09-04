@@ -6,6 +6,6 @@ export const useIceCreamScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 9 }));
-  });
+  },[]);
   return {};
 };

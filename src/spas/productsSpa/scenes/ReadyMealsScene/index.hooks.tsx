@@ -6,6 +6,6 @@ export const useReadyMealsScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 6 }));
-  });
+  }, []);
   return {};
 };

@@ -6,6 +6,6 @@ export const useCoffeeAndTeaScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 3 }));
-  });
+  },[]);
   return {};
 };

@@ -61,7 +61,7 @@ export const usePaymentScene = () => {
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
-  });
+  }, []);
 
   useEffect(() => {
     dispatch(actions.changeBackDropState({ backDropState: true }));

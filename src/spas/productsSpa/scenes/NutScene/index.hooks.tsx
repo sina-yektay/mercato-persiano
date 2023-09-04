@@ -6,6 +6,6 @@ export const useNutScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 8 }));
-  });
+  }, []);
   return {};
 };
