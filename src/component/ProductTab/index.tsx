@@ -153,3 +153,4 @@ export const ProductTab = memo(() => {
     </Box>
   );
 });
+ProductTab.displayName = "ProductTab";

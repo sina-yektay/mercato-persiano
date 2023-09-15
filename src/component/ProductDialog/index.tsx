@@ -61,7 +61,14 @@ export const ProductDialog = memo(({}: productDialogType) => {
         }}
       >
         <DialogContentText id="alert-dialog-slide-description">
-          <Card sx={{ boxShadow: "none", maxWidth: "100%", maxHeight: "100%", overflowY: "hidden" }}>
+          <Card
+            sx={{
+              boxShadow: "none",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              overflowY: "hidden",
+            }}
+          >
             <Stack>
               <CardMedia
                 component="img"
@@ -69,7 +76,7 @@ export const ProductDialog = memo(({}: productDialogType) => {
                 width={smallScreen ? 130 : 200}
                 image={dialog.image}
                 alt="Product"
-                sx={{objectFit: "contain"}}
+                sx={{ objectFit: "contain" }}
               />
 
               <CardContent>
@@ -91,7 +98,7 @@ export const ProductDialog = memo(({}: productDialogType) => {
                       </AccordionDetails>
                     </Accordion>
                   </Stack>
-                  <Stack sx={{ margin: "auto" ,}}>
+                  <Stack sx={{ margin: "auto" }}>
                     <Typography
                       sx={{ fontWeight: "bold" }}
                       variant="body2"

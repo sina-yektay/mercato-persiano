@@ -12,3 +12,4 @@ export const DrinkScene = memo(({}: DrinkSceneProps) => {
 
   return <ProductPagination productType="drink" />;
 });
+DrinkScene.displayName = "DrinkScene";

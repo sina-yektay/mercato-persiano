@@ -11,3 +11,4 @@ export const BakeryScene = memo(({}: BakerySceneProps) => {
 
   return <ProductPagination productType="breakfast" />;
 });
+BakeryScene.displayName = "BakeryScene";

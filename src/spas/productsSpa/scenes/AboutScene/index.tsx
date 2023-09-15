@@ -14,7 +14,7 @@ export const AboutScene = memo(() => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
   return (
     <Grid
       container

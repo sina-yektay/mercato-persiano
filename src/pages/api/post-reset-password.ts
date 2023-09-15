@@ -30,30 +30,30 @@ export default async function handler(
             .json({ error: "You are not registered, signup please" });
         }
         const jwtSecret = await getParameterFromSSM("TORINASIA_JWT_SECRET");
-        const resetToken = jwt.sign(
-          { email },
-          jwtSecret as string,
-          { expiresIn: "1h" }
-        );
-        
+        const resetToken = jwt.sign({ email }, jwtSecret as string, {
+          expiresIn: "1h",
+        });
+
         await user.patch({ resetToken });
 
         const clientId = await getParameterFromSSM("TORINASIA_CLIENT_ID");
-        const clientSecret = await getParameterFromSSM("TORINASIA_CLIENT_SECRET");
-        const refreshToken = await getParameterFromSSM("TORINASIA_GOOGLE_REFRESH_TOKEN");
-        
+        const clientSecret = await getParameterFromSSM(
+          "TORINASIA_CLIENT_SECRET"
+        );
+        const refreshToken = await getParameterFromSSM(
+          "TORINASIA_GOOGLE_REFRESH_TOKEN"
+        );
+
         const oauth2Client = await new google.auth.OAuth2(
           clientId,
           clientSecret,
           refreshToken
         );
-        
 
         oauth2Client.setCredentials({
           refresh_token: refreshToken,
         });
         const accessToken = await oauth2Client.getAccessToken();
-
 
         const transporter = await nodemailer.createTransport({
           service: "gmail",
@@ -66,9 +66,8 @@ export default async function handler(
             accessToken: accessToken,
           },
         } as any);
-        
-        // const resetLink = `https://your-app-url.com/reset-password?token=${token}`;
-        const resetLink = `http://localhost:3000/reset-password?token=${resetToken}`;
+
+        const resetLink = `"https://www.torinasia.com"/reset-password?token=${resetToken}`;
 
         const mailOptions: nodemailer.SendMailOptions = {
           from: "torinasia.supp@gmail.com",

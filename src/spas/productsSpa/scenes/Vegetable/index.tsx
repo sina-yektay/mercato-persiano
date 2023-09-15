@@ -10,3 +10,4 @@ export const Vegetable = memo(({}: VegetableProps) => {
 
   return <ProductPagination productType="vegetable" />;
 });
+Vegetable.displayName = "Vegetable";

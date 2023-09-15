@@ -6,6 +6,6 @@ export const useBakeryScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 5 }));
-  });
+  },[dispatch]);
   return {};
 };

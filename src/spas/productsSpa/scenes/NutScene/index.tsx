@@ -11,3 +11,4 @@ export const NutScene = memo(({}: NutSceneProps) => {
 
   return <ProductPagination productType="nut" />;
 });
+NutScene.displayName = "NutScene";

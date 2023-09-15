@@ -215,3 +215,4 @@ export const EditProfile = memo(({}: EditProfileProps) => {
     </Grid>
   );
 });
+EditProfile.displayName = "EditProfile";

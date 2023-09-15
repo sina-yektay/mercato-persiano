@@ -52,7 +52,7 @@ export const useEditProfile = () => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!session) {
@@ -60,16 +60,7 @@ export const useEditProfile = () => {
     } else {
       dispatch(actions.getUser.request({ email: session?.user?.email || "" }));
     }
-  }, []);
-
-  useEffect(() => {
-    setValue("email", user.email);
-    setValue("address", user.address);
-    setValue("phone", user.phone);
-    setValue("password", "");
-    setValue("repeatPassword", "");
-    setValue("name", user.name);
-  }, [user]);
+  }, [session, dispatch, navigate]);
 
   const handleChange = () => {
     setChecked(!checked);
@@ -83,6 +74,15 @@ export const useEditProfile = () => {
     setValue,
     formState: { errors },
   } = formData;
+
+  useEffect(() => {
+    setValue("email", user.email);
+    setValue("address", user.address);
+    setValue("phone", user.phone);
+    setValue("password", "");
+    setValue("repeatPassword", "");
+    setValue("name", user.name);
+  }, [user, setValue]);
 
   const onSubmit = handleSubmit((formData) => {
     dispatch(

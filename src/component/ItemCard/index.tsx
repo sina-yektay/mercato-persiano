@@ -164,3 +164,4 @@ export const ItemCard = memo(
     );
   }
 );
+ItemCard.displayName = "ItemCard";
