@@ -105,3 +105,4 @@ export const SupportScene = memo(({}: SupportSceneProps) => {
     </Box>
   );
 });
+SupportScene.displayName = "SupportScene";

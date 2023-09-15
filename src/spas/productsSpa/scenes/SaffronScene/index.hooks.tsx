@@ -6,6 +6,6 @@ export const useSaffronScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 10 }));
-  }, []);
+  }, [dispatch]);
   return {};
 };

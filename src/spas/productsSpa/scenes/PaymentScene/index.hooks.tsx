@@ -5,14 +5,14 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 export const usePaymentScene = () => {
+  const user = useSelector(selectors.getUser);
+  const products = useSelector(selectors.getProductsInCart);
   const [clientSecret, setClientSecret] = useState("");
   const [isPaymentValid, setIsPaymentValid] = useState(false);
-  const handleSubmit = async (event: React.FormEvent) => {
+  const useHandleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const stripe = useStripe();
     const elements = useElements();
-    const user = useSelector(selectors.getUser);
-    const products = useSelector(selectors.getProductsInCart);
     dispatch(actions.changeBackDropState({ backDropState: true }));
     if (!stripe || !elements) {
       return;
@@ -61,7 +61,7 @@ export const usePaymentScene = () => {
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(actions.changeBackDropState({ backDropState: true }));
@@ -74,7 +74,7 @@ export const usePaymentScene = () => {
       .catch((error) => {
         console.error("Error fetching clientSecret:", error);
       });
-  }, []);
+  }, [dispatch, paymentAmount]);
 
-  return { handleSubmit, clientSecret, handlePaymentChange, isPaymentValid };
+  return { useHandleSubmit, clientSecret, handlePaymentChange, isPaymentValid };
 };

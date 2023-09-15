@@ -37,7 +37,7 @@ export const useResetPassword = () => {
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
-  }, []);
+  }, [dispatch]);
 
   const {
     handleSubmit,

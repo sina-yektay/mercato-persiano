@@ -1,18 +1,12 @@
 import { memo } from "react";
 import { usePaymentScene } from "./index.hooks";
-import {
-  CardElement,
-  useStripe,
-  useElements,
-  Elements,
-  PaymentElement,
-} from "@stripe/react-stripe-js";
+import { Elements, PaymentElement } from "@stripe/react-stripe-js";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { loadStripe } from "@stripe/stripe-js";
 type PaymentSceneProps = {};
 
 export const PaymentScene = memo(({}: PaymentSceneProps) => {
-  const { handleSubmit, clientSecret, handlePaymentChange, isPaymentValid } =
+  const { useHandleSubmit, clientSecret, handlePaymentChange, isPaymentValid } =
     usePaymentScene();
   const stripePromise = loadStripe(
     "pk_test_51Ng0klJSYYGIFSc6gKjj7npJKZ42KmiJOkWH47c7wQhhbAw5tePFljOdyFaobOuG05jEvA0WD5JMn25lPSIlZKnE00OGzAjMSE"
@@ -22,7 +16,7 @@ export const PaymentScene = memo(({}: PaymentSceneProps) => {
     <>
       {clientSecret && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={useHandleSubmit}>
             <Stack spacing={2} p={3}>
               <Typography
                 style={{ margin: "auto", marginBottom: 20 }}
@@ -48,3 +42,4 @@ export const PaymentScene = memo(({}: PaymentSceneProps) => {
     </>
   );
 });
+PaymentScene.displayName = "PaymentScene";

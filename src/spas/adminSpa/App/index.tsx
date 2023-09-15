@@ -14,7 +14,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.getItems.request({}));
-  }, []);
+  }, [dispatch]);
   return (
     <BrowserRouter basename="/admin/dashboard">
       <Stack direction={"row"}>

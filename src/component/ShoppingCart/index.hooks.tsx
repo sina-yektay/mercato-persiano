@@ -25,18 +25,19 @@ export const useShoppingCart = () => {
   const handleDialog = () => {
     setIsOpen(true);
   };
-  const regex = /([\d.]+)€/;
+
   const totalPrice = useMemo(() => {
+    const regex = /([\d.]+)€/;
     const pricesAndQuantity = productInCart.map((item) => {
-      // const rawPrice = item.price.replace(/\D/g, "");
       const match = regex.exec(item.price);
       const float = parseFloat(match![1]);
       const roundedTotal = float.toFixed(2);
       return Number(roundedTotal) * item.orderQuantity;
     });
+
     const tPrice = pricesAndQuantity.reduce((acc, current) => acc + current, 0);
 
-    return tPrice;
+    return tPrice.toFixed(2);
   }, [productInCart]);
 
   const handleAddFromCart = (item: product) => {
@@ -52,7 +53,7 @@ export const useShoppingCart = () => {
   };
 
   const handlePayment = () => {
-    dispatch(actions.setPaymentAmount({ amount: totalPrice }));
+    dispatch(actions.setPaymentAmount({ amount: parseFloat(totalPrice) }));
     dispatch(
       actions.addUserToState({
         email: session?.user.email || "",

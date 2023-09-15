@@ -11,3 +11,4 @@ export const ReadyMealsScene = memo(({}: ReadyMealsSceneProps) => {
 
   return <ProductPagination productType="meal" />;
 });
+ReadyMealsScene.displayName = "ReadyMealsScene";

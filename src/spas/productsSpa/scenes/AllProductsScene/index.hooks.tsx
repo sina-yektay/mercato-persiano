@@ -7,7 +7,7 @@ export const useAllProducts = () => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 1 }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
 
   const products = useSelector(selectors.products);
 

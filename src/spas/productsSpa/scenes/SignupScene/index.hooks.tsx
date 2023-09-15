@@ -79,7 +79,7 @@ export const useSignupScene = () => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     async function login() {
@@ -96,11 +96,11 @@ export const useSignupScene = () => {
     if (changeRouteAfterSignup) {
       login();
     }
-  }, [navigate, changeRouteAfterSignup]);
+  }, [navigate, changeRouteAfterSignup, dispatch, email, password]);
 
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
-  });
+  }, [dispatch]);
   const onSubmit = handleSubmit(
     async (formData: {
       email: string;

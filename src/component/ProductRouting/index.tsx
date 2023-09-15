@@ -1,6 +1,11 @@
 import { memo, useEffect } from "react";
 import { useProductRouting } from "./index.hooks";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  BrowserRouter,
+} from "react-router-dom";
 import { LandingScene } from "@/spas/productsSpa/scenes/LandingScene";
 import { SnackScene } from "@/spas/productsSpa/scenes/SnackScene";
 import { CoffeeAndTeaScene } from "@/spas/productsSpa/scenes/CoffeeAndTeaScene";
@@ -39,7 +44,8 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
     if (products.length === 0) {
       dispatch(actions.getItems.request({}));
     }
-  }, [dispatch]);
+  }, [dispatch, products.length]);
+
   return (
     <Box
       display="flex"
@@ -52,7 +58,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
       }}
     >
       <ProductDialog />
-      <Router>
+      <BrowserRouter basename="/mercato">
         <Box
           sx={{
             display: "flex",
@@ -64,6 +70,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
           <Bar />
           <ProductTab />
           <SideEffect />
+
           <Routes>
             <Route path="/" element={<LandingScene />} />
 
@@ -105,7 +112,7 @@ export const ProductRouting = memo(({}: ProductRoutingProps) => {
           </Routes>
         </Box>
         <Footer sx={{ position: "static", width: "100%" }} />
-      </Router>
+      </BrowserRouter>
     </Box>
   );
 });

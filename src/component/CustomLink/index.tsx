@@ -18,3 +18,4 @@ export const CustomLink = memo(({ to, buttonText }: CustomLinkProps) => {
     </Link>
   );
 });
+CustomLink.displayName = "CustomLink";

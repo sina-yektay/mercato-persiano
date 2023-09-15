@@ -7,7 +7,7 @@ export const useDrinkScene = () => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 7 }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
 
   return {};
 };

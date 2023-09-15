@@ -70,7 +70,7 @@ export const useLandingScene = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [activeStep]);
+  }, [activeStep, images.length]);
 
   useEffect(() => {
     setTextSlider(false);
@@ -86,7 +86,7 @@ export const useLandingScene = () => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 0 }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
 
   const products = useSelector(selectors.products);
 

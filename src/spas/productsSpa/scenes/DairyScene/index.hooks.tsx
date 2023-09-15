@@ -6,6 +6,6 @@ export const useDairyScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 11 }));
-  }, []);
+  }, [dispatch]);
   return {};
 };

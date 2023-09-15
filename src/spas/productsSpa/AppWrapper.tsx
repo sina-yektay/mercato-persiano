@@ -8,6 +8,7 @@ import { Bar } from "@/component/Bar";
 import { ProductTab } from "@/component/ProductTab";
 
 const AppWrapper = () => {
+  console.log("uuuuuuuuuuuUuuuuuuuuuuuu")
   return (
     <Provider store={store}>
       <Box>

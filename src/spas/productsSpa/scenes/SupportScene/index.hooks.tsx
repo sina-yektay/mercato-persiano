@@ -11,6 +11,6 @@ export const useSupportScene = () => {
   useEffect(() => {
     dispatch(actions.changeRoute({ index: false }));
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  }, [dispatch]);
   return { t, session };
 };

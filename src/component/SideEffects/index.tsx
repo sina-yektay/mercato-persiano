@@ -40,3 +40,4 @@ export const SideEffect = memo(({}: SideEffectsProps) => {
     </Box>
   );
 });
+SideEffect.displayName = "SideEffect";

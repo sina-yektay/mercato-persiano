@@ -190,3 +190,4 @@ export const Footer = memo(({ sx, ...otherProps }: FooterProps) => {
     </Box>
   );
 });
+Footer.displayName = "Footer";

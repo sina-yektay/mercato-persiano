@@ -122,7 +122,6 @@ export const AddItemDialog = memo(({}: AddItemDialogType) => {
                       render={({ field }) => (
                         <Stack direction="row" alignItems="center">
                           <Checkbox {...field} style={{ color: "purple" }} />
-
                         </Stack>
                       )}
                     />
@@ -167,17 +166,4 @@ export const AddItemDialog = memo(({}: AddItemDialogType) => {
   );
 });
 
-{
-  /* <input
-accept="image/*"
-id="photo-upload"
-type="file"
-onChange={handleFileSelect}
-/> */
-}
-
-// const handleFileSelect = (event) => {
-//   setSelectedFile(event.target.files[0]);
-// };
-
-// const [selectedFile, setSelectedFile] = useState(null);
+AddItemDialog.displayName = "AddItemDialog";
