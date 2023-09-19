@@ -16,7 +16,7 @@ export default async function handler(
     const STRIPE_SECRET_KEY = await getParameterFromSSM(
       "TORINASIA_STRIPE_SECRET_KEY"
     );
-
+    // @ts-ignore
     const stripe = new Stripe(STRIPE_SECRET_KEY as string, {
       apiVersion: "2022-11-15",
     });
