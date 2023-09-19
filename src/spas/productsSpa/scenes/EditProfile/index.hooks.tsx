@@ -30,10 +30,10 @@ type userEditForm = {
   name: string;
 };
 
-export const useEditProfile = () => {
+export const useEditProfile : any = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const user = useSelector(selectors.getUser);
+  const user: any = useSelector(selectors.getUser);
   const [checked, setChecked] = useState(true);
   const dispatch = useDispatch();
   const { data: session, status } = useSession();

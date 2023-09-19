@@ -6,6 +6,7 @@ export const useIceCreamScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 9 }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },[dispatch]);
   return {};
 };

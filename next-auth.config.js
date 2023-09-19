@@ -8,4 +8,5 @@ module.exports = {
     return secretValue;
   },
   site: "https://www.torinasia.com",
+  baseUrl: "https://www.torinasia.com",
 };

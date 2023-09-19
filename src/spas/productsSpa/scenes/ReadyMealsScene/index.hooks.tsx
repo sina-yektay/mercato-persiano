@@ -6,6 +6,7 @@ export const useReadyMealsScene = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actions.changeRoute({ index: 6 }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [dispatch]);
   return {};
 };

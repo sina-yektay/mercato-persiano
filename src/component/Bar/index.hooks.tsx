@@ -39,8 +39,8 @@ export const useBar = () => {
 
   const handleLogout = async () => {
     setAnchorEl(null);
-    navigate("/");
     await signOut();
+    navigate("/mercato");
   };
 
   const handleOpenDialog = (event: React.MouseEvent<HTMLElement>) => {
@@ -72,7 +72,6 @@ export const useBar = () => {
     navigate("/edit-profile");
   };
   const router = useRouter();
-
 
   const open = Boolean(anchorEl);
   return {
