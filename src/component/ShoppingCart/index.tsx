@@ -205,7 +205,7 @@ export const ShoppingCart = memo(({ color }: ShoppingCartProps) => {
                 </Box>
                 <Typography sx={{ py: 1.5, margin: "auto" }}>
                   {t("To Pay")}: {totalPrice}€{" "}
-                  {totalPrice < 20 ? t("+ 5€ (delivery cost)") : ""}
+                  {parseFloat(totalPrice) < 20 ? t("+ 5€ (delivery cost)") : ""}
                 </Typography>
 
                 <Button onClick={handlePayment} variant="contained">
